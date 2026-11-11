@@ -1,0 +1,1892 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="C++20 driver for the AS5047U 14-bit magnetic rotary position sensor.">
+      
+      
+      
+        <link rel="canonical" href="https://kokeb-labs-drivers.github.io/driver-as5047u/latest/api-guide/">
+      
+      
+        <link rel="prev" href="../limitations/">
+      
+      
+        <link rel="next" href="../configuration/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/kokeb/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>API guide - AS5047U Driver</title>
+      
+    
+    
+  
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8%201.5c-2.363%200-4%201.69-4%203.75%200%20.984.424%201.625.984%202.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621%201.49a.75.75%200%200%201-1.484.211c-.04-.282-.163-.547-.37-.847a9%209%200%200%200-.542-.68q-.126-.149-.268-.32C3.201%207.75%202.5%206.766%202.5%205.25%202.5%202.31%204.863%200%208%200s5.5%202.31%205.5%205.25c0%201.516-.701%202.5-1.328%203.259q-.142.172-.268.319c-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751%200%200%201-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848q.113-.133.213-.253c.561-.679.985-1.32.985-2.304%200-2.06-1.637-3.75-4-3.75M5.75%2012h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M6%2015.25a.75.75%200%200%201%20.75-.75h2.5a.75.75%200%200%201%200%201.5h-2.5a.75.75%200%200%201-.75-.75%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+  <link rel="stylesheet" href="../assets/kokeb/kokeb.css">
+
+    
+      
+    
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="../assets/kokeb/fonts.css">
+  <noscript><link rel="stylesheet" href="../assets/kokeb/fonts.css"></noscript>
+
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+  <meta name="theme-color" content="#0e1726" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b2140" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kokeb Labs">
+  <meta property="og:title" content="API guide - AS5047U Driver">
+  <meta property="og:description" content="C++20 driver for the AS5047U 14-bit magnetic rotary position sensor.">
+  <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-as5047u/latest/api-guide/">
+  <meta name="twitter:card" content="summary">
+  <script>
+(function () {
+  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
+  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
+      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
+  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
+  var stub = {
+    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
+    render: function (id, text) {
+      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
+      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
+      if (el) el.setAttribute("data-kb-mermaid", "");
+      return near(el).then(load).then(function (m) { return m.render(id, text); });
+    }
+  };
+  function load() {
+    return loading || (loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = SRC;
+      s.integrity = SRI;
+      s.crossOrigin = "anonymous";
+      s.onload = function () {
+        real = window.mermaid;
+        window.mermaid = stub;
+        real.initialize(config);
+        resolve(real);
+      };
+      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
+      document.head.appendChild(s);
+    }));
+  }
+  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
+  function watch() {
+    if (io) io.disconnect();
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
+      });
+    }, { rootMargin: ahead ? "100% 0px" : "0px" });
+    waiting.forEach(function (w) { io.observe(w.el); });
+  }
+  function release(which) {
+    waiting = waiting.filter(function (w) {
+      if (!which(w)) return true;
+      io.unobserve(w.el);
+      w.go();
+      return false;
+    });
+  }
+  function near(el) {
+    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
+    return new Promise(function (resolve) {
+      waiting.push({ el: el, go: resolve });
+      if (io) io.observe(el); else watch();
+    });
+  }
+  function engaged() {
+    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
+    ahead = true;
+    if (io) watch();
+  }
+  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
+  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
+  window.mermaid = stub;
+})();
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  You are reading the documentation of an older version.
+  <a href="https://kokeb-labs-drivers.github.io/driver-as5047u/"><strong>Go to the latest version.</strong></a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL(".."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AS5047U Driver" class="md-header__button md-logo" aria-label="AS5047U Driver" data-md-component="logo">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false" class="kb-mark">
+    <g transform="translate(1.28 1.28) scale(0.12000)"><path d="M232,66 Q265.29,246.71 446,280 Q265.29,313.29 232,494 Q198.71,313.29 18,280 Q198.71,246.71 232,66 Z" fill="#F4B942"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#0E1726" stroke="#0E1726" stroke-width="24" stroke-linejoin="round"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#D9773B"/></g>
+  </svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          
+          <a class="kb-org" href="https://kokeb-labs.github.io/" title="All Kokeb Labs documentation">Kokeb Labs</a>
+          <span class="kb-org__sep" aria-hidden="true">/</span>
+          <span class="md-ellipsis">
+            AS5047U Driver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Follow the system theme"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Follow the system theme" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kokeb-labs-drivers/driver-as5047u" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kokeb-labs-drivers/driver-as5047u
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../quickstart/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Get started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Concepts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api-reference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AS5047U Driver" class="md-nav__button md-logo" aria-label="AS5047U Driver" data-md-component="logo">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false" class="kb-mark">
+    <g transform="translate(1.28 1.28) scale(0.12000)"><path d="M232,66 Q265.29,246.71 446,280 Q265.29,313.29 232,494 Q198.71,313.29 18,280 Q198.71,246.71 232,66 Z" fill="#F4B942"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#0E1726" stroke="#0E1726" stroke-width="24" stroke-linejoin="round"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#D9773B"/></g>
+  </svg>
+
+    </a>
+    AS5047U Driver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kokeb-labs-drivers/driver-as5047u" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kokeb-labs-drivers/driver-as5047u
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../quickstart/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get started
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../architecture/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-shape-of-the-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The shape of the API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initialise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initialise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-the-zero-and-the-direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set the zero and the direction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set the zero and the direction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-a-write" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify a write
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watch-the-magnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Watch the magnet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notice-a-reset-of-the-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notice a reset of the chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-any-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use any register
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#burn-the-otp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Burn the OTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handle-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handle errors
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../otp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OTP programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../porting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Porting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../api-reference/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-shape-of-the-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The shape of the API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initialise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initialise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-the-zero-and-the-direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set the zero and the direction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set the zero and the direction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-a-write" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify a write
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watch-the-magnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Watch the magnet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notice-a-reset-of-the-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notice a reset of the chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-any-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use any register
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#burn-the-otp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Burn the OTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handle-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handle errors
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/edit/main/docs/api-guide.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="api-guide">API guide<a class="headerlink" href="#api-guide" title="Permanent link">&para;</a></h1>
+<p>The driver's API by task, with code that compiles: initialise, measure, set the zero, watch the magnet, burn the
+OTP and handle errors.</p>
+<!-- generated: datasheet-refs -->
+<details class="abstract">
+<summary>Datasheet sections this page relies on</summary>
+<p>From ams OSRAM DS000637 v1-01:</p>
+<ul>
+<li>Adaptive velocity filter: Adaptive Filter System; Rotation Speed Measurement, p. 12</li>
+<li>Angle, velocity, AGC, magnitude, ERRFL and DIA registers: Volatile Registers, p. 24</li>
+<li>Settings, zero position and direction registers: Non-Volatile Registers (OTP), p. 27</li>
+<li>AGC and the magnet's field strength: Automatic Gain Control (AGC) and CORDIC Magnitude, p. 37</li>
+</ul>
+<p>All of them, with the driver API for each: <a href="../datasheet/">Datasheet map</a>.</p>
+</details>
+<!-- /generated -->
+
+<h2 id="the-shape-of-the-api">The shape of the API<a class="headerlink" href="#the-shape-of-the-api" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Calls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lifecycle</td>
+<td><code>EnsureInitialized()</code>, <code>IsInitialized()</code>, <code>Deinitialize()</code></td>
+</tr>
+<tr>
+<td>Configuration</td>
+<td><code>ApplyConfig()</code>, <code>GetConfig()</code>, <code>SetZeroPosition()</code>, <code>SetZeroHere()</code>, <code>SetDirection()</code></td>
+</tr>
+<tr>
+<td>Measurement</td>
+<td><code>ReadAngleCounts()</code>, <code>ReadAngleDegrees()</code>, <code>ReadAngleRadians()</code>, <code>ReadUncompensatedAngleCounts()</code>, <code>ReadVelocityCounts()</code>, <code>ReadVelocityDegPerSec()</code>, <code>ReadVelocityRpm()</code>, <code>ReadAgc()</code>, <code>ReadMagnitude()</code></td>
+</tr>
+<tr>
+<td>Diagnostics</td>
+<td><code>ReadDiagnostics()</code>, <code>ReadErrorFlags()</code>, <code>GetLastErrorFlags()</code>, <code>GetLatchedErrorFlags()</code>, <code>ClearLatchedErrorFlags()</code>, <code>GetLastReply()</code>, <code>ReadRegister()</code>, <code>WriteRegister()</code>, <code>ReadNonVolatile()</code></td>
+</tr>
+<tr>
+<td>OTP</td>
+<td><code>ProgramOtp()</code></td>
+</tr>
+<tr>
+<td>Free functions</td>
+<td><code>Validate()</code>, <code>CountsToDegrees()</code>, <code>CountsToRadians()</code>, <code>Crc8()</code>, <code>ToString()</code>, <code>GetDriverVersion()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Every call that touches the chip returns <code>Result&lt;T&gt;</code>: check <code>ok()</code> (or the <code>bool</code> conversion) and read <code>value</code>, or read
+<code>error</code>. <code>Result</code> and <code>Error</code> are <code>[[nodiscard]]</code>, so an unchecked call is a compiler warning. A failed call's <code>value</code>
+is <code>T{}</code>, never a stale or partial reading.</p>
+<h2 id="initialise">Initialise<a class="headerlink" href="#initialise" title="Permanent link">&para;</a></h2>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">as5047u</span><span class="o">::</span><span class="n">Error</span><span class="w"> </span><span class="nf">BringUp</span><span class="p">(</span><span class="n">Sensor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="c1">// The one entry point: starts the chip on the first call, then returns Ok with no I/O. After a</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="c1">// failure the next call retries from the beginning.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">EnsureInitialized</span><span class="p">();</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">"AS5047U init: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">as5047u</span><span class="o">::</span><span class="n">ToString</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">));</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The constructor stores the port and the configuration and does no I/O. <code>EnsureInitialized()</code> is the one way to
+start the chip. Its first call brings the bus up and waits for the chip to be ready: it reads DIA once per
+millisecond, for at most <code>Config::startup_timeout_ms</code> (default t_pon, 10 ms; up to <code>kStartupTimeoutMaxMs</code>), until
+every magnetic loop reports finished, and accepts that only when the next read says the same (datasheet "Timing
+Characteristics", Figure 9; DIA, Figure 35). A chip that is already up costs no wait. It then reads ERRFL once to
+clear what the power-up left there, writes the configuration and reads each register back. <code>write_settings = false</code>
+skips the writes, for an OTP-burned part, and reads the chip's settings into <code>GetConfig()</code> instead.</p>
+<table>
+<thead>
+<tr>
+<th>Start-up result</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NoDevice</code></td>
+<td>Only line patterns until the deadline: MISO stuck or floating, MOSI looped back, DIA always 0</td>
+</tr>
+<tr>
+<td><code>NotReady</code></td>
+<td>The chip answers, but its loops did not finish by the deadline (no magnet, slow supply)</td>
+</tr>
+<tr>
+<td><code>DeviceIdMismatch</code></td>
+<td>DIA has a bit set that reads 0 on an AS5047U: another device answers</td>
+</tr>
+</tbody>
+</table>
+<p>Once it has succeeded, <code>EnsureInitialized()</code> returns <code>Ok</code> at once with no I/O, so a caller (or a handler that owns
+the driver) can call it before every use. After a failure the driver stays uninitialised and the next call starts
+again from the beginning. No other call starts the chip: before <code>EnsureInitialized()</code> succeeds every read and write
+returns <code>NotInitialized</code> and sends nothing, so a read in a control loop is always its own frames and nothing more.
+<code>ApplyConfig()</code> before the start only stores the configuration for the first <code>EnsureInitialized()</code>.</p>
+<p><code>Deinitialize()</code> only marks the driver uninitialised: the chip has no low-power mode. It is also the recovery
+after a fault: <code>Deinitialize()</code>, then <code>EnsureInitialized()</code> starts the chip again.</p>
+<h2 id="measure">Measure<a class="headerlink" href="#measure" title="Permanent link">&para;</a></h2>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// One control-loop sample: angle and speed. Each read is two CRC-checked frames; two more only</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">// when the chip flags the reply. A read under a magnet warning fails with MagnetWarning.</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">Sample</span><span class="p">(</span><span class="n">Sensor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensor</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">&amp;</span><span class="w"> </span><span class="n">angle_deg</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">&amp;</span><span class="w"> </span><span class="n">speed_rpm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">ReadAngleDegrees</span><span class="p">();</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">ReadVelocityRpm</span><span class="p">();</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">a</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// never use .value of a failed read: it is 0, not a measurement</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="n">angle_deg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="n">speed_rpm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">}</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Register</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ReadAngleCounts()</code></td>
+<td>Address 0x3FFF: ANGLECOM, with DAEC unless <code>dynamic_compensation</code> is false; ANGLEUNC when <code>uncompensated_at_angle_register</code> is true</td>
+<td>0 to 16383 counts, 0.022° per count</td>
+</tr>
+<tr>
+<td><code>ReadAngleDegrees()</code>, <code>ReadAngleRadians()</code></td>
+<td>Address 0x3FFF, as above</td>
+<td>[0, 360) °, [0, 2π) rad</td>
+</tr>
+<tr>
+<td><code>ReadUncompensatedAngleCounts()</code></td>
+<td>ANGLEUNC (0x3FFE): never compensated</td>
+<td>0 to 16383 counts</td>
+</tr>
+<tr>
+<td><code>ReadVelocityCounts()</code></td>
+<td>VEL (0x3FFC), signed 14 bit</td>
+<td>24.141 °/s per count</td>
+</tr>
+<tr>
+<td><code>ReadVelocityDegPerSec()</code>, <code>ReadVelocityRpm()</code></td>
+<td>VEL</td>
+<td>°/s, rpm</td>
+</tr>
+<tr>
+<td><code>ReadAgc()</code></td>
+<td>AGC (0x3FF9)</td>
+<td>0 to 255</td>
+</tr>
+<tr>
+<td><code>ReadMagnitude()</code></td>
+<td>MAG (0x3FFD), CORDIC magnitude</td>
+<td>0 to 16383</td>
+</tr>
+</tbody>
+</table>
+<p>Each read is two frames, CRC-checked unless the frame format is <code>Bits16</code>, and nothing more while the reply carries
+no flag bit: this is the hot path, and no verification is ever added to it. When the reply carries the error or the
+warning bit, the driver reads ERRFL (two more frames) to find out why. An angle or velocity read under an AGC or
+magnetic-half warning fails with <code>MagnetWarning</code>: the field is out of the range the chip regulates, so the value is
+not a measurement (handbook KB-CPP-127). A P2RAM single-bit warning (corrected by the ECC) does not refuse it.</p>
+<table>
+<thead>
+<tr>
+<th>Reply of an angle read</th>
+<th>Frames</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No flag bit</td>
+<td>2</td>
+<td>The angle</td>
+</tr>
+<tr>
+<td>Warning bit, ERRFL holds AGC_warning or MagHalf</td>
+<td>4</td>
+<td><code>MagnetWarning</code></td>
+</tr>
+<tr>
+<td>Warning bit, ERRFL holds only P2ram_warning</td>
+<td>4</td>
+<td>The angle</td>
+</tr>
+<tr>
+<td>Error bit</td>
+<td>4</td>
+<td><code>Crc</code>, <code>Framing</code>, <code>Command</code>, <code>DeviceFault</code>; <code>NoDevice</code> when ERRFL holds no error</td>
+</tr>
+<tr>
+<td>Error bit, ERRFL holds OffCompNotFinished or WDTST</td>
+<td>18</td>
+<td><code>DeviceReset</code> when the settings registers changed, else <code>DeviceFault</code> (<a href="#notice-a-reset-of-the-chip">below</a>)</td>
+</tr>
+<tr>
+<td>Error bit, the ERRFL read fails (CRC, transfer, reserved bit)</td>
+<td>18</td>
+<td><code>DeviceReset</code> when the settings registers changed, else the read's error; <code>flags_lost</code></td>
+</tr>
+<tr>
+<td>No flag bit, a compare is pending (it could not be read after a lost ERRFL)</td>
+<td>16</td>
+<td>The angle once the compare passes; <code>DeviceReset</code> on a difference; the compare's error while it cannot be read</td>
+</tr>
+</tbody>
+</table>
+<p>Two reads are two separate samples: the angle and the velocity of the example above are not taken at the same instant.
+The velocity reads ±1 count (±24 °/s) at standstill, and more with a high filter K: detect "stopped" with a threshold,
+not with zero.</p>
+<h2 id="set-the-zero-and-the-direction">Set the zero and the direction<a class="headerlink" href="#set-the-zero-and-the-direction" title="Permanent link">&para;</a></h2>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">as5047u</span><span class="o">::</span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">uint16_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ZeroAtTheCurrentPosition</span><span class="p">(</span><span class="n">Sensor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">SetZeroHere</span><span class="p">();</span><span class="w"> </span><span class="c1">// the shaft's current position now reads 0</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>SetZeroHere()</code> writes the zero as 0, reads the angle, and writes that angle as the new zero; it returns the new
+zero position in counts. <code>SetZeroPosition(counts)</code> writes a known value, and <code>SetDirection()</code> chooses the direction
+in which the angle increases. Each reads the settings registers (to keep their diagnostic bits) and writes the
+whole configuration again. The settings are lost at power-off unless you burn them (<a href="../otp/">OTP programming</a>).</p>
+<h3 id="verify-a-write">Verify a write<a class="headerlink" href="#verify-a-write" title="Permanent link">&para;</a></h3>
+<p>A write is the two frames the datasheet needs, the command and the data, always with a CRC, and the reply's error
+bit is checked as for every access. Reading the register back is chosen per call: <code>WriteRegister()</code>, <code>ApplyConfig()</code>,
+<code>SetZeroPosition()</code>, <code>SetZeroHere()</code> and <code>SetDirection()</code> take a last parameter <code>as5047u::Verify</code>, <code>None</code> by default.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Off a timed path (commissioning, a rarely changed setting): read the write back as well.</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">as5047u</span><span class="o">::</span><span class="n">Error</span><span class="w"> </span><span class="nf">SetDirectionChecked</span><span class="p">(</span><span class="n">Sensor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="c1">// Two more frames per register; WriteMismatch if the chip lost the write.</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">SetDirection</span><span class="p">(</span><span class="n">as5047u</span><span class="o">::</span><span class="n">Direction</span><span class="o">::</span><span class="n">CounterClockwise</span><span class="p">,</span><span class="w"> </span><span class="n">as5047u</span><span class="o">::</span><span class="n">Verify</span><span class="o">::</span><span class="n">ReadBack</span><span class="p">).</span><span class="n">error</span><span class="p">;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>Verify::ReadBack</code> reads each written register back (two more frames per register) and fails with <code>WriteMismatch</code>
+when it differs: it catches a write the chip lost, or a read-only bit. Use it off the timed path; a call in a
+control loop stays at the frames the datasheet needs. Any other value is refused with <code>InvalidArgument</code> before any
+I/O. Two calls always read back, whatever you pass elsewhere: <code>EnsureInitialized()</code> (start-up is not
+timing-critical) and <code>ProgramOtp()</code> (a burn cannot be undone).</p>
+<p>A write that fails (a reply CRC error, a lost frame, an error flag, <code>WriteMismatch</code>) may still have taken effect: the
+chip stores the data frame when it arrives. The driver never retries it. It reads DISABLE to ECC back (14 frames) and
+<code>GetConfig()</code> then holds what the chip holds, field by field. If that read fails too, the driver is uninitialised
+and <code>EnsureInitialized()</code> writes the configuration again.</p>
+<h2 id="watch-the-magnet">Watch the magnet<a class="headerlink" href="#watch-the-magnet" title="Permanent link">&para;</a></h2>
+<p>Warnings refuse an angle or a velocity (<code>MagnetWarning</code>); the AGC, magnitude and diagnostics still read, so you can
+see why. ERRFL clears when it is read, and the driver reads it inside other calls; every value it reads, those
+included, is ORed into a latch the driver owns (handbook KB-CPP-119):</p>
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>I/O</th>
+<th>What it gives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ReadErrorFlags()</code></td>
+<td>2 frames</td>
+<td>ERRFL now (clears it on the chip; also ORed into the latch)</td>
+</tr>
+<tr>
+<td><code>GetLastErrorFlags()</code></td>
+<td>none</td>
+<td>The last ERRFL value the driver read, by any call</td>
+</tr>
+<tr>
+<td><code>GetLatchedErrorFlags()</code></td>
+<td>none</td>
+<td>Every ERRFL flag read since <code>ClearLatchedErrorFlags()</code>; <code>EnsureInitialized()</code> empties it, then holds what the power-up left</td>
+</tr>
+<tr>
+<td><code>ClearLatchedErrorFlags()</code></td>
+<td>none</td>
+<td>Empties the latch, <code>flags_lost</code> included</td>
+</tr>
+<tr>
+<td><code>GetLastReply()</code></td>
+<td>none</td>
+<td>The raw reply word of the last frame, warning and error bits included</td>
+</tr>
+</tbody>
+</table>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">MagnetIsHealthy</span><span class="p">(</span><span class="n">Sensor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">agc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">ReadAgc</span><span class="p">();</span><span class="w">      </span><span class="c1">// mid-range is best: 0 too strong, 255 too weak</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">ReadErrorFlags</span><span class="p">();</span><span class="w"> </span><span class="c1">// clears ERRFL on the chip; also ORed into the latch</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">agc</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">agc_warning</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">f</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">mag_half</span><span class="p">;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1">// Everything ERRFL reported since the last check, including flags the driver's own reads</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1">// consumed (a read that failed with DeviceFault or MagnetWarning read ERRFL inside). No I/O.</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">AnyFieldWarningSinceLastCheck</span><span class="p">(</span><span class="n">Sensor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">as5047u</span><span class="o">::</span><span class="n">ErrorFlags</span><span class="w"> </span><span class="n">seen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">GetLatchedErrorFlags</span><span class="p">();</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="n">sensor</span><span class="p">.</span><span class="n">ClearLatchedErrorFlags</span><span class="p">();</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">seen</span><span class="p">.</span><span class="n">agc_warning</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">seen</span><span class="p">.</span><span class="n">mag_half</span><span class="p">;</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>ReadDiagnostics()</code> decodes DIA: the AGC limits (<code>agc_low</code>, <code>agc_high</code>), <code>mag_half</code>, whether the internal loops
+have settled (<code>loops_finished</code>), and whether the chip runs from 5 V (<code>vdd_5v</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ErrorFlags::agc_warning</code></td>
+<td>AGC at 0 or 255: the magnet is too close or too far</td>
+</tr>
+<tr>
+<td><code>ErrorFlags::mag_half</code></td>
+<td>The field is at half the regulated value</td>
+</tr>
+<tr>
+<td><code>ErrorFlags::p2ram_warning</code></td>
+<td>The ECC corrected one bit of the OTP copy</td>
+</tr>
+<tr>
+<td><code>ErrorFlags::flags_lost</code></td>
+<td>In the latch only: a read of ERRFL failed (reply CRC, transfer, reserved bit) after its command may have reached the chip, which then cleared the flags it held: a fault may have been missed</td>
+</tr>
+</tbody>
+</table>
+<p>Reading ERRFL or AGC regularly is also what the datasheet requires for the AGC loop to work as specified.</p>
+<h2 id="notice-a-reset-of-the-chip">Notice a reset of the chip<a class="headerlink" href="#notice-a-reset-of-the-chip" title="Permanent link">&para;</a></h2>
+<p>A power-on reset or a brown-out of the sensor (a supply dip, a loose connector) reloads DISABLE to ECC from the OTP:
+every setting written since start-up is gone ("Non-Volatile Registers (OTP)"), and on a blank part the zero and the
+direction return to their reset values, so the angle shifts with no error from the chip. The driver checks for this
+in two ways:</p>
+<ul>
+<li><strong>Automatically</strong>, at no cost on the hot path: when any ERRFL read after start-up holds OffCompNotFinished or
+  WDTST (the offset compensation restarts at power-up, Figure 33), or fails and so may have taken that flag, the
+  driver reads DISABLE to ECC (14 frames) and compares them with what it last wrote or read there.</li>
+<li><strong>On request</strong>: <code>CheckForReset()</code> makes the same comparison, 14 frames (about 34 µs of bus time at 10 MHz), for a
+  supervision tick off the timed path. The datasheet does not promise that ERRFL holds the flag after a reset, so
+  call it at the rate at which a reset must be noticed.</li>
+</ul>
+<p>On a difference the call fails with <code>DeviceReset</code> and the driver is uninitialised: no call writes the cached
+settings over the reset chip, and <code>EnsureInitialized()</code> starts it again with the stored configuration. A
+configuration equal to the OTP (a burned part with <code>write_settings</code> false, or <code>Config{}</code> on a blank part) is not
+changed by a reset, so nothing is reported and nothing is lost; the reads during t_pon after the reset still fail
+with <code>DeviceFault</code>.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// A supervision tick, off the timed path: 14 frames. A reset of the chip (a supply dip) reloads</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1">// its settings from the OTP; the driver then reports DeviceReset, here or from any read whose</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">// ERRFL says the offset compensation restarted, and EnsureInitialized() writes them again.</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">as5047u</span><span class="o">::</span><span class="n">Error</span><span class="w"> </span><span class="nf">Supervise</span><span class="p">(</span><span class="n">Sensor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">CheckForReset</span><span class="p">();</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as5047u</span><span class="o">::</span><span class="n">Error</span><span class="o">::</span><span class="n">DeviceReset</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">EnsureInitialized</span><span class="p">().</span><span class="n">error</span><span class="p">;</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sensor</span><span class="p">.</span><span class="n">GetLatchedErrorFlags</span><span class="p">().</span><span class="n">flags_lost</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">"an ERRFL read failed: a fault may have been missed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="n">sensor</span><span class="p">.</span><span class="n">ClearLatchedErrorFlags</span><span class="p">();</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">;</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="use-any-register">Use any register<a class="headerlink" href="#use-any-register" title="Permanent link">&para;</a></h2>
+<p><code>ReadRegister(address)</code> reads any 14-bit address once, with no retry, and returns the 14 data bits; a warning bit
+alone does not fail it, an error bit is resolved through ERRFL. Reading ERRFL this way clears it on the chip and
+feeds the latch; reading DIA restarts its frame counter. <code>WriteRegister(address, value)</code>
+writes one (add <code>Verify::ReadBack</code> to read it back); it refuses PROG (0x0003) with <code>InvalidArgument</code>, so that only
+<code>ProgramOtp()</code> can start a burn. <code>ReadNonVolatile()</code> returns DISABLE to ECC (0x0015 to 0x001B) as an array, in
+address order. The addresses and fields are in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a>
+(<code>as5047u::reg</code>). A <code>WriteRegister()</code> to a settings register is overwritten by the next <code>ApplyConfig()</code>.</p>
+<h2 id="burn-the-otp">Burn the OTP<a class="headerlink" href="#burn-the-otp" title="Permanent link">&para;</a></h2>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">as5047u</span><span class="o">::</span><span class="n">Error</span><span class="w"> </span><span class="nf">BurnSettings</span><span class="p">(</span><span class="n">Sensor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="n">as5047u</span><span class="o">::</span><span class="n">OtpReport</span><span class="w"> </span><span class="n">report</span><span class="p">{};</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="c1">// Irreversible. kOtpConfirm guards against a stray call.</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">ProgramOtp</span><span class="p">(</span><span class="n">as5047u</span><span class="o">::</span><span class="n">kOtpConfirm</span><span class="p">,</span><span class="w"> </span><span class="n">report</span><span class="p">);</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">"OTP failed at step %u (burn %s)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span><span class="p">(</span><span class="n">report</span><span class="p">.</span><span class="n">failed_step</span><span class="p">),</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">                </span><span class="n">report</span><span class="p">.</span><span class="n">burn_started</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"started: do not use the part"</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">"not started"</span><span class="p">);</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Irreversible. <code>ProgramOtp()</code> needs the typed <code>kOtpConfirm</code> (an <code>OtpBurnConfirm</code>; an integer does not compile), runs
+steps 6 to 19 of the datasheet procedure, and fills an <code>OtpReport</code> with the step that failed and whether the burn
+started. The steps before and after the call are yours. <a href="../otp/">OTP programming</a> has the whole procedure.</p>
+<h2 id="handle-errors">Handle errors<a class="headerlink" href="#handle-errors" title="Permanent link">&para;</a></h2>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">Describe</span><span class="p">(</span><span class="n">as5047u</span><span class="o">::</span><span class="n">Error</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">as5047u</span><span class="o">::</span><span class="no">Error</span><span class="o">::</span><span class="no">Bus</span><span class="p">:</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">as5047u</span><span class="o">::</span><span class="no">Error</span><span class="o">::</span><span class="no">NoDevice</span><span class="p">:</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">as5047u</span><span class="o">::</span><span class="no">Error</span><span class="o">::</span><span class="no">DeviceIdMismatch</span><span class="p">:</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">"check the wiring, chip select, supply and SPI mode 1"</span><span class="p">;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">as5047u</span><span class="o">::</span><span class="no">Error</span><span class="o">::</span><span class="no">NotReady</span><span class="p">:</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">"the chip answers but its loops did not settle: supply, magnet, startup_timeout_ms"</span><span class="p">;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">as5047u</span><span class="o">::</span><span class="no">Error</span><span class="o">::</span><span class="no">MagnetWarning</span><span class="p">:</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">"magnet too far, too close or missing: check ReadAgc() and the air gap"</span><span class="p">;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">as5047u</span><span class="o">::</span><span class="no">Error</span><span class="o">::</span><span class="no">Crc</span><span class="p">:</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">as5047u</span><span class="o">::</span><span class="no">Error</span><span class="o">::</span><span class="no">Framing</span><span class="p">:</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">"signal integrity: lower the SPI clock, shorten the wires"</span><span class="p">;</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">as5047u</span><span class="o">::</span><span class="no">Error</span><span class="o">::</span><span class="no">DeviceFault</span><span class="p">:</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">"chip fault or no magnet: check ReadErrorFlags() and ReadDiagnostics()"</span><span class="p">;</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">as5047u</span><span class="o">::</span><span class="no">Error</span><span class="o">::</span><span class="no">DeviceReset</span><span class="p">:</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">"the chip was reset (supply dip?): call EnsureInitialized() again"</span><span class="p">;</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">  </span><span class="k">default</span><span class="o">:</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">as5047u</span><span class="o">::</span><span class="n">ToString</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="p">}</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Meaning</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Error::Bus</code></td>
+<td>The port failed a transfer or the bus bring-up</td>
+<td>Check the port and the wiring; <code>EnsureInitialized()</code> again</td>
+</tr>
+<tr>
+<td><code>Error::NoDevice</code></td>
+<td>A reply a stuck, floating or looped-back line produces, at start-up or later</td>
+<td>Wiring, MISO, MOSI, supply (<a href="../troubleshooting/">Troubleshooting</a>)</td>
+</tr>
+<tr>
+<td><code>Error::NotReady</code></td>
+<td>At start-up the chip answered but its loops did not settle by <code>startup_timeout_ms</code></td>
+<td>Magnet, supply ramp; raise the deadline</td>
+</tr>
+<tr>
+<td><code>Error::DeviceIdMismatch</code></td>
+<td>Something answered at start-up, but not an AS5047U (DIA bit 10 set)</td>
+<td>Chip select, the device on the bus</td>
+</tr>
+<tr>
+<td><code>Error::MagnetWarning</code></td>
+<td>An angle or velocity read under an AGC or magnetic-half warning: not a measurement</td>
+<td>Magnet distance and centring; <code>ReadAgc()</code></td>
+</tr>
+<tr>
+<td><code>Error::Crc</code></td>
+<td>A reply had a wrong CRC, or the chip saw one (ERRFL.CRC_error)</td>
+<td>Lower the clock; shorten the wires</td>
+</tr>
+<tr>
+<td><code>Error::Framing</code></td>
+<td>The chip saw a frame of the wrong length (ERRFL.Framing_error)</td>
+<td>CSn must go high between frames; one transfer per frame</td>
+</tr>
+<tr>
+<td><code>Error::Command</code></td>
+<td>The chip saw an invalid command (ERRFL.Command_error)</td>
+<td>An unknown address in <code>ReadRegister()</code> or <code>WriteRegister()</code></td>
+</tr>
+<tr>
+<td><code>Error::DeviceFault</code></td>
+<td>ERRFL reports a measurement fault: P2RAM, watchdog, CORDIC overflow, offset compensation</td>
+<td>Check the magnet and <code>ReadDiagnostics()</code>; the value is not a measurement</td>
+</tr>
+<tr>
+<td><code>Error::DeviceReset</code></td>
+<td>The chip was reset (its settings registers no longer hold what the driver wrote) or a reset could not be ruled out; the driver is uninitialised</td>
+<td>Check the supply; <code>EnsureInitialized()</code> again (<a href="#notice-a-reset-of-the-chip">Notice a reset</a>)</td>
+</tr>
+<tr>
+<td><code>Error::WriteMismatch</code></td>
+<td>A register read back different from what was written (<code>Verify::ReadBack</code>, <code>EnsureInitialized()</code> or <code>ProgramOtp()</code>)</td>
+<td>Read-only field, or a lost or corrupted write</td>
+</tr>
+<tr>
+<td><code>Error::Timeout</code></td>
+<td>The OTP burn did not finish in 100 ms</td>
+<td><a href="../otp/#when-it-fails">OTP programming</a></td>
+</tr>
+<tr>
+<td><code>Error::OtpVerify</code></td>
+<td>The burned part failed the guard-band test</td>
+<td>Scrap the part</td>
+</tr>
+<tr>
+<td><code>Error::InvalidArgument</code></td>
+<td>A <code>Config</code> field or an argument is out of range; nothing was sent</td>
+<td>Fix the value (<code>Validate()</code>)</td>
+</tr>
+<tr>
+<td><code>Error::NotInitialized</code></td>
+<td><code>EnsureInitialized()</code> has not succeeded</td>
+<td>Call it</td>
+</tr>
+</tbody>
+</table>
+<p><code>Error::Busy</code> and <code>Error::Unsupported</code> belong to the shared base set but are never returned by this driver: the
+chip has no busy state and the driver no optional feature. Every value, with the calls that return it, is on the
+<a href="../contract/#errors">Contract</a> page. <code>as5047u::ToString()</code> names an error for a log.</p>
+<p>Next: <a href="../configuration/">Configuration</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../limitations/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Status and limitations">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Status and limitations
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../configuration/" class="md-footer__link md-footer__link--next" aria-label="Next: Configuration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Configuration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      
+<div class="md-copyright kb-footer">
+  <nav class="kb-footer__links" aria-label="Kokeb Labs">
+    <a href="https://kokeb-labs.github.io/">Kokeb Labs docs</a>
+    <a href="https://github.com/kokeb-labs-drivers">GitHub organisation</a>
+    
+      <a href="https://github.com/kokeb-labs-drivers/driver-as5047u">Source</a>
+      <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/issues">Report an issue</a>
+      <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/main/LICENSE">License</a>
+    
+  </nav>
+  
+    <div class="md-copyright__highlight">Copyright (c) 2026 The driver-as5047u authors</div>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/kokeb-labs-drivers" target="_blank" rel="noopener" title="Kokeb Labs on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.prune", "navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.action.edit", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../search/main.js"></script>
+      
+    
+  </body>
+</html>

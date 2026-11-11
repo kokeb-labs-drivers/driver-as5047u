@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1093" viewBox="0 0 1200 1093" role="img" aria-labelledby="read-pipeline-title read-pipeline-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="read-pipeline-title">Every access is two frames</title>
+<desc id="read-pipeline-desc">Timing of SPI frames: a read sends the command and then a NOP read (0x4000), because the chip answers each frame during the next one; a write sends a command frame and a data frame, then reads the register back.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8893A2"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="1092" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#7A360E">ARCHITECTURE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#0E1726">Every access is two frames</text>
+<text x="32" y="103.8" font-size="15" fill="#566070">One column per SPI frame. The chip answers each frame during the next one.</text>
+<rect x="32" y="119.8" width="1136" height="1" fill="#E2E7EE"/>
+<rect x="32" y="170.8" width="1136" height="367" rx="14" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="32" y="565.8" width="1136" height="367" rx="14" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1.2"/>
+<path d="M284.8 147.8 L455.6 147.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M550.4 147.8 L719.5 147.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M814.5 147.8 L983.2 147.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M358 315.8 L364.5 315.8 Q371 315.8 371 322.3 L371 423.7 Q371 430.2 377.5 430.2 L384 430.2" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#fk-arrow-rail)"/>
+<path d="M622 315.8 L628.5 315.8 Q635 315.8 635 322.3 L635 423.7 Q635 430.2 641.5 430.2 L648 430.2" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#fk-arrow-rail)"/>
+<path d="M886 315.8 L892.5 315.8 Q899 315.8 899 322.3 L899 423.7 Q899 430.2 905.5 430.2 L912 430.2" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#fk-arrow-rail)"/>
+<path d="M358 710.8 L364.5 710.8 Q371 710.8 371 717.3 L371 818.7 Q371 825.2 377.5 825.2 L384 825.2" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#fk-arrow-rail)"/>
+<path d="M622 710.8 L628.5 710.8 Q635 710.8 635 717.3 L635 818.7 Q635 825.2 641.5 825.2 L648 825.2" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#fk-arrow-rail)"/>
+<path d="M886 710.8 L892.5 710.8 Q899 710.8 899 717.3 L899 818.7 Q899 825.2 905.5 825.2 L912 825.2" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#fk-arrow-rail)"/>
+<rect x="124" y="219.8" width="230" height="128" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="124" y="227.8" width="4" height="112" rx="2" fill="#2563EB"/>
+<rect x="124" y="391.8" width="230" height="128" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="124" y="399.8" width="4" height="112" rx="2" fill="#64748B"/>
+<rect x="388" y="219.8" width="230" height="128" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="388" y="227.8" width="4" height="112" rx="2" fill="#2563EB"/>
+<rect x="388" y="391.8" width="230" height="128" rx="10" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="388" y="399.8" width="4" height="112" rx="2" fill="#15803D"/>
+<rect x="652" y="219.8" width="230" height="128" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="652" y="391.8" width="230" height="128" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="916" y="219.8" width="230" height="128" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="916" y="391.8" width="230" height="128" rx="10" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4" stroke-dasharray="6 4"/>
+<rect x="124" y="614.8" width="230" height="128" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="124" y="622.8" width="4" height="112" rx="2" fill="#2563EB"/>
+<rect x="124" y="786.8" width="230" height="128" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="124" y="794.8" width="4" height="112" rx="2" fill="#64748B"/>
+<rect x="388" y="614.8" width="230" height="128" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="388" y="622.8" width="4" height="112" rx="2" fill="#2563EB"/>
+<rect x="388" y="786.8" width="230" height="128" rx="10" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="388" y="794.8" width="4" height="112" rx="2" fill="#15803D"/>
+<rect x="652" y="614.8" width="230" height="128" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="652" y="786.8" width="230" height="128" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="916" y="614.8" width="230" height="128" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1" stroke-dasharray="6 4"/>
+<rect x="916" y="786.8" width="230" height="128" rx="10" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4" stroke-dasharray="6 4"/>
+<rect x="32" y="952.8" width="1136" height="79.3" rx="10" fill="#FFF5E3" stroke="#F1CF93" stroke-width="1"/>
+<text x="239" y="152.8" font-size="15" font-weight="700" text-anchor="middle" fill="#2B3442">Frame 1</text>
+<text x="503" y="152.8" font-size="15" font-weight="700" text-anchor="middle" fill="#2B3442">Frame 2</text>
+<text x="767" y="152.8" font-size="15" font-weight="700" text-anchor="middle" fill="#2B3442">Frame 3</text>
+<text x="1031" y="152.8" font-size="15" font-weight="700" text-anchor="middle" fill="#2B3442">Frame 4</text>
+<text x="48" y="195.8" font-size="13" font-weight="700" fill="#334155">READ</text>
+<text x="97.7" y="195.8" font-size="12" fill="#334155">ReadRegister(ANGLECOM), and every other read</text>
+<text x="48" y="288.5" font-size="13" font-weight="700" fill="#334155">MOSI</text>
+<text x="48" y="460.5" font-size="13" font-weight="700" fill="#334155">MISO</text>
+<text x="144" y="246.6" font-size="15" font-weight="700" fill="#1E429F">Read ANGLECOM</text>
+<text x="144" y="271.4" font-size="13" fill="#2B3442">0x7FFF: R/W 1, address</text>
+<text x="144" y="290.2" font-size="13" fill="#2B3442">0x3FFF</text>
+<text x="144" y="418.6" font-size="15" font-weight="700" fill="#0E1726">Reply to the frame</text>
+<text x="144" y="438.1" font-size="15" font-weight="700" fill="#0E1726">before</text>
+<text x="144" y="462.9" font-size="13" fill="#2B3442">Not used; only a failed</text>
+<text x="144" y="481.8" font-size="13" fill="#2B3442">transfer fails the call</text>
+<text x="408" y="246.6" font-size="15" font-weight="700" fill="#1E429F">NOP read</text>
+<text x="408" y="271.4" font-size="13" fill="#2B3442">0x4000: R/W 1, address 0</text>
+<text x="408" y="290.2" font-size="13" fill="#2B3442">Asks for nothing new</text>
+<text x="408" y="418.6" font-size="15" font-weight="700" fill="#14532D">ANGLECOM data</text>
+<text x="408" y="443.4" font-size="13" fill="#2B3442">The value of the call.</text>
+<text x="408" y="462.3" font-size="13" fill="#2B3442">Checked: CRC, then the error</text>
+<text x="408" y="481.1" font-size="13" fill="#2B3442">bit</text>
+<text x="672" y="246.6" font-size="15" font-weight="700" fill="#0E1726">Only if the error bit is set:</text>
+<text x="672" y="266.1" font-size="15" font-weight="700" fill="#0E1726">read ERRFL</text>
+<text x="672" y="290.9" font-size="13" fill="#2B3442">0x4001</text>
+<text x="672" y="418.6" font-size="15" font-weight="700" fill="#0E1726">Reply to the NOP read</text>
+<text x="672" y="443.4" font-size="13" fill="#2B3442">Not used</text>
+<text x="936" y="246.6" font-size="15" font-weight="700" fill="#0E1726">NOP read</text>
+<text x="936" y="271.4" font-size="13" fill="#2B3442">0x4000</text>
+<text x="936" y="418.6" font-size="15" font-weight="700" fill="#14532D">ERRFL, cleared by the</text>
+<text x="936" y="438.1" font-size="15" font-weight="700" fill="#14532D">read</text>
+<text x="936" y="462.9" font-size="13" fill="#2B3442">Fails the call with Crc,</text>
+<text x="936" y="481.8" font-size="13" fill="#2B3442">Framing, Command or</text>
+<text x="936" y="500.6" font-size="13" fill="#2B3442">DeviceFault</text>
+<text x="48" y="590.8" font-size="13" font-weight="700" fill="#334155">WRITE</text>
+<text x="104.8" y="590.8" font-size="12" fill="#334155">WriteRegister(address, value) and every settings write</text>
+<text x="48" y="683.5" font-size="13" font-weight="700" fill="#334155">MOSI</text>
+<text x="48" y="855.5" font-size="13" font-weight="700" fill="#334155">MISO</text>
+<text x="144" y="641.5" font-size="15" font-weight="700" fill="#1E429F">Write command</text>
+<text x="144" y="666.4" font-size="13" fill="#2B3442">R/W 0, the address; always</text>
+<text x="144" y="685.2" font-size="13" fill="#2B3442">with a CRC</text>
+<text x="144" y="813.5" font-size="15" font-weight="700" fill="#0E1726">Reply to the frame</text>
+<text x="144" y="833" font-size="15" font-weight="700" fill="#0E1726">before</text>
+<text x="144" y="857.9" font-size="13" fill="#2B3442">Not used; only a failed</text>
+<text x="144" y="876.8" font-size="13" fill="#2B3442">transfer fails the call</text>
+<text x="408" y="641.5" font-size="15" font-weight="700" fill="#1E429F">Data</text>
+<text x="408" y="666.4" font-size="13" fill="#2B3442">The 14-bit value, R/W 0;</text>
+<text x="408" y="685.2" font-size="13" fill="#2B3442">always with a CRC</text>
+<text x="408" y="813.5" font-size="15" font-weight="700" fill="#14532D">Reports on the command</text>
+<text x="408" y="833" font-size="15" font-weight="700" fill="#14532D">frame</text>
+<text x="408" y="857.9" font-size="13" fill="#2B3442">Error bit set: read ERRFL and</text>
+<text x="408" y="876.8" font-size="13" fill="#2B3442">fail</text>
+<text x="672" y="641.5" font-size="15" font-weight="700" fill="#0E1726">Read command, same</text>
+<text x="672" y="661" font-size="15" font-weight="700" fill="#0E1726">address</text>
+<text x="672" y="685.9" font-size="13" fill="#2B3442">Only with Verify::ReadBack,</text>
+<text x="672" y="704.8" font-size="13" fill="#2B3442">at start-up and in</text>
+<text x="672" y="723.6" font-size="13" fill="#2B3442">ProgramOtp()</text>
+<text x="672" y="813.5" font-size="15" font-weight="700" fill="#0E1726">Reply to the data frame</text>
+<text x="672" y="838.4" font-size="13" fill="#2B3442">Not used; only a failed</text>
+<text x="672" y="857.2" font-size="13" fill="#2B3442">transfer fails the call</text>
+<text x="936" y="641.5" font-size="15" font-weight="700" fill="#0E1726">NOP read</text>
+<text x="936" y="666.4" font-size="13" fill="#2B3442">0x4000</text>
+<text x="936" y="813.5" font-size="15" font-weight="700" fill="#14532D">The register</text>
+<text x="936" y="838.4" font-size="13" fill="#2B3442">Must equal the value written,</text>
+<text x="936" y="857.2" font-size="13" fill="#2B3442">else WriteMismatch</text>
+<text x="46" y="979.5" font-size="15" font-weight="700" fill="#8A3C0B">After a failed transfer</text>
+<text x="46" y="997.3" font-size="13" fill="#8A3C0B">After any failed transfer the chip may still wait for a write's data frame, so the next frame the driver sends is a NOP read (0x4000): as a command it reads nothing, as data</text>
+<text x="46" y="1016.2" font-size="13" fill="#8A3C0B">it writes 0. Without it a lost PROG data frame let the next read burn the OTP.</text>
+<rect x="32" y="1047.5" width="14" height="14" rx="4" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="54" y="1059.2" font-size="12.5" fill="#566070">driver sends (MOSI)</text>
+<rect x="203.4" y="1047.5" width="14" height="14" rx="4" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="225.4" y="1059.2" font-size="12.5" fill="#566070">the reply the call uses</text>
+<rect x="386.5" y="1047.5" width="14" height="14" rx="4" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<text x="408.5" y="1059.2" font-size="12.5" fill="#566070">reply that belongs to the frame before</text>
+<path d="M670.5 1053.8L700.5 1053.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#fk-arrow-rail)"/>
+<text x="714.5" y="1059.2" font-size="12.5" fill="#566070">answered in the next frame</text>
+</svg>

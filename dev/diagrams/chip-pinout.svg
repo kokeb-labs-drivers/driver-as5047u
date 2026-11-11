@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="776" height="549" viewBox="0 0 776 549" role="img" aria-labelledby="chip-pinout-title chip-pinout-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-pinout-title">AS5047U pinout, TSSOP-14</title>
+<desc id="chip-pinout-desc">Pinout of the AS5047U in TSSOP-14, top view: 14 pins, each with its name, its electrical type as a colour and the driver hook that uses it.</desc>
+<rect x="0.5" y="0.5" width="775" height="548" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#7A360E">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#0E1726">AS5047U pinout, TSSOP-14</text>
+<text x="32" y="103.8" font-size="15" fill="#566070">Top view, pin 1 marked. Colour is the pin's electrical type; the mono text outside is the port</text>
+<text x="32" y="125.5" font-size="15" fill="#566070">hook the driver uses for it. Datasheet: Pin Assignment, Figures 3 and 4, p. 3.</text>
+<rect x="32" y="141.6" width="712" height="1" fill="#E2E7EE"/>
+<rect x="258" y="179.6" width="260" height="282" rx="8" fill="#F5F7FA" stroke="#2B3442" stroke-width="2"/>
+<path d="M372 179.6 A16 16 0 0 0 404 179.6" fill="#FFFFFF" stroke="#2B3442" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="278" cy="199.6" r="6" fill="#2B3442"/>
+<rect x="228" y="208.6" width="30" height="20" rx="3" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="228" y="242.6" width="30" height="20" rx="3" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="228" y="276.6" width="30" height="20" rx="3" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="228" y="310.6" width="30" height="20" rx="3" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="228" y="344.6" width="30" height="20" rx="3" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="228" y="378.6" width="30" height="20" rx="3" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="228" y="412.6" width="30" height="20" rx="3" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="518" y="208.6" width="30" height="20" rx="3" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="518" y="242.6" width="30" height="20" rx="3" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<rect x="518" y="276.6" width="30" height="20" rx="3" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<rect x="518" y="310.6" width="30" height="20" rx="3" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<rect x="518" y="344.6" width="30" height="20" rx="3" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="518" y="378.6" width="30" height="20" rx="3" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="518" y="412.6" width="30" height="20" rx="3" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="388" y="310.6" font-size="20" font-weight="700" text-anchor="middle" fill="#0E1726">AS5047U</text>
+<text x="388" y="334.6" font-size="13" text-anchor="middle" fill="#566070">TSSOP-14, top view</text>
+<text x="243" y="222.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#1E429F">1</text>
+<text x="218" y="223.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CSn</text>
+<text x="146.6" y="222.9" font-size="12" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#566070">Transfer()</text>
+<text x="243" y="256.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#1E429F">2</text>
+<text x="218" y="257.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">CLK</text>
+<text x="146.6" y="256.9" font-size="12" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#566070">Transfer()</text>
+<text x="243" y="290.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#1E429F">3</text>
+<text x="218" y="291.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">MISO</text>
+<text x="146.6" y="290.9" font-size="12" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#566070">Transfer()</text>
+<text x="243" y="324.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#1E429F">4</text>
+<text x="218" y="325.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">MOSI</text>
+<text x="146.6" y="324.9" font-size="12" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#566070">Transfer()</text>
+<text x="243" y="358.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#0B5F59">5</text>
+<text x="218" y="359.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">TEST*</text>
+<text x="243" y="392.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#14532D">6</text>
+<text x="218" y="393.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">B</text>
+<text x="243" y="426.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#14532D">7</text>
+<text x="218" y="427.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">A</text>
+<text x="533" y="222.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#14532D">14</text>
+<text x="558" y="223.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">I/PWM</text>
+<text x="533" y="256.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#334155">13</text>
+<text x="558" y="257.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">GND</text>
+<text x="533" y="290.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#9F1239">12</text>
+<text x="558" y="291.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">VDD3V3</text>
+<text x="533" y="324.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#9F1239">11</text>
+<text x="558" y="325.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">VDD</text>
+<text x="533" y="358.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#14532D">10</text>
+<text x="558" y="359.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">U</text>
+<text x="533" y="392.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#14532D">9</text>
+<text x="558" y="393.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">V</text>
+<text x="533" y="426.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#14532D">8</text>
+<text x="558" y="427.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">W/PWM</text>
+<text x="32" y="483.6" font-size="12.5" fill="#566070">* Not confirmed in the datasheet: pin 5 TEST: Figure 4 gives this pin no type; drawn as an input.</text>
+<rect x="32" y="502.7" width="14" height="14" rx="4" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<text x="54" y="514.3" font-size="12.5" fill="#566070">power</text>
+<rect x="117.6" y="502.7" width="14" height="14" rx="4" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<text x="139.6" y="514.3" font-size="12.5" fill="#566070">ground</text>
+<rect x="208.5" y="502.7" width="14" height="14" rx="4" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="230.5" y="514.3" font-size="12.5" fill="#566070">bus</text>
+<rect x="277.4" y="502.7" width="14" height="14" rx="4" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<text x="299.4" y="514.3" font-size="12.5" fill="#566070">digital in</text>
+<rect x="375.8" y="502.7" width="14" height="14" rx="4" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="397.8" y="514.3" font-size="12.5" fill="#566070">digital out</text>
+</svg>

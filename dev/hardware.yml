@@ -1,0 +1,138 @@
+---
+# The chip's hardware in one file: package, pins, the driver hook of each pin, the blocks inside, and reference
+# circuits. `kokeb-docs figures` draws the pinout, the block diagram and the circuits from it, `kokeb-docs gen`
+# writes the pin and parts tables on docs/hardware.md, and `kokeb-docs hardware --check` validates it.
+# Schema: docs/chip-diagrams.md in kokeb-labs/ci-tools. Every fact cites the datasheet in docs/datasheets.yml
+# (section and printed page); anything the datasheet does not state carries `unverified`.
+schema: 1
+chip: AS5047U
+
+refs:
+  blocks: {doc: ds, section: "Block Diagram, Figure 2", page: 2}
+  pinout: {doc: ds, section: "Pin Assignment, Figures 3 and 4", page: 3}
+  pins2: {doc: ds, section: "Pin Assignment, Figure 4", page: 4}
+  elec: {doc: ds, section: "Electrical Characteristics, Figure 6", page: 6}
+  power: {doc: ds, section: "Power Management, Figure 11", page: 11}
+  spi: {doc: ds, section: "SPI Interface (Slave)", page: 16}
+  app: {doc: ds, section: "Circuit Diagram, Figure 61", page: 44}
+
+package:
+  type: TSSOP-14
+  pins: 14
+  ref: pinout
+
+hooks:
+  - {id: transfer, call: "Transfer()", kind: spi, source: inc/as5047u_spi_interface.hpp, symbol: Transfer}
+
+pins:
+  - {number: 1, name: CSn, type: bus, domain: VDD, function: "SPI chip select, active low", hook: transfer,
+     unused: Pull up, ref: pinout}
+  - {number: 2, name: CLK, type: bus, domain: VDD, function: "SPI clock, up to 10 MHz, mode 1", hook: transfer,
+     unused: Pull down, ref: spi}
+  - {number: 3, name: MISO, type: bus, domain: VDD, function: "SPI data out", hook: transfer, unused: Leave open,
+     ref: pinout}
+  - {number: 4, name: MOSI, type: bus, domain: VDD, function: "SPI data in", hook: transfer, unused: Pull down,
+     ref: pinout}
+  - {number: 5, name: TEST, type: digital-in, domain: VDD, function: "Test pin; connect to ground", unused: Connect to GND,
+     ref: pinout, unverified: "Figure 4 gives this pin no type; drawn as an input"}
+  - {number: 6, name: B, type: digital-out, domain: VDD, function: "Incremental signal B", unused: Leave open,
+     ref: pinout}
+  - {number: 7, name: A, type: digital-out, domain: VDD, function: "Incremental signal A", unused: Leave open,
+     ref: pinout}
+  - {number: 8, name: W/PWM, type: digital-out, domain: VDD, function: "Commutation signal W, or the PWM output",
+     unused: Leave open, ref: pinout}
+  - {number: 9, name: V, type: digital-out, domain: VDD, function: "Commutation signal V", unused: Leave open,
+     ref: pinout}
+  - {number: 10, name: U, type: digital-out, domain: VDD, function: "Commutation signal U", unused: Leave open,
+     ref: pinout}
+  - {number: 11, name: VDD, type: power, domain: VDD,
+     function: "Supply: 4.5 V to 5.5 V into the on-chip LDO, or 3.0 V to 3.6 V tied to VDD3V3", ref: elec}
+  - {number: 12, name: VDD3V3, type: power, domain: VDD,
+     function: "3.3 V LDO output with 1 µF to GND; in 3.3 V operation tied to VDD", ref: pins2}
+  - {number: 13, name: GND, type: ground, function: Ground, ref: pins2}
+  - {number: 14, name: I/PWM, type: digital-out, domain: VDD, function: "Index signal I, or the PWM output",
+     unused: Leave open, ref: pins2}
+
+block_diagram:
+  ref: blocks
+  blocks:
+    - {id: ldo, label: LDO, detail: "3.3 V core from 5 V", at: [0, 0], tone: slate,
+       pins: [VDD, VDD3V3, GND]}
+    - {id: mem, label: Registers and OTP, detail: "volatile and one-time settings", at: [1, 0], tone: amber}
+    - {id: spi, label: SPI and CRC, detail: "mode 1, 16-, 24- or 32-bit frames", at: [2, 0], tone: blue,
+       pins: [CSn, CLK, MISO, MOSI]}
+    - {id: afe, label: Hall sensors and AFE, detail: "4 Hall sensors, 14-bit ADCs, AGC", at: [0, 1], tone: teal}
+    - {id: cordic, label: CORDIC, detail: "angle and magnitude", at: [1, 1], tone: teal}
+    - {id: daec, label: DAEC and adaptive filter, detail: "latency compensation, noise filter", at: [2, 1],
+       tone: teal}
+    - {id: pwm, label: PWM, detail: "12-bit angle as a duty cycle", at: [1, 2], tone: violet}
+    - {id: abi, label: ABI, detail: "quadrature and index", at: [2, 2], tone: violet, pins: [A, B, I/PWM]}
+    - {id: uvw, label: UVW, detail: "Hall emulation, 1 to 7 pole pairs", at: [2, 3], tone: violet,
+       pins: [U, V, W/PWM]}
+  links:
+    - {from: afe, to: cordic, label: samples}
+    - {from: cordic, to: daec, label: angle}
+    - {from: daec, to: spi, label: angle}
+    - {from: mem, to: spi, label: settings, both: true}
+    - {from: daec, to: abi}
+    - {from: cordic, to: pwm}
+    - {from: pwm, to: abi}
+    - {from: pwm, to: uvw}
+
+circuits:
+  - id: typical
+    title: Minimum circuit, 5 V
+    description: >-
+      Figure 61: the sensor on the MCU's SPI bus, VDD at 5 V with 100 nF to GND, the LDO output VDD3V3 with its 1 µF,
+      TEST to ground and the incremental outputs open. In 5 V operation the logic levels follow VDD.
+    ref: app
+    parts:
+      - {id: U1, kind: chip}
+      - id: U2
+        kind: mcu
+        label: MCU
+        pins:
+          - {name: SCK, label: SPI SCK}
+          - {name: MOSI, label: SPI MOSI}
+          - {name: MISO, label: SPI MISO}
+          - {name: CS, label: GPIO / CS}
+          - VDD
+          - GND
+      - {id: C1, kind: capacitor, value: 100 nF, ref: app}
+      - {id: C2, kind: capacitor, value: 1 µF, ref: app}
+    nets:
+      - {name: "+5V", kind: supply, nodes: [U1.VDD, C1.1, U2.VDD]}
+      - {name: VDD3V3, kind: supply, nodes: [U1.VDD3V3, C2.1]}
+      - {name: GND, kind: ground, nodes: [U1.GND, U1.TEST, C1.2, C2.2, U2.GND]}
+      - {name: CLK, nodes: [U1.CLK, U2.SCK]}
+      - {name: MOSI, nodes: [U1.MOSI, U2.MOSI]}
+      - {name: MISO, nodes: [U1.MISO, U2.MISO]}
+      - {name: CSn, nodes: [U1.CSn, U2.CS]}
+    unused: [U1.A, U1.B, U1.I/PWM, U1.U, U1.V, U1.W/PWM]
+  - id: supply-3v3
+    title: 3.3 V operation
+    description: >-
+      Figure 11, right: VDD and VDD3V3 tied to a 3.0 V to 3.6 V supply with 100 nF to GND, so the logic levels
+      match a 3.3 V MCU.
+    ref: power
+    parts:
+      - {id: U1, kind: chip}
+      - id: U2
+        kind: mcu
+        label: MCU
+        pins:
+          - {name: SCK, label: SPI SCK}
+          - {name: MOSI, label: SPI MOSI}
+          - {name: MISO, label: SPI MISO}
+          - {name: CS, label: GPIO / CS}
+          - VDD
+          - GND
+      - {id: C1, kind: capacitor, value: 100 nF, ref: power}
+    nets:
+      - {name: "+3V3", kind: supply, nodes: [U1.VDD, U1.VDD3V3, C1.1, U2.VDD]}
+      - {name: GND, kind: ground, nodes: [U1.GND, U1.TEST, C1.2, U2.GND]}
+      - {name: CLK, nodes: [U1.CLK, U2.SCK]}
+      - {name: MOSI, nodes: [U1.MOSI, U2.MOSI]}
+      - {name: MISO, nodes: [U1.MISO, U2.MISO]}
+      - {name: CSn, nodes: [U1.CSn, U2.CS]}
+    unused: [U1.A, U1.B, U1.I/PWM, U1.U, U1.V, U1.W/PWM]
