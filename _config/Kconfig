@@ -1,0 +1,38 @@
+# Kconfig for the AS5047U driver. The root CMakeLists.txt registers it with ESP-IDF
+# (idf_component_register(... KCONFIG _config/Kconfig)), so `idf.py menuconfig` shows
+# "AS5047U rotary position sensor". The values reach the code only through
+# inc/as5047u_kconfig.hpp; no public driver signature uses them.
+menuconfig AS5047U
+    bool "AS5047U rotary position sensor"
+    default y
+    help
+      Defaults for as5047u::KconfigDefaults(). The driver itself does not
+      need Kconfig; outside ESP-IDF the same defaults come from Config{}.
+
+if AS5047U
+
+choice AS5047U_FRAME
+    prompt "SPI frame format"
+    default AS5047U_FRAME_24
+    help
+      Writes always use a CRC-protected frame. 16-bit reads are fastest but
+      unprotected; 32-bit frames add a pad byte for daisy chains.
+
+config AS5047U_FRAME_16
+    bool "16-bit (no CRC on reads)"
+config AS5047U_FRAME_24
+    bool "24-bit with CRC-8"
+config AS5047U_FRAME_32
+    bool "32-bit with CRC-8 and pad byte"
+
+endchoice
+
+config AS5047U_DIRECTION_CCW
+    bool "Angle increases counter-clockwise (SETTINGS2.DIR = 1)"
+    default n
+
+config AS5047U_DAEC_DISABLE
+    bool "Disable dynamic angle error compensation (DAEC)"
+    default n
+
+endif

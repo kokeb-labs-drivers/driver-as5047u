@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1146" viewBox="0 0 1200 1146" role="img" aria-labelledby="otp-flow-title otp-flow-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="otp-flow-title">ProgramOtp(), step by step</title>
+<desc id="otp-flow-desc">Flowchart of ProgramOtp: prepare (steps 6 to 11), burn (steps 12 to 14, polled with a 100 ms timeout) and guard-band verify (steps 15 to 19); burn_started becomes true at step 13, and each step can stop the call with an error.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="1145" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">OTP PROGRAMMING</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">ProgramOtp(), step by step</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">Datasheet steps 6 to 19. The call stops at the first failure; OtpReport::failed_step names the step.</text>
+<rect x="32" y="119.8" width="1136" height="1" fill="#252F3C"/>
+<rect x="32" y="265.8" width="352" height="734.4" rx="14" fill="#1B232E" stroke="#3A4656" stroke-width="1.2"/>
+<rect x="424" y="265.8" width="352" height="734.4" rx="14" fill="#1B232E" stroke="#3A4656" stroke-width="1.2"/>
+<rect x="816" y="265.8" width="352" height="734.4" rx="14" fill="#1B232E" stroke="#3A4656" stroke-width="1.2"/>
+<path d="M316 229.8 L316 275 Q316 277 318 277 L318 277 Q320 277 320 279 L320 324.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M208 401.2 L208 427.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M208 504.2 L208 530.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M208 607.2 L208 633.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M208 729.2 L208 755.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M208 807.2 L208 833.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M372 881.2 L396 881.2 Q404 881.2 404 873.2 L404 370.7 Q404 362.7 412 362.7 L436 362.7" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M600 401.2 L600 467.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M600 563.2 L600 589.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M764 637.2 L788 637.2 Q796 637.2 796 629.2 L796 380.2 Q796 372.2 804 372.2 L828 372.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M992 420.2 L992 446.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M992 542.2 L992 568.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M992 664.2 L992 690.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M992 742.2 L992 768.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M992 864.2 L992 890.2" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="32" y="137.8" width="1136" height="88" rx="10" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="32" y="145.8" width="4" height="72" rx="2" fill="#94A3B8"/>
+<rect x="48" y="328.2" width="320" height="69" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="48" y="336.2" width="4" height="53" rx="2" fill="#2BB3A3"/>
+<rect x="48" y="431.2" width="320" height="69" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="48" y="439.2" width="4" height="53" rx="2" fill="#2BB3A3"/>
+<rect x="48" y="534.2" width="320" height="69" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="48" y="542.2" width="4" height="53" rx="2" fill="#2BB3A3"/>
+<rect x="48" y="637.2" width="320" height="88" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="48" y="645.2" width="4" height="72" rx="2" fill="#2BB3A3"/>
+<rect x="48" y="759.2" width="320" height="44" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="48" y="767.2" width="4" height="28" rx="2" fill="#2BB3A3"/>
+<rect x="48" y="837.2" width="320" height="88" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="48" y="845.2" width="4" height="72" rx="2" fill="#2BB3A3"/>
+<rect x="440" y="328.2" width="320" height="69" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="440" y="336.2" width="4" height="53" rx="2" fill="#2BB3A3"/>
+<rect x="440" y="471.2" width="320" height="88" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="440" y="479.2" width="4" height="72" rx="2" fill="#FBBF24"/>
+<rect x="440" y="593.2" width="320" height="88" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="440" y="601.2" width="4" height="72" rx="2" fill="#FBBF24"/>
+<rect x="832" y="328.2" width="320" height="88" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="832" y="336.2" width="4" height="72" rx="2" fill="#FBBF24"/>
+<rect x="832" y="450.2" width="320" height="88" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="832" y="458.2" width="4" height="72" rx="2" fill="#FBBF24"/>
+<rect x="832" y="572.2" width="320" height="88" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="832" y="580.2" width="4" height="72" rx="2" fill="#FBBF24"/>
+<rect x="832" y="694.2" width="320" height="44" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="832" y="702.2" width="4" height="28" rx="2" fill="#FBBF24"/>
+<rect x="832" y="772.2" width="320" height="88" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="832" y="780.2" width="4" height="72" rx="2" fill="#FBBF24"/>
+<rect x="832" y="894.2" width="320" height="88" rx="10" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="832" y="902.2" width="4" height="72" rx="2" fill="#4ADE80"/>
+<rect x="32" y="1024.2" width="1136" height="60.5" rx="10" fill="#321820" stroke="#6E3141" stroke-width="1"/>
+<text x="52" y="164.6" font-size="15" font-weight="700" fill="#E2E8F0">ProgramOtp(kOtpConfirm, report)</text>
+<text x="52" y="189.4" font-size="13" fill="#D2DAE4">Not initialised: NotInitialized. Any confirm other than kOtpConfirm: InvalidArgument. Neither sends a frame.</text>
+<text x="52" y="208.2" font-size="13" fill="#D2DAE4">Then every frame, reads included, carries a CRC until the call returns.</text>
+<text x="68" y="355" font-size="15" font-weight="700" fill="#A7F3E6">6. Read DISABLE to ECC</text>
+<text x="68" y="379.8" font-size="13" fill="#D2DAE4">What will be burned</text>
+<text x="68" y="457.9" font-size="15" font-weight="700" fill="#A7F3E6">7. ECC = ECC_en</text>
+<text x="68" y="482.8" font-size="13" fill="#D2DAE4">Read back</text>
+<rect x="250.4" y="441.2" width="107.6" height="21.5" rx="10.8" fill="#0F2A28" stroke="#215A54" stroke-width="1"/>
+<text x="258.4" y="455.6" font-size="11.5" font-weight="700" fill="#A7F3E6">WriteMismatch</text>
+<text x="68" y="561" font-size="15" font-weight="700" fill="#A7F3E6">8. Read ECC_Checksum</text>
+<text x="68" y="585.8" font-size="13" fill="#D2DAE4">The ECC key</text>
+<text x="68" y="664" font-size="15" font-weight="700" fill="#A7F3E6">9. ECC = ECC_en with</text>
+<text x="68" y="683.5" font-size="15" font-weight="700" fill="#A7F3E6">the key</text>
+<text x="68" y="708.3" font-size="13" fill="#D2DAE4">Read back</text>
+<rect x="250.4" y="647.2" width="107.6" height="21.5" rx="10.8" fill="#0F2A28" stroke="#215A54" stroke-width="1"/>
+<text x="258.4" y="661.6" font-size="11.5" font-weight="700" fill="#A7F3E6">WriteMismatch</text>
+<text x="68" y="786" font-size="15" font-weight="700" fill="#A7F3E6">10. Read DISABLE to ECC again</text>
+<text x="68" y="864" font-size="15" font-weight="700" fill="#A7F3E6">11. Compare with</text>
+<text x="68" y="883.5" font-size="15" font-weight="700" fill="#A7F3E6">what was read before</text>
+<text x="68" y="908.3" font-size="13" fill="#D2DAE4">Must be equal</text>
+<rect x="250.4" y="847.2" width="107.6" height="21.5" rx="10.8" fill="#0F2A28" stroke="#215A54" stroke-width="1"/>
+<text x="258.4" y="861.6" font-size="11.5" font-weight="700" fill="#A7F3E6">WriteMismatch</text>
+<text x="460" y="355" font-size="15" font-weight="700" fill="#A7F3E6">12. PROG = PROGEN</text>
+<text x="460" y="379.8" font-size="13" fill="#D2DAE4">Enable OTP programming; read back</text>
+<rect x="642.4" y="338.2" width="107.6" height="21.5" rx="10.8" fill="#0F2A28" stroke="#215A54" stroke-width="1"/>
+<text x="650.4" y="352.6" font-size="11.5" font-weight="700" fill="#A7F3E6">WriteMismatch</text>
+<text x="460" y="497.9" font-size="15" font-weight="700" fill="#FDE68A">13. PROG = PROGOTP</text>
+<text x="460" y="522.8" font-size="13" fill="#D2DAE4">Start burning the OTP; sent once, not read</text>
+<text x="460" y="541.7" font-size="13" fill="#D2DAE4">back</text>
+<text x="460" y="620" font-size="15" font-weight="700" fill="#FDE68A">14. Poll PROG until it reads</text>
+<text x="460" y="639.5" font-size="15" font-weight="700" fill="#FDE68A">PROGEN</text>
+<text x="460" y="664.3" font-size="13" fill="#D2DAE4">Every 1 ms, at most 100 ms</text>
+<rect x="684.6" y="603.2" width="65.4" height="21.5" rx="10.8" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<text x="692.6" y="617.6" font-size="11.5" font-weight="700" fill="#FDE68A">Timeout</text>
+<text x="852" y="355" font-size="15" font-weight="700" fill="#FDE68A">15. Write 0 to</text>
+<text x="852" y="374.5" font-size="15" font-weight="700" fill="#FDE68A">DISABLE to ECC</text>
+<text x="852" y="399.3" font-size="13" fill="#D2DAE4">Each write read back</text>
+<rect x="1034.4" y="338.2" width="107.6" height="21.5" rx="10.8" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<text x="1042.4" y="352.6" font-size="11.5" font-weight="700" fill="#FDE68A">WriteMismatch</text>
+<text x="852" y="476.9" font-size="15" font-weight="700" fill="#FDE68A">16. PROG = PROGVER</text>
+<text x="852" y="501.8" font-size="13" fill="#D2DAE4">Guard-band verification; sent once, not</text>
+<text x="852" y="520.7" font-size="13" fill="#D2DAE4">read back</text>
+<text x="852" y="599" font-size="15" font-weight="700" fill="#FDE68A">17. PROG = OTPREF</text>
+<text x="852" y="623.8" font-size="13" fill="#D2DAE4">Reload the registers from the OTP; sent</text>
+<text x="852" y="642.7" font-size="13" fill="#D2DAE4">once, not read back</text>
+<text x="852" y="721" font-size="15" font-weight="700" fill="#FDE68A">18. Read DISABLE to ECC again</text>
+<text x="852" y="799" font-size="15" font-weight="700" fill="#FDE68A">19. Compare with what</text>
+<text x="852" y="818.5" font-size="15" font-weight="700" fill="#FDE68A">was burned</text>
+<text x="852" y="843.3" font-size="13" fill="#D2DAE4">Guard-band test</text>
+<rect x="1067.6" y="782.2" width="74.4" height="21.5" rx="10.8" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<text x="1075.6" y="796.6" font-size="11.5" font-weight="700" fill="#FDE68A">OtpVerify</text>
+<text x="852" y="921" font-size="15" font-weight="700" fill="#BBF7D0">Done: failed_step = 0</text>
+<text x="852" y="945.8" font-size="13" fill="#D2DAE4">Then you: power cycle, read back,</text>
+<text x="852" y="964.7" font-size="13" fill="#D2DAE4">compare (steps 20 to 22)</text>
+<text x="48" y="290.8" font-size="13" font-weight="700" fill="#E2E8F0">PREPARE, STEPS 6 TO 11</text>
+<text x="48" y="308.2" font-size="12" fill="#E2E8F0">Nothing is burned if a step fails here</text>
+<text x="440" y="290.8" font-size="13" font-weight="700" fill="#E2E8F0">BURN, STEPS 12 TO 14</text>
+<text x="440" y="308.2" font-size="12" fill="#E2E8F0">burn_started is true from step 13</text>
+<text x="832" y="290.8" font-size="13" font-weight="700" fill="#E2E8F0">VERIFY, STEPS 15 TO 19</text>
+<text x="832" y="308.2" font-size="12" fill="#E2E8F0">Failure after the burn: do not burn again</text>
+<rect x="535.7" y="424.2" width="128.6" height="20" rx="10" fill="#0E131A"/>
+<text x="600" y="438.5" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">burn_started = true</text>
+<rect x="250.4" y="441.2" width="107.6" height="21.5" rx="10.8" fill="#321820" stroke="#6E3141" stroke-width="1"/>
+<text x="258.4" y="455.6" font-size="11.5" font-weight="700" fill="#FECDD3">WriteMismatch</text>
+<rect x="250.4" y="647.2" width="107.6" height="21.5" rx="10.8" fill="#321820" stroke="#6E3141" stroke-width="1"/>
+<text x="258.4" y="661.6" font-size="11.5" font-weight="700" fill="#FECDD3">WriteMismatch</text>
+<rect x="250.4" y="847.2" width="107.6" height="21.5" rx="10.8" fill="#321820" stroke="#6E3141" stroke-width="1"/>
+<text x="258.4" y="861.6" font-size="11.5" font-weight="700" fill="#FECDD3">WriteMismatch</text>
+<rect x="642.4" y="338.2" width="107.6" height="21.5" rx="10.8" fill="#321820" stroke="#6E3141" stroke-width="1"/>
+<text x="650.4" y="352.6" font-size="11.5" font-weight="700" fill="#FECDD3">WriteMismatch</text>
+<rect x="684.6" y="603.2" width="65.4" height="21.5" rx="10.8" fill="#321820" stroke="#6E3141" stroke-width="1"/>
+<text x="692.6" y="617.6" font-size="11.5" font-weight="700" fill="#FECDD3">Timeout</text>
+<rect x="1034.4" y="338.2" width="107.6" height="21.5" rx="10.8" fill="#321820" stroke="#6E3141" stroke-width="1"/>
+<text x="1042.4" y="352.6" font-size="11.5" font-weight="700" fill="#FECDD3">WriteMismatch</text>
+<rect x="1067.6" y="782.2" width="74.4" height="21.5" rx="10.8" fill="#321820" stroke="#6E3141" stroke-width="1"/>
+<text x="1075.6" y="796.6" font-size="11.5" font-weight="700" fill="#FECDD3">OtpVerify</text>
+<text x="46" y="1051" font-size="15" font-weight="700" fill="#FECDD3">Any step</text>
+<text x="46" y="1068.8" font-size="13" fill="#FECDD3">Every step also stops on a transfer or reply error: Bus, Crc, Framing, Command or DeviceFault.</text>
+<rect x="32" y="1100.1" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="54" y="1111.7" font-size="12.5" fill="#9AA6B5">fails here: nothing burned</text>
+<rect x="238.7" y="1100.1" width="14" height="14" rx="4" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<text x="260.7" y="1111.7" font-size="12.5" fill="#9AA6B5">fails here: fuses may be blown</text>
+<rect x="475.9" y="1100.1" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="497.9" y="1111.7" font-size="12.5" fill="#9AA6B5">error this step adds</text>
+<path d="M643.9 1106.3L673.9 1106.3" fill="none" stroke="#6C7889" stroke-width="1.6" marker-end="url(#fk-arrow-rail)"/>
+<text x="687.9" y="1111.7" font-size="12.5" fill="#9AA6B5">next step</text>
+</svg>

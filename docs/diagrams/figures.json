@@ -1,0 +1,108 @@
+{
+  "chip-blocks": {
+    "title": "Inside the AS5047U",
+    "alt": "Block diagram of the AS5047U: its function blocks, how they connect and which package pins reach each block.",
+    "description": "The AS5047U's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.",
+    "profile": "detail",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/as5047u_spi_interface.hpp"
+    ]
+  },
+  "chip-circuit-supply-3v3": {
+    "title": "AS5047U: 3.3 V operation",
+    "alt": "Schematic of the AS5047U 3.3 v operation: the chip with U2 MCU, C1 capacitor 100 nF; the MCU wires carry the port hooks Transfer().",
+    "description": "A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.",
+    "profile": "detail",
+    "width": 760,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/as5047u_spi_interface.hpp"
+    ]
+  },
+  "chip-circuit-typical": {
+    "title": "AS5047U: Minimum circuit, 5 V",
+    "alt": "Schematic of the AS5047U minimum circuit, 5 v: the chip with U2 MCU, C1 capacitor 100 nF, C2 capacitor 1 µF; the MCU wires carry the port hooks Transfer().",
+    "description": "A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.",
+    "profile": "detail",
+    "width": 792,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/as5047u_spi_interface.hpp"
+    ]
+  },
+  "chip-pinout": {
+    "title": "AS5047U pinout, TSSOP-14",
+    "alt": "Pinout of the AS5047U in TSSOP-14, top view: 14 pins, each with its name, its electrical type as a colour and the driver hook that uses it.",
+    "description": "The AS5047U seen from the top, in its TSSOP-14 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.",
+    "profile": "detail",
+    "width": 776,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/as5047u_spi_interface.hpp"
+    ]
+  },
+  "driver-layers": {
+    "title": "The layers, one of them yours",
+    "alt": "Layer diagram: your application calls the AS5047U core, which sends register reads and writes through the SPI port contract to the port class you write, which drives the chip; the core and the contract are the same on every MCU.",
+    "description": "Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/diagrams/figures/driver-layers.py",
+    "sources": [
+      "inc/as5047u.hpp:public calls",
+      "inc/as5047u_spi_interface.hpp:SpiInterface"
+    ]
+  },
+  "otp-flow": {
+    "title": "ProgramOtp(), step by step",
+    "alt": "Flowchart of ProgramOtp: prepare (steps 6 to 11), burn (steps 12 to 14, polled with a 100 ms timeout) and guard-band verify (steps 15 to 19); burn_started becomes true at step 13, and each step can stop the call with an error.",
+    "description": "The call first refuses to run when the driver is not initialised or the confirm value is wrong, and sends nothing then. It switches every frame to a CRC-protected format and runs three phases, top to bottom and left to right: prepare (steps 6 to 11: read the settings, compute and write the ECC key, read everything back and compare), burn (steps 12 to 14: enable programming, start the burn, poll PROG every millisecond until the burn is done or the timeout passes) and verify (steps 15 to 19: clear the volatile copy, reload it from the OTP at the guard-band level and compare it with what was burned). A pill on a step names the error that step adds; any step also fails on a transfer or reply error. The call stops at the first failure and OtpReport::failed_step names the step. OtpReport::burn_started becomes true just before the step 13 frame is sent, so from there on the fuses may be blown even if the call fails. The steps, registers, timeout and errors are read from otpPrepare(), otpBurn() and otpVerify() in src/as5047u.ipp.",
+    "profile": "detail",
+    "width": 1200,
+    "source": "docs/diagrams/figures/otp-flow.py",
+    "sources": [
+      "src/as5047u.ipp:ProgramOtp",
+      "src/as5047u.ipp:otpPrepare",
+      "src/as5047u.ipp:otpBurn",
+      "src/as5047u.ipp:otpVerify",
+      "inc/as5047u_types.hpp:kOtpBurnTimeoutMs",
+      "inc/as5047u_registers.hpp:PROG and ECC"
+    ]
+  },
+  "read-pipeline": {
+    "title": "Every access is two frames",
+    "alt": "Timing of SPI frames: a read sends the command and then a NOP read (0x4000), because the chip answers each frame during the next one; a write sends a command frame and a data frame, then reads the register back.",
+    "description": "Time runs left to right, one column per SPI frame; the top row is what the driver sends on MOSI and the bottom row what the chip returns on MISO in the same frame. The chip answers a frame during the next one (dashed arrows), so a read sends the read command and then a NOP read, whose reply carries the register. The reply in the first frame belongs to the frame before it, so the driver fails the call there only when the transfer itself fails. When the reply that answers the call has its error bit set, the driver reads ERRFL (two more frames, dashed) to find out why and fails the call. A write sends the command frame (R/W at 0, the address) and the data frame, always with a CRC; the reply in the data frame reports on the command frame. The read-back after it (two more frames, dashed) is chosen per call with Verify::ReadBack; EnsureInitialized() and ProgramOtp() always read back. The frame words come from readRaw(), writeRaw() and resolveFlags() in src/as5047u.ipp. A note at the bottom gives the rule of FrameBus::Exchange(): after a failed transfer the next frame is a NOP read, so a lost data frame cannot turn the next command into data.",
+    "profile": "detail",
+    "width": 1200,
+    "source": "docs/diagrams/figures/read-pipeline.py",
+    "sources": [
+      "src/as5047u.ipp:readRaw",
+      "src/as5047u.ipp:writeRaw",
+      "src/as5047u.ipp:resolveFlags",
+      "inc/as5047u.hpp:detail::ClassifyErrorFlags",
+      "inc/as5047u_registers.hpp:frame bits",
+      "inc/as5047u_spi_interface.hpp:FrameBus::Exchange"
+    ]
+  },
+  "spi-frames": {
+    "title": "SPI frames, bit by bit",
+    "alt": "Bit layouts of the 16-, 24- and 32-bit SPI frames: on MOSI the R/W bit and a 14-bit address, on MISO a warning bit, an error bit and 14 data bits; 24-bit frames add a CRC-8 byte, and 32-bit frames add a pad byte, first on MOSI and last on MISO.",
+    "description": "Each frame is drawn in the order it is clocked, most significant bit first, and the numbers above a row are bit positions in that frame. On MOSI the 16-bit command word holds the R/W bit (1 to read, 0 to write) and a 14-bit address; the data frame of a write has the same layout with R/W at 0 and the 14-bit value in place of the address. On MISO the reply word holds the warning bit, the error bit (a flag is set in ERRFL) and 14 data bits. The 24-bit frame adds the CRC-8 of the word in both directions. The 32-bit frame adds the pad byte: first on MOSI (the driver sends Config::pad_byte), last on MISO (the driver ignores it). The bit positions come from the frame constants in inc/as5047u_registers.hpp and the byte order from detail::FrameBus::Exchange in inc/as5047u_spi_interface.hpp. With 16-bit frames the driver sends writes as 24-bit frames.",
+    "profile": "detail",
+    "width": 1200,
+    "source": "docs/diagrams/figures/spi-frames.py",
+    "sources": [
+      "inc/as5047u_registers.hpp:frame bits",
+      "inc/as5047u_spi_interface.hpp:detail::FrameBus::Exchange",
+      "inc/as5047u_spi_interface.hpp:Crc8",
+      "inc/as5047u.hpp:writeFormat"
+    ]
+  }
+}

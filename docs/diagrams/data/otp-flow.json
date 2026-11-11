@@ -1,0 +1,143 @@
+{
+  "phases": [
+    {
+      "function": "otpPrepare",
+      "label": "Prepare",
+      "steps": [
+        {
+          "step": 6,
+          "title": "Read DISABLE to ECC",
+          "detail": "What will be burned",
+          "errors": [],
+          "burn_started": false
+        },
+        {
+          "step": 7,
+          "title": "ECC = ECC_en",
+          "detail": "Read back",
+          "errors": [
+            "WriteMismatch"
+          ],
+          "burn_started": false
+        },
+        {
+          "step": 8,
+          "title": "Read ECC_Checksum",
+          "detail": "The ECC key",
+          "errors": [],
+          "burn_started": false
+        },
+        {
+          "step": 9,
+          "title": "ECC = ECC_en with the key",
+          "detail": "Read back",
+          "errors": [
+            "WriteMismatch"
+          ],
+          "burn_started": false
+        },
+        {
+          "step": 10,
+          "title": "Read DISABLE to ECC again",
+          "detail": "",
+          "errors": [],
+          "burn_started": false
+        },
+        {
+          "step": 11,
+          "title": "Compare with what was read before",
+          "detail": "Must be equal",
+          "errors": [
+            "WriteMismatch"
+          ],
+          "burn_started": false
+        }
+      ]
+    },
+    {
+      "function": "otpBurn",
+      "label": "Burn",
+      "steps": [
+        {
+          "step": 12,
+          "title": "PROG = PROGEN",
+          "detail": "Enable OTP programming; read back",
+          "errors": [
+            "WriteMismatch"
+          ],
+          "burn_started": false
+        },
+        {
+          "step": 13,
+          "title": "PROG = PROGOTP",
+          "detail": "Start burning the OTP; sent once, not read back",
+          "errors": [],
+          "burn_started": true
+        },
+        {
+          "step": 14,
+          "title": "Poll PROG until it reads PROGEN",
+          "detail": "Every 1 ms, at most 100 ms",
+          "errors": [
+            "Timeout"
+          ],
+          "burn_started": false
+        }
+      ]
+    },
+    {
+      "function": "otpVerify",
+      "label": "Verify",
+      "steps": [
+        {
+          "step": 15,
+          "title": "Write 0 to DISABLE to ECC",
+          "detail": "Each write read back",
+          "errors": [
+            "WriteMismatch"
+          ],
+          "burn_started": false
+        },
+        {
+          "step": 16,
+          "title": "PROG = PROGVER",
+          "detail": "Guard-band verification; sent once, not read back",
+          "errors": [],
+          "burn_started": false
+        },
+        {
+          "step": 17,
+          "title": "PROG = OTPREF",
+          "detail": "Reload the registers from the OTP; sent once, not read back",
+          "errors": [],
+          "burn_started": false
+        },
+        {
+          "step": 18,
+          "title": "Read DISABLE to ECC again",
+          "detail": "",
+          "errors": [],
+          "burn_started": false
+        },
+        {
+          "step": 19,
+          "title": "Compare with what was burned",
+          "detail": "Guard-band test",
+          "errors": [
+            "OtpVerify"
+          ],
+          "burn_started": false
+        }
+      ]
+    }
+  ],
+  "timeout_ms": 100,
+  "sources": [
+    "src/as5047u.ipp:ProgramOtp",
+    "src/as5047u.ipp:otpPrepare",
+    "src/as5047u.ipp:otpBurn",
+    "src/as5047u.ipp:otpVerify",
+    "inc/as5047u_types.hpp:kOtpBurnTimeoutMs",
+    "inc/as5047u_registers.hpp:PROG and ECC"
+  ]
+}

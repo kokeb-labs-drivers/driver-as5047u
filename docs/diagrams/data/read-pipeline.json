@@ -1,0 +1,28 @@
+{
+  "resync": "0x4000",
+  "read_bit": 16384,
+  "nop_read": "0x4000",
+  "example": {
+    "name": "ANGLECOM",
+    "address": "0x3FFF",
+    "command": "0x7FFF"
+  },
+  "errfl": {
+    "name": "ERRFL",
+    "command": "0x4001"
+  },
+  "errfl_errors": [
+    "Crc",
+    "Framing",
+    "Command",
+    "DeviceFault"
+  ],
+  "sources": [
+    "src/as5047u.ipp:readRaw",
+    "src/as5047u.ipp:writeRaw",
+    "src/as5047u.ipp:resolveFlags",
+    "inc/as5047u.hpp:detail::ClassifyErrorFlags",
+    "inc/as5047u_registers.hpp:frame bits",
+    "inc/as5047u_spi_interface.hpp:FrameBus::Exchange"
+  ]
+}

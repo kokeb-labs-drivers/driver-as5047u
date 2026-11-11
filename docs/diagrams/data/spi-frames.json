@@ -1,0 +1,164 @@
+{
+  "frames": [
+    {
+      "format": "Bits16",
+      "bits": 16,
+      "mosi": [
+        {
+          "field": "zero",
+          "msb": 15,
+          "lsb": 15
+        },
+        {
+          "field": "rw",
+          "msb": 14,
+          "lsb": 14
+        },
+        {
+          "field": "addr",
+          "msb": 13,
+          "lsb": 0
+        }
+      ],
+      "miso": [
+        {
+          "field": "warn",
+          "msb": 15,
+          "lsb": 15
+        },
+        {
+          "field": "err",
+          "msb": 14,
+          "lsb": 14
+        },
+        {
+          "field": "addr",
+          "msb": 13,
+          "lsb": 0
+        }
+      ]
+    },
+    {
+      "format": "Bits24",
+      "bits": 24,
+      "mosi": [
+        {
+          "field": "zero",
+          "msb": 23,
+          "lsb": 23
+        },
+        {
+          "field": "rw",
+          "msb": 22,
+          "lsb": 22
+        },
+        {
+          "field": "addr",
+          "msb": 21,
+          "lsb": 8
+        },
+        {
+          "field": "crc",
+          "msb": 7,
+          "lsb": 0
+        }
+      ],
+      "miso": [
+        {
+          "field": "warn",
+          "msb": 23,
+          "lsb": 23
+        },
+        {
+          "field": "err",
+          "msb": 22,
+          "lsb": 22
+        },
+        {
+          "field": "addr",
+          "msb": 21,
+          "lsb": 8
+        },
+        {
+          "field": "crc",
+          "msb": 7,
+          "lsb": 0
+        }
+      ]
+    },
+    {
+      "format": "Bits32",
+      "bits": 32,
+      "mosi": [
+        {
+          "field": "pad",
+          "msb": 31,
+          "lsb": 24
+        },
+        {
+          "field": "zero",
+          "msb": 23,
+          "lsb": 23
+        },
+        {
+          "field": "rw",
+          "msb": 22,
+          "lsb": 22
+        },
+        {
+          "field": "addr",
+          "msb": 21,
+          "lsb": 8
+        },
+        {
+          "field": "crc",
+          "msb": 7,
+          "lsb": 0
+        }
+      ],
+      "miso": [
+        {
+          "field": "warn",
+          "msb": 31,
+          "lsb": 31
+        },
+        {
+          "field": "err",
+          "msb": 30,
+          "lsb": 30
+        },
+        {
+          "field": "addr",
+          "msb": 29,
+          "lsb": 16
+        },
+        {
+          "field": "crc",
+          "msb": 15,
+          "lsb": 8
+        },
+        {
+          "field": "pad",
+          "msb": 7,
+          "lsb": 0
+        }
+      ]
+    }
+  ],
+  "read_bit": 14,
+  "warning_bit": 15,
+  "error_bit": 14,
+  "data_bits": 14,
+  "crc": {
+    "init": "0xC4",
+    "poly": "0x1D",
+    "xorout": "0xFF"
+  },
+  "write_format_for_bits16": "Bits24",
+  "sources": [
+    "inc/as5047u_registers.hpp:frame bits",
+    "inc/as5047u_spi_interface.hpp:detail::FrameBus::Exchange",
+    "inc/as5047u_spi_interface.hpp:Crc8",
+    "inc/as5047u.hpp:writeFormat"
+  ]
+}

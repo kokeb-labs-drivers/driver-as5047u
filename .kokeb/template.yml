@@ -1,0 +1,23 @@
+---
+# How this repository was made from kokeb-labs/driver-template. The template's drift check
+# (tools/scaffold.py --check-drift, CI: kokeb-labs/ci-tools ru-template-drift) scaffolds the template again
+# with these arguments and compares the files it manages. List a file under `local` only when it differs on
+# purpose, with the reason.
+template: 8068322e01b6b5c3ede59bff7a97a4694a33168b
+kind: "driver"
+name: "as5047u"
+bus: "spi"
+namespace: "as5047u"
+description: "C++20 driver for the AS5047U 14-bit magnetic rotary position sensor."
+include_root: null
+org: "kokeb-labs-drivers"
+repo: "driver-as5047u"
+author: "The driver-as5047u authors"
+license: "MIT"
+datasheet: null
+platforms: [host, esp32]
+local:
+  - path: .claude/skills/add-port/SKILL.md
+    reason: "names this chip's control pins and how GpioSet() maps them"
+  - path: .claude/skills/datasheet-conformance/SKILL.md
+    reason: "links this chip's datasheet and revision"

@@ -1,0 +1,38 @@
+{
+  "name": "as5047u",
+  "cls": "AS5047U",
+  "calls": [
+    "EnsureInitialized",
+    "Deinitialize",
+    "ApplyConfig",
+    "SetZeroPosition",
+    "SetZeroHere",
+    "SetDirection",
+    "ReadAngleCounts",
+    "ReadUncompensatedAngleCounts",
+    "ReadAngleDegrees",
+    "ReadAngleRadians",
+    "ReadVelocityCounts",
+    "ReadVelocityDegPerSec",
+    "ReadVelocityRpm",
+    "ReadAgc",
+    "ReadMagnitude",
+    "ReadDiagnostics",
+    "CheckForReset",
+    "ReadErrorFlags",
+    "ReadRegister",
+    "WriteRegister",
+    "ReadNonVolatile",
+    "ProgramOtp"
+  ],
+  "sources": [
+    "inc/as5047u.hpp:public calls",
+    "inc/as5047u_spi_interface.hpp:SpiInterface"
+  ],
+  "bus": "SPI",
+  "base": "SpiInterface",
+  "hooks": [
+    "EnsureInitialized",
+    "Transfer"
+  ]
+}

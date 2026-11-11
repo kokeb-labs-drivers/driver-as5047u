@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="831" viewBox="0 0 1200 831" role="img" aria-labelledby="chip-blocks-title chip-blocks-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-blocks-title">Inside the AS5047U</title>
+<desc id="chip-blocks-desc">Block diagram of the AS5047U: its function blocks, how they connect and which package pins reach each block.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="830" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">Inside the AS5047U</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">Function blocks and their links, from the datasheet's block diagram (Block Diagram, Figure 2, p. 2). Pins on the edge carry their package number.</text>
+<rect x="32" y="119.8" width="1136" height="1" fill="#252F3C"/>
+<rect x="144" y="137.8" width="920" height="632" rx="14" fill="#1B232E" stroke="#3A4656" stroke-width="1.2"/>
+<path d="M151 225.8 L184 225.8" fill="none" stroke="#FB7185" stroke-width="1.8"/>
+<path d="M151 249.8 L184 249.8" fill="none" stroke="#FB7185" stroke-width="1.8"/>
+<path d="M151 273.8 L184 273.8" fill="none" stroke="#94A3B8" stroke-width="1.8"/>
+<path d="M1057 217.8 L1016 217.8" fill="none" stroke="#60A5FA" stroke-width="1.8"/>
+<path d="M1057 241.8 L1016 241.8" fill="none" stroke="#60A5FA" stroke-width="1.8"/>
+<path d="M1057 265.8 L1016 265.8" fill="none" stroke="#60A5FA" stroke-width="1.8"/>
+<path d="M1057 289.8 L1016 289.8" fill="none" stroke="#60A5FA" stroke-width="1.8"/>
+<path d="M1057 529.8 L1016 529.8" fill="none" stroke="#4ADE80" stroke-width="1.8"/>
+<path d="M1057 553.8 L1016 553.8" fill="none" stroke="#4ADE80" stroke-width="1.8"/>
+<path d="M1057 577.8 L1016 577.8" fill="none" stroke="#4ADE80" stroke-width="1.8"/>
+<path d="M1057 665.8 L1016 665.8" fill="none" stroke="#4ADE80" stroke-width="1.8"/>
+<path d="M1057 689.8 L1016 689.8" fill="none" stroke="#4ADE80" stroke-width="1.8"/>
+<path d="M1057 713.8 L1016 713.8" fill="none" stroke="#4ADE80" stroke-width="1.8"/>
+<path d="M396 409.8 L492 409.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M708 409.8 L804 409.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M912 349.8 L912 309.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M708 249.8 L804 249.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)" marker-start="url(#fk-arrow-rail)"/>
+<path d="M912 469.8 L912 509.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M600 469.8 L600 509.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M708 553.8 L804 553.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M708 577.8 L714 577.8 Q720 577.8 720 583.8 L720 681.8 Q720 689.8 728 689.8 L804 689.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="184" y="201.8" width="208" height="104" rx="10" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="184" y="209.8" width="4" height="88" rx="2" fill="#94A3B8"/>
+<rect x="496" y="201.8" width="208" height="104" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="496" y="209.8" width="4" height="88" rx="2" fill="#FBBF24"/>
+<rect x="808" y="201.8" width="208" height="104" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="808" y="209.8" width="4" height="88" rx="2" fill="#60A5FA"/>
+<rect x="184" y="353.8" width="208" height="112" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="184" y="361.8" width="4" height="96" rx="2" fill="#2BB3A3"/>
+<rect x="496" y="353.8" width="208" height="112" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="496" y="361.8" width="4" height="96" rx="2" fill="#2BB3A3"/>
+<rect x="808" y="353.8" width="208" height="112" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="808" y="361.8" width="4" height="96" rx="2" fill="#2BB3A3"/>
+<rect x="496" y="513.8" width="208" height="88" rx="10" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<rect x="496" y="521.8" width="4" height="72" rx="2" fill="#A78BFA"/>
+<rect x="808" y="513.8" width="208" height="88" rx="10" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<rect x="808" y="521.8" width="4" height="72" rx="2" fill="#A78BFA"/>
+<rect x="808" y="649.8" width="208" height="88" rx="10" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<rect x="808" y="657.8" width="4" height="72" rx="2" fill="#A78BFA"/>
+<rect x="137" y="218.8" width="14" height="14" rx="3" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="137" y="242.8" width="14" height="14" rx="3" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="137" y="266.8" width="14" height="14" rx="3" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="1057" y="210.8" width="14" height="14" rx="3" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="1057" y="234.8" width="14" height="14" rx="3" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="1057" y="258.8" width="14" height="14" rx="3" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="1057" y="282.8" width="14" height="14" rx="3" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="1057" y="522.8" width="14" height="14" rx="3" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="1057" y="546.8" width="14" height="14" rx="3" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="1057" y="570.8" width="14" height="14" rx="3" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="1057" y="658.8" width="14" height="14" rx="3" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="1057" y="682.8" width="14" height="14" rx="3" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="1057" y="706.8" width="14" height="14" rx="3" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="160" y="162.8" font-size="13" font-weight="700" fill="#E2E8F0">AS5047U</text>
+<text x="236.6" y="162.8" font-size="12" fill="#E2E8F0">TSSOP-14</text>
+<text x="204" y="228.6" font-size="15" font-weight="700" fill="#E2E8F0">LDO</text>
+<text x="204" y="253.4" font-size="13" fill="#D2DAE4">3.3 V core from 5 V</text>
+<text x="516" y="228.6" font-size="15" font-weight="700" fill="#FDE68A">Registers and OTP</text>
+<text x="516" y="253.4" font-size="13" fill="#D2DAE4">volatile and one-time</text>
+<text x="516" y="272.2" font-size="13" fill="#D2DAE4">settings</text>
+<text x="828" y="228.6" font-size="15" font-weight="700" fill="#BFDBFE">SPI and CRC</text>
+<text x="828" y="253.4" font-size="13" fill="#D2DAE4">mode 1, 16-, 24- or 32-bit</text>
+<text x="828" y="272.2" font-size="13" fill="#D2DAE4">frames</text>
+<text x="204" y="380.6" font-size="15" font-weight="700" fill="#A7F3E6">Hall sensors and AFE</text>
+<text x="204" y="405.4" font-size="13" fill="#D2DAE4">4 Hall sensors, 14-bit</text>
+<text x="204" y="424.3" font-size="13" fill="#D2DAE4">ADCs, AGC</text>
+<text x="516" y="380.6" font-size="15" font-weight="700" fill="#A7F3E6">CORDIC</text>
+<text x="516" y="405.4" font-size="13" fill="#D2DAE4">angle and magnitude</text>
+<text x="828" y="380.6" font-size="15" font-weight="700" fill="#A7F3E6">DAEC and adaptive</text>
+<text x="828" y="400.1" font-size="15" font-weight="700" fill="#A7F3E6">filter</text>
+<text x="828" y="424.9" font-size="13" fill="#D2DAE4">latency compensation,</text>
+<text x="828" y="443.8" font-size="13" fill="#D2DAE4">noise filter</text>
+<text x="516" y="540.5" font-size="15" font-weight="700" fill="#DDD6FE">PWM</text>
+<text x="516" y="565.4" font-size="13" fill="#D2DAE4">12-bit angle as a duty</text>
+<text x="516" y="584.2" font-size="13" fill="#D2DAE4">cycle</text>
+<text x="828" y="540.5" font-size="15" font-weight="700" fill="#DDD6FE">ABI</text>
+<text x="828" y="565.4" font-size="13" fill="#D2DAE4">quadrature and index</text>
+<text x="828" y="676.5" font-size="15" font-weight="700" fill="#DDD6FE">UVW</text>
+<text x="828" y="701.4" font-size="13" fill="#D2DAE4">Hall emulation, 1 to 7 pole</text>
+<text x="828" y="720.2" font-size="13" fill="#D2DAE4">pairs</text>
+<text x="130" y="230.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VDD  11</text>
+<text x="130" y="254.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VDD3V3  12</text>
+<text x="130" y="278.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">GND  13</text>
+<text x="1078" y="222.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">CSn  1</text>
+<text x="1078" y="246.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">CLK  2</text>
+<text x="1078" y="270.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">MISO  3</text>
+<text x="1078" y="294.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">MOSI  4</text>
+<text x="1078" y="534.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">A  7</text>
+<text x="1078" y="558.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">B  6</text>
+<text x="1078" y="582.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">I/PWM  14</text>
+<text x="1078" y="670.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">U  10</text>
+<text x="1078" y="694.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">V  9</text>
+<text x="1078" y="718.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">W/PWM  8</text>
+<circle cx="184" cy="225.8" r="3" fill="#FB7185"/>
+<circle cx="184" cy="249.8" r="3" fill="#FB7185"/>
+<circle cx="184" cy="273.8" r="3" fill="#94A3B8"/>
+<circle cx="1016" cy="217.8" r="3" fill="#60A5FA"/>
+<circle cx="1016" cy="241.8" r="3" fill="#60A5FA"/>
+<circle cx="1016" cy="265.8" r="3" fill="#60A5FA"/>
+<circle cx="1016" cy="289.8" r="3" fill="#60A5FA"/>
+<circle cx="1016" cy="529.8" r="3" fill="#4ADE80"/>
+<circle cx="1016" cy="553.8" r="3" fill="#4ADE80"/>
+<circle cx="1016" cy="577.8" r="3" fill="#4ADE80"/>
+<circle cx="1016" cy="665.8" r="3" fill="#4ADE80"/>
+<circle cx="1016" cy="689.8" r="3" fill="#4ADE80"/>
+<circle cx="1016" cy="713.8" r="3" fill="#4ADE80"/>
+<rect x="412.6" y="399.8" width="62.8" height="20" rx="10" fill="#0E131A"/>
+<text x="444" y="414.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">samples</text>
+<rect x="733.3" y="399.8" width="45.4" height="20" rx="10" fill="#0E131A"/>
+<text x="756" y="414.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">angle</text>
+<rect x="889.3" y="319.8" width="45.4" height="20" rx="10" fill="#0E131A"/>
+<text x="912" y="334.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">angle</text>
+<rect x="725.7" y="239.8" width="60.6" height="20" rx="10" fill="#0E131A"/>
+<text x="756" y="254.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">settings</text>
+<rect x="32" y="785.2" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="54" y="796.8" font-size="12.5" fill="#9AA6B5">power</text>
+<rect x="117.6" y="785.2" width="14" height="14" rx="4" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="139.6" y="796.8" font-size="12.5" fill="#9AA6B5">ground</text>
+<rect x="208.5" y="785.2" width="14" height="14" rx="4" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="230.5" y="796.8" font-size="12.5" fill="#9AA6B5">bus</text>
+<rect x="277.4" y="785.2" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="299.4" y="796.8" font-size="12.5" fill="#9AA6B5">digital out</text>
+<path d="M384.9 791.4L414.9 791.4" fill="none" stroke="#6C7889" stroke-width="1.6" marker-end="url(#fk-arrow-rail)"/>
+<text x="428.9" y="796.8" font-size="12.5" fill="#9AA6B5">signal or data between blocks</text>
+</svg>

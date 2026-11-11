@@ -1,0 +1,126 @@
+---
+# The vendor documents this driver was written against (handbook ADR-0019), and where the driver relies on them.
+# Never commit a PDF: `sha256` identifies the exact file that was used, so a reader can confirm they hold the same
+# revision. `pdf` is a stable direct link when the vendor publishes one (page links are built from it, adding
+# `page_offset` when the printed page numbers differ from the PDF's); otherwise readers download from `url`.
+#
+# The README card, docs/datasheet.md and the "Datasheet" box on each page are generated from this file by
+# tools/docs/generators/datasheet.py (`kokeb-docs gen`).
+documents:
+  - id: ds
+    vendor: ams OSRAM
+    title: AS5047U High Resolution Rotary Position Sensor
+    kind: Datasheet
+    number: DS000637
+    revision: v1-01
+    date: 2020-12-16
+    url: https://ams-osram.com/products/sensor-solutions/position-sensors/ams-as5047u-high-resolution-rotary-position-sensor
+    pdf: null
+    page_offset: 1
+    sha256: 715ae24904c1cb1a7b87c282249d302559fba9894a5d88267f927b4f0b800ba6
+
+# One row per thing the driver takes from a document: the datasheet's own section names and printed page
+# numbers, the driver API that implements it, and the docs pages that explain it (file names in docs/).
+topics:
+  - topic: Pins and package
+    doc: ds
+    section: Pin Assignment
+    page: 3
+    driver: "-"
+    docs: [hardware, quickstart]
+  - topic: Supply voltage, 3.3 V and 5 V operation
+    doc: ds
+    section: Electrical Characteristics; Power Management
+    page: 6
+    driver: "`Config::high_temperature_noise`"
+    docs: [hardware]
+  - topic: Power-up time and SPI timing
+    doc: ds
+    section: Timing Characteristics; SPI Timing
+    page: 9
+    driver: "-"
+    docs: [hardware, porting, troubleshooting]
+  - topic: SPI mode, frames and the read pipeline
+    doc: ds
+    section: SPI Interface (Slave); SPI Transaction
+    page: 16
+    driver: "`FrameFormat`, `SpiInterface`, every read and write"
+    docs: [hardware, porting, architecture]
+  - topic: Pad byte of 32-bit frames
+    doc: ds
+    section: PAD Word
+    page: 22
+    driver: "`Config::pad_byte`"
+    docs: [hardware]
+  - topic: CRC-8 of a frame
+    doc: ds
+    section: CRC Checksum
+    page: 23
+    driver: "`Crc8()`, `Error::Crc`"
+    docs: [hardware, troubleshooting]
+  - topic: Angle, velocity, AGC, magnitude, ERRFL and DIA registers
+    doc: ds
+    section: Volatile Registers
+    page: 24
+    driver: "`ReadAngleCounts()`, `ReadVelocityCounts()`, `ReadAgc()`, `ReadMagnitude()`, `ReadErrorFlags()`, `ReadDiagnostics()`, `ErrorFlags::flags_lost`"
+    docs: [api-guide, troubleshooting]
+  - topic: Settings, zero position and direction registers
+    doc: ds
+    section: Non-Volatile Registers (OTP)
+    page: 27
+    driver: "`Config`, `ApplyConfig()`, `SetZeroPosition()`, `SetDirection()`, `CheckForReset()`, `Error::DeviceReset`"
+    docs: [configuration, api-guide, limitations]
+  - topic: Dynamic angle error compensation (DAEC)
+    doc: ds
+    section: Dynamic Angle Error Compensation
+    page: 12
+    driver: "`Config::dynamic_compensation`, `ReadUncompensatedAngleCounts()`"
+    docs: [configuration]
+  - topic: Adaptive velocity filter
+    doc: ds
+    section: Adaptive Filter System; Rotation Speed Measurement
+    page: 12
+    driver: "`Config::adaptive_filter`, `filter_k_min_code`, `filter_k_max_code`, `ReadVelocityDegPerSec()`"
+    docs: [configuration, api-guide]
+  - topic: ABI incremental output
+    doc: ds
+    section: ABI Incremental Interface
+    page: 31
+    driver: "`Config::abi_enable`, `abi_resolution_code`, `abi_decimal`, `index_width`"
+    docs: [configuration]
+  - topic: UVW commutation output
+    doc: ds
+    section: UVW Commutation Interface
+    page: 33
+    driver: "`Config::uvw_enable`, `uvw_pole_pairs`, `incremental`"
+    docs: [configuration]
+  - topic: PWM output and hysteresis
+    doc: ds
+    section: PWM; Incremental Output Hysteresis
+    page: 35
+    driver: "`Config::pwm_enable`, `hysteresis_code`"
+    docs: [configuration]
+  - topic: AGC and the magnet's field strength
+    doc: ds
+    section: Automatic Gain Control (AGC) and CORDIC Magnitude
+    page: 37
+    driver: "`ReadAgc()`, `ReadMagnitude()`, `ErrorFlags::agc_warning`"
+    docs: [api-guide, troubleshooting]
+  - topic: OTP burn and verification
+    doc: ds
+    section: Burn and Verification of the OTP Memory; Step-by-Step Procedure (Figure 60)
+    page: 39
+    driver: "`ProgramOtp()`, `OtpReport`, `SetZeroHere()`"
+    docs: [otp]
+  - topic: Reference circuit
+    doc: ds
+    section: Circuit Diagram
+    page: 44
+    driver: "-"
+    docs: [hardware, quickstart]
+  - topic: Package and magnet placement
+    doc: ds
+    section: Package Drawings & Markings; Mechanical Data
+    page: 45
+    driver: "-"
+    docs: [hardware]
