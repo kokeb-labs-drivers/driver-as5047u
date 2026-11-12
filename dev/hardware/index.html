@@ -1257,7 +1257,7 @@ tables on this page are drawn from <a href="../hardware.yml"><code>docs/hardware
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The AS5047U seen from the top, in its TSSOP-14 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <!-- generated: chip-pins -->
 <p>TSSOP-14, 14 pins (Pin Assignment, Figures 3 and 4, p. 3).</p>
@@ -1416,7 +1416,7 @@ The ABI, UVW and PWM outputs drive at most 4 mA at 5 V and 2 mA at 3.3 V, into a
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The AS5047U's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <h2 id="circuits">Circuits<a class="headerlink" href="#circuits" title="Permanent link">&para;</a></h2>
 <p>The minimum circuit of Figure 61, with the 5 V supply: the on-chip LDO makes VDD3V3, which needs its own 1 µF and
@@ -1429,7 +1429,7 @@ powers nothing else. The ABI, UVW and PWM outputs are left open, as Figure 4 all
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <p>With a 3.3 V supply, VDD and VDD3V3 are tied together (Figure 11), and the logic levels match a 3.3 V MCU without a
 level shifter.</p>
@@ -1441,7 +1441,7 @@ level shifter.</p>
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <!-- generated: chip-parts -->
 <p><strong>Minimum circuit, 5 V</strong> (figure <code>chip-circuit-typical</code>)</p>
@@ -1585,7 +1585,7 @@ level shifter.</p>
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Each frame is drawn in the order it is clocked, most significant bit first, and the numbers above a row are bit positions in that frame. On MOSI the 16-bit command word holds the R/W bit (1 to read, 0 to write) and a 14-bit address; the data frame of a write has the same layout with R/W at 0 and the 14-bit value in place of the address. On MISO the reply word holds the warning bit, the error bit (a flag is set in ERRFL) and 14 data bits. The 24-bit frame adds the CRC-8 of the word in both directions. The 32-bit frame adds the pad byte: first on MOSI (the driver sends Config::pad_byte), last on MISO (the driver ignores it). The bit positions come from the frame constants in inc/as5047u_registers.hpp and the byte order from detail::FrameBus::Exchange in inc/as5047u_spi_interface.hpp. With 16-bit frames the driver sends writes as 24-bit frames.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>frame bits</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>detail::FrameBus::Exchange</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>Crc8</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>writeFormat</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/docs/diagrams/figures/spi-frames.py"><code>docs/diagrams/figures/spi-frames.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>frame bits</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>detail::FrameBus::Exchange</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>Crc8</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>writeFormat</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/docs/diagrams/figures/spi-frames.py"><code>docs/diagrams/figures/spi-frames.py</code></a>.</p>
 </details>
 <p>The datasheet allows 16-bit frames for reads only, so with <code>Bits16</code> the driver sends every write as a 24-bit
 frame. Writes are always CRC-protected, and <code>ProgramOtp()</code> sends every frame, reads included, as a 24-bit frame
@@ -1893,7 +1893,7 @@ of the driver is in the datasheet: <a href="../datasheet/">Datasheet map</a>.</p
 <td>Choosing K_min and K_max for the velocity filter</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></td>
 <td>The register map as the driver uses it, with datasheet figure numbers</td>
 </tr>
 </tbody>

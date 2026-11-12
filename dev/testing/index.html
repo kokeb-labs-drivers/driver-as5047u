@@ -1213,71 +1213,71 @@ runs 16 tests.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/test_as5047u.cpp"><code>tests/test_as5047u.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/test_as5047u.cpp"><code>tests/test_as5047u.cpp</code></a></td>
 <td><code>Validate()</code>, unit conversions, <code>NotInitialized</code> before <code>EnsureInitialized()</code>, settings written and read back at start-up, run-time writes sending no read-back by default and <code>Verify::ReadBack</code> catching a lost write, <code>write_settings = false</code> reading a burned part's settings (Data_select included) so a setter changes only its field, a missing chip in every frame format, every frame format with CRC-protected writes, reply CRC and error bit, warnings, PROG refused, measurements, direction, DAEC, <code>SetZeroHere()</code>, the OTP procedure and its failures (no confirmation, mismatch, timeout, guard band, device fault, CRC frames with 16-bit reads), logging</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/test_startup.cpp"><code>tests/test_startup.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/test_startup.cpp"><code>tests/test_startup.cpp</code></a></td>
 <td>The start-up wait: no wait for a chip that is up, a poll per millisecond for a late one, <code>NotReady</code> at the deadline and never later, a ready DIA counted only when confirmed, the deadline bounded by <code>Validate()</code>; each broken line (stuck low, floating high, looped back, deaf) refused at start-up in every frame format and on every read path after it</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/test_diagnostics.cpp"><code>tests/test_diagnostics.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/test_diagnostics.cpp"><code>tests/test_diagnostics.cpp</code></a></td>
 <td>The angle read is two frames; <code>MagnetWarning</code> for an angle or velocity under an AGC or magnetic-half warning, also when it persists, while diagnostic reads still answer; a P2RAM warning does not refuse it; the ERRFL latch fed by every read of ERRFL, internal ones included, until cleared; <code>NoDevice</code> for an error bit with no error and for ERRFL's reserved bit; <code>GetLastReply()</code>; a chip that sets the error bit for warnings gives the same results, writes included</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/test_model.cpp"><code>tests/test_model.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/test_model.cpp"><code>tests/test_model.cpp</code></a></td>
 <td>The model's register map, fields, timing and CRC against the driver's, with <code>static_assert</code>; the table CRC-8 against the bitwise one for all 65 536 words</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/test_bus_faults.cpp"><code>tests/test_bus_faults.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/test_bus_faults.cpp"><code>tests/test_bus_faults.cpp</code></a></td>
 <td>Every transfer of every read, configuration change, <code>EnsureInitialized()</code> and the OTP procedure fails in turn, and each returns <code>Bus</code>; after any lost frame of <code>ProgramOtp()</code> no later call starts a burn, and a lost write frame never turns the next command into data</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/fuzz/fuzz_as5047u.cpp"><code>tests/fuzz/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/fuzz/fuzz_as5047u.cpp"><code>tests/fuzz/</code></a></td>
 <td>The fuzz target; CTest replays its corpus (<code>as5047u_fuzz_as5047u_corpus</code>), see below</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/test_reset.cpp"><code>tests/test_reset.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/test_reset.cpp"><code>tests/test_reset.cpp</code></a></td>
 <td>A power-on reset of the model in mid-session (the settings reload from the OTP, t_pon restarts, ERRFL holds OffCompNotFinished): <code>DeviceReset</code> from the angle read, a setter and <code>ReadErrorFlags()</code>, during and after t_pon, and nothing written from the cache; <code>EnsureInitialized()</code> restores the settings; an unchanged chip under the same flags stays <code>DeviceFault</code>; raw settings writes and a burned part are not mistaken for a reset; <code>CheckForReset()</code> and its cost; <code>flags_lost</code> after an ERRFL read that fails its CRC, a failed transfer or a reserved bit; a reset whose only flag a corrupted ERRFL read took; a lost ERRFL compared at once, or on the next call when the compare fails too; raw writes of unimplemented bits; a hint from the read-back after a failed write resolved in the same call</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/test_failed_writes.cpp"><code>tests/test_failed_writes.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/test_failed_writes.cpp"><code>tests/test_failed_writes.cpp</code></a></td>
 <td>A write whose reply failed its CRC or whose frame was lost: <code>GetConfig()</code> follows what the chip took, field by field; the write is never retried; a failed read-back leaves the driver uninitialised; a rejected write keeps the chip's value; a failed raw settings write refreshes the reset check's copy</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/test_errors.cpp"><code>tests/test_errors.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/test_errors.cpp"><code>tests/test_errors.cpp</code></a></td>
 <td>The base <code>Error</code> values are 0 to 9; every chip-specific value (16 to 23) is returned by some call</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/test_version.cpp"><code>tests/test_version.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/test_version.cpp"><code>tests/test_version.cpp</code></a></td>
 <td>The version getters follow the generated header (also against a 9.8.7 probe)</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/test_kconfig.cpp"><code>tests/test_kconfig.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/test_kconfig.cpp"><code>tests/test_kconfig.cpp</code></a></td>
 <td><code>KconfigDefaults()</code> with and without <code>CONFIG_</code> values</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/compile_fail/port_without_delay.cpp"><code>tests/compile_fail/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/compile_fail/port_without_delay.cpp"><code>tests/compile_fail/</code></a></td>
 <td>Code that must not compile, each for its <code>EXPECT:</code> diagnostic: a port without <code>DelayUs()</code>, a <code>DelayUs(uint16_t)</code>, a <code>Transfer()</code> with a narrowed length or without <code>noexcept</code>, an integer in place of <code>OtpBurnConfirm</code>, a class that is not a port</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/mock_as5047u.hpp"><code>tests/mock_as5047u.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/mock_as5047u.hpp"><code>tests/mock_as5047u.hpp</code></a></td>
 <td>The chip model, with its own register map; the mock ports over it are in <code>mock_as5047u_bus.hpp</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/check_version_copy.cmake"><code>tests/check_version_copy.cmake</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/check_version_copy.cmake"><code>tests/check_version_copy.cmake</code></a></td>
 <td><code>_config/Doxyfile</code> carries the CMake version</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/examples/host/README.md"><code>examples/host/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/examples/host/README.md"><code>examples/host/</code></a></td>
 <td>The host example, built with the test flags and run (<code>as5047u_host_example</code>)</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/check_install.cmake"><code>tests/check_install.cmake</code></a></td>
-<td>Installs into a scratch prefix and builds <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/install_consumer/CMakeLists.txt"><code>tests/install_consumer/</code></a> with <code>find_package(as5047u)</code></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/check_install.cmake"><code>tests/check_install.cmake</code></a></td>
+<td>Installs into a scratch prefix and builds <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/install_consumer/CMakeLists.txt"><code>tests/install_consumer/</code></a> with <code>find_package(as5047u)</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/check_doxygen.cmake"><code>tests/check_doxygen.cmake</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/check_doxygen.cmake"><code>tests/check_doxygen.cmake</code></a></td>
 <td>Doxygen with <code>_config/Doxyfile</code> and warnings as errors, when <code>doxygen</code> is installed</td>
 </tr>
 </tbody>
@@ -1285,11 +1285,11 @@ runs 16 tests.</p>
 <p>The model does not reproduce the chip's ECC algorithm (its ECC_Checksum is a simple sum), the fuses, the
 guard-band level, the magnetic loops or any timing other than the burn and t_pon: those need a bench.</p>
 <h3 id="the-model-stands-alone">The model stands alone<a class="headerlink" href="#the-model-stands-alone" title="Permanent link">&para;</a></h3>
-<p><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/mock_as5047u.hpp"><code>tests/mock_as5047u.hpp</code></a> is written from the datasheet, not from the driver: it does
+<p><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/mock_as5047u.hpp"><code>tests/mock_as5047u.hpp</code></a> is written from the datasheet, not from the driver: it does
 not include <code>as5047u_registers.hpp</code>, <code>as5047u_types.hpp</code> or the driver's CRC. Its register map, field bits, timing
 and bitwise CRC-8 are its own (namespace <code>as5047u_test::chip</code>, each with its datasheet figure), so a wrong constant
 in the driver cannot hide behind the same wrong constant in the model (handbook KB-TST-030).
-<a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/test_model.cpp"><code>tests/test_model.cpp</code></a> compares the two at compile time:</p>
+<a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/test_model.cpp"><code>tests/test_model.cpp</code></a> compares the two at compile time:</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Volatile registers (Figure 32 and Figures 33 to 41).</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">static_assert</span><span class="p">(</span><span class="n">chip</span><span class="o">::</span><span class="n">kNop</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">reg</span><span class="o">::</span><span class="n">kNop</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">chip</span><span class="o">::</span><span class="n">kErrfl</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">reg</span><span class="o">::</span><span class="n">kErrfl</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">chip</span><span class="o">::</span><span class="n">kProg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">reg</span><span class="o">::</span><span class="n">kProg</span><span class="w"> </span><span class="o">&amp;&amp;</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">              </span><span class="n">chip</span><span class="o">::</span><span class="n">kDia</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">reg</span><span class="o">::</span><span class="n">kDia</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">chip</span><span class="o">::</span><span class="n">kAgc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">reg</span><span class="o">::</span><span class="n">kAgc</span><span class="p">);</span>
@@ -1353,7 +1353,7 @@ becomes a fault mode of the model and a test; the model's virtual clock (<code>E
 <code>DelayUs()</code>) carries t_pon and the burn time.</p>
 <h2 id="fuzz-tests">Fuzz tests<a class="headerlink" href="#fuzz-tests" title="Permanent link">&para;</a></h2>
 <p>Everything the driver receives comes from MISO, so MISO is what an attacker, a noisy cable or a broken chip
-controls. <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/fuzz/fuzz_as5047u.cpp"><code>tests/fuzz/fuzz_as5047u.cpp</code></a> lets libFuzzer choose a configuration,
+controls. <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/fuzz/fuzz_as5047u.cpp"><code>tests/fuzz/fuzz_as5047u.cpp</code></a> lets libFuzzer choose a configuration,
 then up to 64 driver calls, and on every transfer what the bus does: pass the model's reply, fail the transfer,
 flip bits of the reply, replace it, or replay the previous reply (stale but with a valid CRC). It can also change
 the magnet, the speed and ERRFL, hold a magnet warning, delay the chip's ready, break the lines in each of the four
@@ -1377,14 +1377,14 @@ data and burned the OTP; and <code>SetZeroHere()</code> left the zero at 0 when 
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>./build-fuzz/tests/fuzz/fuzz_as5047u<span class="w"> </span>-max_total_time<span class="o">=</span><span class="m">300</span><span class="w"> </span>tests/fuzz/corpus/fuzz_as5047u
 </span></code></pre></div>
 <p>The same file also builds without libFuzzer as <code>fuzz_replay_fuzz_as5047u</code>, and CTest replays every input in
-<a href="https://github.com/kokeb-labs-drivers/driver-as5047u/tree/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/fuzz/corpus/fuzz_as5047u"><code>tests/fuzz/corpus/fuzz_as5047u/</code></a> on GCC and Clang: the seeds, and every input
+<a href="https://github.com/kokeb-labs-drivers/driver-as5047u/tree/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/fuzz/corpus/fuzz_as5047u"><code>tests/fuzz/corpus/fuzz_as5047u/</code></a> on GCC and Clang: the seeds, and every input
 that ever broke a promise (<code>regress-*</code>), so a fixed bug stays fixed. CI fuzzes for 120 s on every pull request,
 from the seeds plus a corpus it keeps between runs (job <code>Host quality / fuzz</code>). 200 s of local fuzzing of the
 current code (4.4 million runs, 652 coverage edges) broke no promise.</p>
 <h2 id="quality-gates">Quality gates<a class="headerlink" href="#quality-gates" title="Permanent link">&para;</a></h2>
 <p>The <code>Host quality</code> job measures the library code, <code>inc/</code> and <code>src/</code> only (tests and examples are left out), and
 fails when a value is over the limits of this repository's assurance level, <code>high</code> (set in
-<a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/.kokeb/handbook.yml"><code>.kokeb/handbook.yml</code></a>, defined by the handbook's ADR-0020):</p>
+<a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/.kokeb/handbook.yml"><code>.kokeb/handbook.yml</code></a>, defined by the handbook's ADR-0020):</p>
 <table>
 <thead>
 <tr>
@@ -1453,16 +1453,16 @@ locally:</p>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>gcovr<span class="w"> </span>--root<span class="w"> </span>.<span class="w"> </span>--filter<span class="w"> </span>inc/<span class="w"> </span>--filter<span class="w"> </span>src/<span class="w"> </span>--merge-lines<span class="w"> </span>--exclude-unreachable-branches<span class="w"> </span>--txt<span class="w"> </span>build-cov
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>lizard<span class="w"> </span>-m<span class="w"> </span>-C<span class="w"> </span><span class="m">15</span><span class="w"> </span>-L<span class="w"> </span><span class="m">60</span><span class="w"> </span>-a<span class="w"> </span><span class="m">6</span><span class="w"> </span>inc<span class="w"> </span>src<span class="w">    </span><span class="c1"># the complexity gate</span>
 </span></code></pre></div>
-<p>clang-tidy 20 (<a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/_config/.clang-tidy"><code>_config/.clang-tidy</code></a>: bugprone, clang-analyzer, cppcoreguidelines,
+<p>clang-tidy 20 (<a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/_config/.clang-tidy"><code>_config/.clang-tidy</code></a>: bugprone, clang-analyzer, cppcoreguidelines,
 modernize, performance, portability and readability, each disabled check with its reason) and cppcheck (strict)
 run in the <code>C++ lint</code> and <code>Repository checks</code> jobs and fail on any finding.</p>
 <h2 id="documentation-snippets">Documentation snippets<a class="headerlink" href="#documentation-snippets" title="Permanent link">&para;</a></h2>
-<p>Every C++ block on this site is included from <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/tests/docs/my_port.hpp"><code>tests/docs/</code></a>, which the host build
+<p>Every C++ block on this site is included from <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/tests/docs/my_port.hpp"><code>tests/docs/</code></a>, which the host build
 compiles (target <code>as5047u_doc_snippets</code>) with the driver instantiated over the documented port. A change to
 the API that breaks a page breaks the build first. The README's example is a generated copy of the same file;
 <code>kokeb-docs check</code> fails when it drifts.</p>
 <h2 id="ci-workflows">CI workflows<a class="headerlink" href="#ci-workflows" title="Permanent link">&para;</a></h2>
-<p>Everything runs from <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/.github/workflows/ci.yml"><code>ci.yml</code></a>, which calls one workflow file per check and ends in
+<p>Everything runs from <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/.github/workflows/ci.yml"><code>ci.yml</code></a>, which calls one workflow file per check and ends in
 the <code>CI gate</code> job, the single required check (<code>CI gate / gate</code>).</p>
 <table>
 <thead>

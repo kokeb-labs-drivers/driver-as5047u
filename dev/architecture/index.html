@@ -1061,7 +1061,7 @@
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>SpiInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>SpiInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
 </details>
 <h2 id="layers">Layers<a class="headerlink" href="#layers" title="Permanent link">&para;</a></h2>
 <table>
@@ -1075,22 +1075,22 @@
 <tbody>
 <tr>
 <td>Core</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></td>
 <td>Lifecycle, configuration, read and write sequences, ERRFL handling, unit conversion, the OTP procedure, errors</td>
 </tr>
 <tr>
 <td>Types and registers</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_types.hpp"><code>inc/as5047u_types.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_types.hpp"><code>inc/as5047u_types.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></td>
 <td><code>Error</code>, <code>Result&lt;T&gt;</code>, <code>Config</code>, <code>Validate()</code>, the decoded ERRFL and DIA, <code>OtpReport</code>, <code>OtpBurnConfirm</code>; the register map and the CRC parameters</td>
 </tr>
 <tr>
 <td>Compile-time helpers</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_detail.hpp"><code>inc/as5047u_detail.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_detail.hpp"><code>inc/as5047u_detail.hpp</code></a></td>
 <td><code>detail::ExactHook&lt;Port, Sig&gt;</code> (exact hook matching), <code>kAlwaysFalse</code>, <code>ToUnderlying()</code>, <code>IsEnumerator()</code></td>
 </tr>
 <tr>
 <td>Port contract</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></td>
 <td>The bus requirements as <code>constexpr</code>, the CRTP base, the <code>SpiPort</code> concept, <code>Crc8()</code> and the frame layer (16, 24 and 32 bits)</td>
 </tr>
 <tr>
@@ -1100,7 +1100,7 @@
 </tr>
 <tr>
 <td>Kconfig layer</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_kconfig.hpp"><code>inc/as5047u_kconfig.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_kconfig.hpp"><code>inc/as5047u_kconfig.hpp</code></a></td>
 <td>Optional: a <code>Config</code> from ESP-IDF menuconfig</td>
 </tr>
 </tbody>
@@ -1127,7 +1127,7 @@
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Time runs left to right, one column per SPI frame; the top row is what the driver sends on MOSI and the bottom row what the chip returns on MISO in the same frame. The chip answers a frame during the next one (dashed arrows), so a read sends the read command and then a NOP read, whose reply carries the register. The reply in the first frame belongs to the frame before it, so the driver fails the call there only when the transfer itself fails. When the reply that answers the call has its error bit set, the driver reads ERRFL (two more frames, dashed) to find out why and fails the call. A write sends the command frame (R/W at 0, the address) and the data frame, always with a CRC; the reply in the data frame reports on the command frame. The read-back after it (two more frames, dashed) is chosen per call with Verify::ReadBack; EnsureInitialized() and ProgramOtp() always read back. The frame words come from readRaw(), writeRaw() and resolveFlags() in src/as5047u.ipp. A note at the bottom gives the rule of FrameBus::Exchange(): after a failed transfer the next frame is a NOP read, so a lost data frame cannot turn the next command into data.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>readRaw</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>writeRaw</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>resolveFlags</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>detail::ClassifyErrorFlags</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>frame bits</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>FrameBus::Exchange</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/docs/diagrams/figures/read-pipeline.py"><code>docs/diagrams/figures/read-pipeline.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>readRaw</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>writeRaw</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>resolveFlags</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>detail::ClassifyErrorFlags</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>frame bits</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>FrameBus::Exchange</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/docs/diagrams/figures/read-pipeline.py"><code>docs/diagrams/figures/read-pipeline.py</code></a>.</p>
 </details>
 <h2 id="design-choices">Design choices<a class="headerlink" href="#design-choices" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1172,19 +1172,19 @@
 <tbody>
 <tr>
 <td>The public API</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a></td>
 </tr>
 <tr>
 <td>How a call is implemented</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></td>
 </tr>
 <tr>
 <td>Register addresses and bits</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></td>
 </tr>
 <tr>
 <td>The port contract</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></td>
 </tr>
 </tbody>
 </table>

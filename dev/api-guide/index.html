@@ -1634,7 +1634,7 @@ alone does not fail it, an error bit is resolved through ERRFL. Reading ERRFL th
 feeds the latch; reading DIA restarts its frame counter. <code>WriteRegister(address, value)</code>
 writes one (add <code>Verify::ReadBack</code> to read it back); it refuses PROG (0x0003) with <code>InvalidArgument</code>, so that only
 <code>ProgramOtp()</code> can start a burn. <code>ReadNonVolatile()</code> returns DISABLE to ECC (0x0015 to 0x001B) as an array, in
-address order. The addresses and fields are in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/3cc25c7f50d27414f5ebaf437d973df869d7497e/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a>
+address order. The addresses and fields are in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/2ed7a935c8958a8aa57328873bb0d70407cf77bd/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a>
 (<code>as5047u::reg</code>). A <code>WriteRegister()</code> to a settings register is overwritten by the next <code>ApplyConfig()</code>.</p>
 <h2 id="burn-the-otp">Burn the OTP<a class="headerlink" href="#burn-the-otp" title="Permanent link">&para;</a></h2>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">as5047u</span><span class="o">::</span><span class="n">Error</span><span class="w"> </span><span class="nf">BurnSettings</span><span class="p">(</span><span class="n">Sensor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
