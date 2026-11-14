@@ -53,14 +53,14 @@ C++20 driver for the AS5047U 14-bit magnetic rotary position sensor.
 ## Where it is used
 
 <!-- generated: chip-uses -->
-- Factory automation (Applications, p. 2)
-- Building automation (Applications, p. 2)
-- Robotics (Applications, p. 2)
-- Permanent magnet synchronous motors (PMSM) (Applications, p. 2)
-- Closed-loop stepper motors (Applications, p. 2)
-- Optical encoder replacement (Applications, p. 2)
+- Factory automation
+- Building automation
+- Robotics
+- Permanent magnet synchronous motors (PMSM)
+- Closed-loop stepper motors
+- Optical encoder replacement
 
-Uses named by the datasheet (General Description, p. 1).
+Uses named by the datasheet (Applications, p. 2).
 <!-- /generated -->
 
 ## Inside the chip
@@ -240,6 +240,7 @@ to. It runs on any MCU: you give it a small class that moves bytes on your SPI b
 | [Troubleshooting](docs/troubleshooting.md) | Find the cause of an error or a wrong reading |
 | [Contract](docs/contract.md) | Know exactly what the driver promises, needs and returns |
 | [Status and limitations](docs/limitations.md) | Decide whether it is ready for your use: what is and is not verified |
+| [Ambiguities](docs/ambiguities.md) | See where the datasheet gives two answers and which one the driver takes |
 | [Datasheet map](docs/datasheet.md) | Find the datasheet section behind each part of the driver |
 | [API reference](docs/api-reference.md) | Look up a class or member (Doxygen; built by CI and locally) |
 

@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="793" viewBox="0 0 1200 793" role="img" aria-labelledby="chip-hero-title chip-hero-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="814" viewBox="0 0 1200 814" role="img" aria-labelledby="chip-hero-title chip-hero-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
 <title id="chip-hero-title">AS5047U</title>
 <desc id="chip-hero-desc">Overview of the AS5047U, a magnetic rotary position sensor: it measures the absolute angle of a rotating magnet over a full 360 degrees in 14 bits and gives it over SPI with a CRC, and as incremental ABI, UVW commutation or PWM signals. A MCU talks to it over SPI with CRC-8; it drives Motor controller; it reads back Magnet on the shaft. Headline figures: 14 bits angle resolution, 16384 counts per turn; 28000 rpm maximum speed; 10 MHz SPI clock, mode 1; 4096 ppr ABI pulses per revolution, at most; 3.3 or 5 V supply; 5 V through the on-chip LDO; 5 x 4.4 mm TSSOP-14 body.</desc>
 <defs><marker id="fk-arrow-amber-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#C26A05"/></marker><marker id="fk-arrow-blue-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2563EB"/></marker><marker id="fk-arrow-teal-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0B7A72"/></marker></defs>
-<rect x="0.5" y="0.5" width="1199" height="792" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<rect x="0.5" y="0.5" width="1199" height="813" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
 <text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#7A360E">MAGNETIC ROTARY POSITION SENSOR</text>
 <text x="32" y="85.6" font-size="32" font-weight="700" fill="#0E1726">AS5047U</text>
 <text x="32" y="115.4" font-size="18" fill="#566070">What talks to it, what it drives and what it reads back, with its headline numbers. Datasheet: General Description, p. 1.</text>
@@ -32,12 +32,12 @@
 <rect x="737" y="201.4" width="4" height="122" rx="2" fill="#0B7A72"/>
 <rect x="370" y="431.4" width="360" height="114" rx="12" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
 <rect x="370" y="439.4" width="4" height="98" rx="2" fill="#C26A05"/>
-<rect x="32" y="585.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
-<rect x="224" y="585.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
-<rect x="416" y="585.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
-<rect x="608" y="585.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
-<rect x="800" y="585.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
-<rect x="992" y="585.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="32" y="585.4" width="176" height="198.5" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="224" y="585.4" width="176" height="198.5" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="416" y="585.4" width="176" height="198.5" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="608" y="585.4" width="176" height="198.5" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="800" y="585.4" width="176" height="198.5" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="992" y="585.4" width="176" height="198.5" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
 <text x="550" y="256.4" font-size="30" font-weight="700" text-anchor="middle" fill="#0E1726">AS5047U</text>
 <text x="550" y="286.4" font-size="17" text-anchor="middle" fill="#566070">TSSOP-14</text>
 <text x="550" y="310.4" font-size="16" text-anchor="middle" fill="#566070">14 pins</text>
@@ -57,25 +57,26 @@
 <text x="48" y="663" font-size="17" fill="#2B3442">angle resolution,</text>
 <text x="48" y="686" font-size="17" fill="#2B3442">16384 counts</text>
 <text x="48" y="708.9" font-size="17" fill="#2B3442">per turn</text>
-<text x="48" y="744.2" font-size="16" fill="#566070">Figure 8, p. 7</text>
+<text x="48" y="765.9" font-size="16" fill="#566070">Figure 8, p. 7</text>
 <text x="240" y="628.6" font-size="24" font-weight="700" fill="#0E1726">28000 rpm</text>
 <text x="240" y="663" font-size="17" fill="#2B3442">maximum speed</text>
-<text x="240" y="744.2" font-size="16" fill="#566070">Figure 8, p. 8</text>
+<text x="240" y="765.9" font-size="16" fill="#566070">Figure 8, p. 8</text>
 <text x="432" y="633.4" font-size="30" font-weight="700" fill="#0E1726">10 MHz</text>
 <text x="432" y="663" font-size="17" fill="#2B3442">SPI clock, mode</text>
 <text x="432" y="686" font-size="17" fill="#2B3442">1</text>
-<text x="432" y="744.2" font-size="16" fill="#566070">SPI Interface, p. 16</text>
+<text x="432" y="744.2" font-size="16" fill="#566070">SPI Interface, p.</text>
+<text x="432" y="765.9" font-size="16" fill="#566070">16</text>
 <text x="624" y="632.6" font-size="29" font-weight="700" fill="#0E1726">4096 ppr</text>
 <text x="624" y="663" font-size="17" fill="#2B3442">ABI pulses per</text>
 <text x="624" y="686" font-size="17" fill="#2B3442">revolution, at</text>
 <text x="624" y="708.9" font-size="17" fill="#2B3442">most</text>
-<text x="624" y="744.2" font-size="16" fill="#566070">Figure 51, p. 32</text>
+<text x="624" y="765.9" font-size="16" fill="#566070">Figure 51, p. 32</text>
 <text x="816" y="631.8" font-size="28" font-weight="700" fill="#0E1726">3.3 or 5 V</text>
 <text x="816" y="663" font-size="17" fill="#2B3442">supply; 5 V</text>
 <text x="816" y="686" font-size="17" fill="#2B3442">through the</text>
 <text x="816" y="708.9" font-size="17" fill="#2B3442">on-chip LDO</text>
-<text x="816" y="744.2" font-size="16" fill="#566070">Figure 6, p. 6</text>
+<text x="816" y="765.9" font-size="16" fill="#566070">Figure 6, p. 6</text>
 <text x="1008" y="629.4" font-size="25" font-weight="700" fill="#0E1726">5 x 4.4 mm</text>
 <text x="1008" y="663" font-size="17" fill="#2B3442">TSSOP-14 body</text>
-<text x="1008" y="744.2" font-size="16" fill="#566070">Figure 62, p. 45</text>
+<text x="1008" y="765.9" font-size="16" fill="#566070">Figure 62, p. 45</text>
 </svg>

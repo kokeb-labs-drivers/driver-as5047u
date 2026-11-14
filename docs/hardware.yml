@@ -56,13 +56,14 @@ overview:
     in 14 bits and gives it over SPI with a CRC, and as incremental ABI, UVW commutation or PWM signals
   category: Magnetic rotary position sensor
   ref: cover
+  applications_ref: apps
   applications:
-    - {label: "Factory automation", ref: apps}
-    - {label: "Building automation", ref: apps}
-    - {label: "Robotics", ref: apps}
-    - {label: "Permanent magnet synchronous motors (PMSM)", ref: apps}
-    - {label: "Closed-loop stepper motors", ref: apps}
-    - {label: "Optical encoder replacement", ref: apps}
+    - "Factory automation"
+    - "Building automation"
+    - "Robotics"
+    - "Permanent magnet synchronous motors (PMSM)"
+    - "Closed-loop stepper motors"
+    - "Optical encoder replacement"
   specs:
     - {value: "14 bits", label: "angle resolution, 16384 counts per turn", ref: t_res}
     - {value: "28000 rpm", label: maximum speed, ref: t_speed}

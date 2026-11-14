@@ -11,6 +11,7 @@ nav:
       - Architecture: architecture.md
       - Contract: contract.md
       - Status and limitations: limitations.md
+      - Ambiguities: ambiguities.md
   - Guides:
       - API guide: api-guide.md
       - Configuration: configuration.md

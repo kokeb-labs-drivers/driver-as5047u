@@ -61,14 +61,14 @@ Description, p. 1).
 ## Where it is used
 
 <!-- generated: chip-uses -->
-- Factory automation (Applications, p. 2)
-- Building automation (Applications, p. 2)
-- Robotics (Applications, p. 2)
-- Permanent magnet synchronous motors (PMSM) (Applications, p. 2)
-- Closed-loop stepper motors (Applications, p. 2)
-- Optical encoder replacement (Applications, p. 2)
+- Factory automation
+- Building automation
+- Robotics
+- Permanent magnet synchronous motors (PMSM)
+- Closed-loop stepper motors
+- Optical encoder replacement
 
-Uses named by the datasheet (General Description, p. 1).
+Uses named by the datasheet (Applications, p. 2).
 <!-- /generated -->
 
 ## Inside the chip

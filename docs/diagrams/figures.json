@@ -110,7 +110,7 @@
   "chip-wiring-supply-3v3": {
     "title": "Wiring: 3.3 V operation",
     "alt": "Wiring of the AS5047U for the 3.3 V operation: MCU SPI SCK to CLK (Transfer()); MCU SPI MOSI to MOSI (Transfer()); MCU SPI MISO to MISO (Transfer()); MCU GPIO / CS to CSn (Transfer()). Supplies, grounds and the support parts are listed under the drawing.",
-    "description": "The MCU on the left, the AS5047U in the middle. Each wire is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hook that uses it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "description": "The MCU on the left, the AS5047U in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
     "profile": "overview",
     "width": 1200,
     "source": "docs/hardware.yml",
@@ -122,7 +122,7 @@
   "chip-wiring-typical": {
     "title": "Wiring: Minimum circuit, 5 V",
     "alt": "Wiring of the AS5047U for the Minimum circuit, 5 V: MCU SPI SCK to CLK (Transfer()); MCU SPI MOSI to MOSI (Transfer()); MCU SPI MISO to MISO (Transfer()); MCU GPIO / CS to CSn (Transfer()). Supplies, grounds and the support parts are listed under the drawing.",
-    "description": "The MCU on the left, the AS5047U in the middle. Each wire is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hook that uses it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "description": "The MCU on the left, the AS5047U in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
     "profile": "overview",
     "width": 1200,
     "source": "docs/hardware.yml",
