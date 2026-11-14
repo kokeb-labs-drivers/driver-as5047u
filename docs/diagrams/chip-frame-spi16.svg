@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="664" viewBox="0 0 1200 664" role="img" aria-labelledby="chip-frame-spi16-title chip-frame-spi16-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-frame-spi16-title">AS5047U: 16-bit SPI frame</title>
+<desc id="chip-frame-spi16-desc">16-bit SPI frame of the AS5047U, 16 bits, most significant bit first. Command: don't care (bit 15), R (bit 14), ADDR[13:0] (bits 13 to 0); Reply: Warning (bit 15), Error (bit 14), DATA[13:0] (bits 13 to 0). Below, the SPI mode 1 waveform of one transfer in the same bit grid.</desc>
+<rect x="0.5" y="0.5" width="1199" height="663" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#7A360E">ON THE BUS</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#0E1726">AS5047U: 16-bit SPI frame</text>
+<text x="32" y="115.4" font-size="18" fill="#566070">A read without CRC, for the highest rate; the reply to each command arrives in the next frame. 16 bits, sent most significant</text>
+<text x="32" y="141.5" font-size="18" fill="#566070">bit first. Datasheet: SPI Transaction, Figures 20 to 22, p. 18.</text>
+<rect x="32" y="157.5" width="1136" height="1" fill="#E2E7EE"/>
+<path d="M196 397.5 L204 397.5 L204 419.5 L1160 419.5 L1160 397.5 L1168 397.5" fill="none" stroke="#2B3442" stroke-width="2"/>
+<path d="M196 465.5 L224 465.5 L224 465.5 L224 443.5 L252.6 443.5 L252.6 465.5 L281.2 465.5 L281.2 443.5 L309.9 443.5 L309.9 465.5 L338.5 465.5 L338.5 443.5 L367.1 443.5 L367.1 465.5 L395.8 465.5 L395.8 443.5 L424.4 443.5 L424.4 465.5 L453 465.5 L453 443.5 L481.6 443.5 L481.6 465.5 L510.2 465.5 L510.2 443.5 L538.9 443.5 L538.9 465.5 L567.5 465.5 L567.5 443.5 L596.1 443.5 L596.1 465.5 L624.8 465.5 L624.8 443.5 L653.4 443.5 L653.4 465.5 L682 465.5 L682 443.5 L710.6 443.5 L710.6 465.5 L739.2 465.5 L739.2 443.5 L767.9 443.5 L767.9 465.5 L796.5 465.5 L796.5 443.5 L825.1 443.5 L825.1 465.5 L853.8 465.5 L853.8 443.5 L882.4 443.5 L882.4 465.5 L911 465.5 L911 443.5 L939.6 443.5 L939.6 465.5 L968.2 465.5 L968.2 443.5 L996.9 443.5 L996.9 465.5 L1025.5 465.5 L1025.5 443.5 L1054.1 443.5 L1054.1 465.5 L1082.8 465.5 L1082.8 443.5 L1111.4 443.5 L1111.4 465.5 L1168 465.5" fill="none" stroke="#2563EB" stroke-width="2"/>
+<path d="M196 500.5 L224 500.5" fill="none" stroke="#8893A2" stroke-width="1.6"/>
+<path d="M1140 500.5 L1168 500.5" fill="none" stroke="#8893A2" stroke-width="1.6"/>
+<path d="M196 546.5 L224 546.5" fill="none" stroke="#8893A2" stroke-width="1.6"/>
+<path d="M1140 546.5 L1168 546.5" fill="none" stroke="#8893A2" stroke-width="1.6"/>
+<rect x="224" y="209.5" width="57.2" height="46" rx="6" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<rect x="281.2" y="209.5" width="57.2" height="46" rx="6" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="338.5" y="209.5" width="801.5" height="46" rx="6" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="224" y="297.5" width="57.2" height="46" rx="6" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="281.2" y="297.5" width="57.2" height="46" rx="6" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<rect x="338.5" y="297.5" width="801.5" height="46" rx="6" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<path d="M224 500.5 L229 488.5 L276.2 488.5 L281.2 500.5 L276.2 512.5 L229 512.5 Z" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M281.2 500.5 L286.2 488.5 L333.5 488.5 L338.5 500.5 L333.5 512.5 L286.2 512.5 Z" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M338.5 500.5 L343.5 488.5 L1135 488.5 L1140 500.5 L1135 512.5 L343.5 512.5 Z" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M224 546.5 L229 534.5 L276.2 534.5 L281.2 546.5 L276.2 558.5 L229 558.5 Z" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M281.2 546.5 L286.2 534.5 L333.5 534.5 L338.5 546.5 L333.5 558.5 L286.2 558.5 Z" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M338.5 546.5 L343.5 534.5 L1135 534.5 L1140 546.5 L1135 558.5 L343.5 558.5 Z" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="224" y="191.5" font-size="16" fill="#566070">MSB, sent first</text>
+<text x="1140" y="191.5" font-size="16" text-anchor="end" fill="#566070">LSB, sent last</text>
+<text x="32" y="230.5" font-size="20" font-weight="700" fill="#0E1726">Command</text>
+<text x="32" y="250.5" font-size="16" fill="#566070">MOSI, read</text>
+<text x="252.6" y="238.6" font-size="17" font-weight="600" text-anchor="middle" fill="#334155">x</text>
+<text x="252.6" y="275.5" font-size="16" text-anchor="middle" fill="#566070">15</text>
+<text x="309.9" y="238.6" font-size="17" font-weight="600" text-anchor="middle" fill="#8A3C0B">R</text>
+<text x="309.9" y="275.5" font-size="16" text-anchor="middle" fill="#566070">14</text>
+<text x="739.2" y="238.6" font-size="17" font-weight="600" text-anchor="middle" fill="#1E429F">ADDR[13:0]</text>
+<text x="340.5" y="275.5" font-size="16" fill="#566070">13</text>
+<text x="1138" y="275.5" font-size="16" text-anchor="end" fill="#566070">0</text>
+<text x="32" y="318.5" font-size="20" font-weight="700" fill="#0E1726">Reply</text>
+<text x="32" y="338.5" font-size="16" fill="#566070">MISO, next frame</text>
+<text x="252.6" y="326.6" font-size="17" font-weight="600" text-anchor="middle" fill="#8A3C0B">W</text>
+<text x="252.6" y="363.5" font-size="16" text-anchor="middle" fill="#566070">15</text>
+<text x="309.9" y="326.6" font-size="17" font-weight="600" text-anchor="middle" fill="#9F1239">Error</text>
+<text x="309.9" y="363.5" font-size="16" text-anchor="middle" fill="#566070">14</text>
+<text x="739.2" y="326.6" font-size="17" font-weight="600" text-anchor="middle" fill="#14532D">DATA[13:0]</text>
+<text x="340.5" y="363.5" font-size="16" fill="#566070">13</text>
+<text x="1138" y="363.5" font-size="16" text-anchor="end" fill="#566070">0</text>
+<text x="32" y="414.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">CSn</text>
+<text x="32" y="460.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">CLK</text>
+<text x="32" y="506.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">MOSI</text>
+<text x="252.6" y="506.3" font-size="16" font-weight="600" text-anchor="middle" fill="#334155">x</text>
+<text x="309.9" y="506.3" font-size="16" font-weight="600" text-anchor="middle" fill="#8A3C0B">R</text>
+<text x="739.2" y="506.3" font-size="16" font-weight="600" text-anchor="middle" fill="#1E429F">ADDR[13:0]</text>
+<text x="32" y="552.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">MISO</text>
+<text x="252.6" y="552.3" font-size="16" font-weight="600" text-anchor="middle" fill="#8A3C0B">W</text>
+<text x="309.9" y="552.3" font-size="16" font-weight="600" text-anchor="middle" fill="#9F1239">E</text>
+<text x="739.2" y="552.3" font-size="16" font-weight="600" text-anchor="middle" fill="#14532D">DATA[13:0]</text>
+<text x="32" y="594.3" font-size="16" fill="#566070">SPI mode 1: CLK idles low; the chip samples its input on the falling edge and changes its output after the rising edge. CSn stays low for the</text>
+<text x="32" y="617.5" font-size="16" fill="#566070">whole frame.</text>
+</svg>

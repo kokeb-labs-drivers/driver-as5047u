@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="793" viewBox="0 0 1200 793" role="img" aria-labelledby="chip-hero-title chip-hero-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-hero-title">AS5047U</title>
+<desc id="chip-hero-desc">Overview of the AS5047U, a magnetic rotary position sensor: it measures the absolute angle of a rotating magnet over a full 360 degrees in 14 bits and gives it over SPI with a CRC, and as incremental ABI, UVW commutation or PWM signals. A MCU talks to it over SPI with CRC-8; it drives Motor controller; it reads back Magnet on the shaft. Headline figures: 14 bits angle resolution, 16384 counts per turn; 28000 rpm maximum speed; 10 MHz SPI clock, mode 1; 4096 ppr ABI pulses per revolution, at most; 3.3 or 5 V supply; 5 V through the on-chip LDO; 5 x 4.4 mm TSSOP-14 body.</desc>
+<defs><marker id="fk-arrow-amber-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#FBBF24"/></marker><marker id="fk-arrow-blue-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#60A5FA"/></marker><marker id="fk-arrow-teal-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2BB3A3"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="792" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#F8D27A">MAGNETIC ROTARY POSITION SENSOR</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#E8EDF3">AS5047U</text>
+<text x="32" y="115.4" font-size="18" fill="#9AA6B5">What talks to it, what it drives and what it reads back, with its headline numbers. Datasheet: General Description, p. 1.</text>
+<rect x="32" y="131.4" width="1136" height="1" fill="#252F3C"/>
+<path d="M246 262.4 L419 262.4" fill="none" stroke="#60A5FA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-blue-strong)" marker-start="url(#fk-arrow-blue-strong)"/>
+<path d="M681 262.4 L733 262.4" fill="none" stroke="#2BB3A3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-teal-strong)"/>
+<path d="M550 427.4 L550 371.4" fill="none" stroke="#FBBF24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-amber-strong)"/>
+<rect x="423" y="186" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="423" y="210.3" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="423" y="234.6" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="423" y="258.9" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="423" y="283.2" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="423" y="307.5" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="423" y="331.8" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="665" y="186" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="665" y="210.3" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="665" y="234.6" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="665" y="258.9" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="665" y="283.2" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="665" y="307.5" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="665" y="331.8" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="435" y="157.4" width="230" height="210" rx="10" fill="#18202B" stroke="#D2DAE4" stroke-width="2.2"/>
+<circle cx="455" cy="177.4" r="6" fill="#D2DAE4"/>
+<rect x="32" y="205.4" width="210" height="114" rx="12" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="213.4" width="4" height="98" rx="2" fill="#60A5FA"/>
+<rect x="737" y="193.4" width="260" height="138" rx="12" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="737" y="201.4" width="4" height="122" rx="2" fill="#2BB3A3"/>
+<rect x="370" y="431.4" width="360" height="114" rx="12" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="370" y="439.4" width="4" height="98" rx="2" fill="#FBBF24"/>
+<rect x="32" y="585.4" width="176" height="176.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="224" y="585.4" width="176" height="176.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="416" y="585.4" width="176" height="176.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="608" y="585.4" width="176" height="176.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="800" y="585.4" width="176" height="176.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="992" y="585.4" width="176" height="176.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<text x="550" y="256.4" font-size="30" font-weight="700" text-anchor="middle" fill="#E8EDF3">AS5047U</text>
+<text x="550" y="286.4" font-size="17" text-anchor="middle" fill="#9AA6B5">TSSOP-14</text>
+<text x="550" y="310.4" font-size="16" text-anchor="middle" fill="#9AA6B5">14 pins</text>
+<text x="56" y="240.4" font-size="20" font-weight="700" fill="#BFDBFE">MCU</text>
+<text x="56" y="271" font-size="17" fill="#D2DAE4">your firmware and</text>
+<text x="56" y="295.7" font-size="17" fill="#D2DAE4">this driver</text>
+<rect x="264.4" y="250.4" width="136.2" height="24" rx="12" fill="#0E131A"/>
+<text x="332.5" y="268.2" font-size="16" font-weight="500" text-anchor="middle" fill="#9AA6B5">SPI with CRC-8</text>
+<text x="761" y="228.4" font-size="20" font-weight="700" fill="#A7F3E6">Motor controller</text>
+<text x="761" y="259" font-size="17" fill="#D2DAE4">ABI encoder, UVW</text>
+<text x="761" y="283.7" font-size="17" fill="#D2DAE4">commutation or PWM</text>
+<text x="761" y="308.4" font-size="17" fill="#D2DAE4">signals</text>
+<text x="394" y="466.4" font-size="20" font-weight="700" fill="#FDE68A">Reads back</text>
+<text x="394" y="497" font-size="17" fill="#D2DAE4">Magnet on the shaft (35 to 70 mT at</text>
+<text x="394" y="521.7" font-size="17" fill="#D2DAE4">the die)</text>
+<text x="48" y="633.4" font-size="30" font-weight="700" fill="#E8EDF3">14 bits</text>
+<text x="48" y="663" font-size="17" fill="#D2DAE4">angle resolution,</text>
+<text x="48" y="686" font-size="17" fill="#D2DAE4">16384 counts</text>
+<text x="48" y="708.9" font-size="17" fill="#D2DAE4">per turn</text>
+<text x="48" y="744.2" font-size="16" fill="#9AA6B5">Figure 8, p. 7</text>
+<text x="240" y="628.6" font-size="24" font-weight="700" fill="#E8EDF3">28000 rpm</text>
+<text x="240" y="663" font-size="17" fill="#D2DAE4">maximum speed</text>
+<text x="240" y="744.2" font-size="16" fill="#9AA6B5">Figure 8, p. 8</text>
+<text x="432" y="633.4" font-size="30" font-weight="700" fill="#E8EDF3">10 MHz</text>
+<text x="432" y="663" font-size="17" fill="#D2DAE4">SPI clock, mode</text>
+<text x="432" y="686" font-size="17" fill="#D2DAE4">1</text>
+<text x="432" y="744.2" font-size="16" fill="#9AA6B5">SPI Interface, p. 16</text>
+<text x="624" y="632.6" font-size="29" font-weight="700" fill="#E8EDF3">4096 ppr</text>
+<text x="624" y="663" font-size="17" fill="#D2DAE4">ABI pulses per</text>
+<text x="624" y="686" font-size="17" fill="#D2DAE4">revolution, at</text>
+<text x="624" y="708.9" font-size="17" fill="#D2DAE4">most</text>
+<text x="624" y="744.2" font-size="16" fill="#9AA6B5">Figure 51, p. 32</text>
+<text x="816" y="631.8" font-size="28" font-weight="700" fill="#E8EDF3">3.3 or 5 V</text>
+<text x="816" y="663" font-size="17" fill="#D2DAE4">supply; 5 V</text>
+<text x="816" y="686" font-size="17" fill="#D2DAE4">through the</text>
+<text x="816" y="708.9" font-size="17" fill="#D2DAE4">on-chip LDO</text>
+<text x="816" y="744.2" font-size="16" fill="#9AA6B5">Figure 6, p. 6</text>
+<text x="1008" y="629.4" font-size="25" font-weight="700" fill="#E8EDF3">5 x 4.4 mm</text>
+<text x="1008" y="663" font-size="17" fill="#D2DAE4">TSSOP-14 body</text>
+<text x="1008" y="744.2" font-size="16" fill="#9AA6B5">Figure 62, p. 45</text>
+</svg>

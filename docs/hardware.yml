@@ -15,11 +15,160 @@ refs:
   power: {doc: ds, section: "Power Management, Figure 11", page: 11}
   spi: {doc: ds, section: "SPI Interface (Slave)", page: 16}
   app: {doc: ds, section: "Circuit Diagram, Figure 61", page: 44}
+  cover: {doc: ds, section: "General Description", page: 1}
+  apps: {doc: ds, section: "Applications", page: 2}
+  magnetic: {doc: ds, section: "Magnetic Characteristics, Figure 7", page: 7}
+  system: {doc: ds, section: "System Specifications, Figure 8", page: 7}
+  daec: {doc: ds, section: "Dynamic Angle Error Compensation; Adaptive Filter System", page: 12}
+  velocity: {doc: ds, section: "Rotation Speed Measurement, Figure 16", page: 15}
+  frame16: {doc: ds, section: "SPI Transaction, Figures 20 to 22", page: 18}
+  frame24: {doc: ds, section: "SPI Transaction, Figures 23 to 25", page: 19}
+  errfl: {doc: ds, section: "Volatile Registers, Figure 33", page: 24}
+  zero: {doc: ds, section: "Non-Volatile Registers (OTP), Figures 43 to 45", page: 28}
+  abi_res: {doc: ds, section: "ABI Settings, Figure 51", page: 32}
+  uvw: {doc: ds, section: "UVW Commutation Interface", page: 33}
+  otp_burn: {doc: ds, section: "Burn and Verification of the OTP Memory", page: 39}
+  outline: {doc: ds, section: "Package Outline Drawing, Figure 62", page: 45}
+  # Short citations for the hero's number tiles.
+  t_res: {doc: ds, section: "Figure 8", page: 7}
+  t_speed: {doc: ds, section: "Figure 8", page: 8}
+  t_spi: {doc: ds, section: "SPI Interface", page: 16}
+  t_abi: {doc: ds, section: "Figure 51", page: 32}
+  t_supply: {doc: ds, section: "Figure 6", page: 6}
+  t_body: {doc: ds, section: "Figure 62", page: 45}
 
 package:
   type: TSSOP-14
   pins: 14
   ref: pinout
+  outline: {length_mm: 5.0, width_mm: 4.4, height_mm: 1.2, pitch_mm: 0.65, ref: outline}
+
+supply:
+  - {name: "VDD, 5 V operation", min_v: 4.5, max_v: 5.5, ref: elec}
+  - {name: "VDD and VDD3V3, 3.3 V operation", min_v: 3.0, max_v: 3.6, ref: elec}
+
+# The chip-first README: what the chip is and does, where it is used, how the driver covers it, what one SPI
+# frame carries. `kokeb-docs figures` draws chip-hero, chip-capabilities and the chip-frame figures from it,
+# `kokeb-docs gen` the README's chip-summary, chip-uses and chip-coverage regions.
+overview:
+  summary: >-
+    a magnetic rotary position sensor: it measures the absolute angle of a rotating magnet over a full 360 degrees
+    in 14 bits and gives it over SPI with a CRC, and as incremental ABI, UVW commutation or PWM signals
+  category: Magnetic rotary position sensor
+  ref: cover
+  applications:
+    - {label: "Factory automation", ref: apps}
+    - {label: "Building automation", ref: apps}
+    - {label: "Robotics", ref: apps}
+    - {label: "Permanent magnet synchronous motors (PMSM)", ref: apps}
+    - {label: "Closed-loop stepper motors", ref: apps}
+    - {label: "Optical encoder replacement", ref: apps}
+  specs:
+    - {value: "14 bits", label: "angle resolution, 16384 counts per turn", ref: t_res}
+    - {value: "28000 rpm", label: maximum speed, ref: t_speed}
+    - {value: "10 MHz", label: "SPI clock, mode 1", ref: t_spi}
+    - {value: "4096 ppr", label: "ABI pulses per revolution, at most", ref: t_abi}
+    - {value: "3.3 or 5 V", label: "supply; 5 V through the on-chip LDO", ref: t_supply}
+    - {value: "5 x 4.4 mm", label: TSSOP-14 body, ref: t_body}
+  system:
+    host: MCU
+    bus: SPI with CRC-8
+    drives:
+      - {label: Motor controller, detail: "ABI encoder, UVW commutation or PWM signals", ref: cover}
+    senses:
+      - {label: Magnet on the shaft, detail: "35 to 70 mT at the die", ref: magnetic}
+
+# Headers the capability `api` and `registers` names are checked against.
+driver:
+  api: [inc/as5047u.hpp, inc/as5047u_types.hpp]
+  registers: [inc/as5047u_registers.hpp]
+
+capabilities:
+  - {id: angle, title: Absolute angle, icon: gauge, status: supported, ref: system, docs: api-guide.md,
+     what: "Measures the magnet's angle over a full turn in 14 bits, with or without the dynamic compensation",
+     api: [ReadAngleCounts, ReadAngleDegrees, ReadAngleRadians, ReadUncompensatedAngleCounts],
+     registers: [ANGLECOM, ANGLEUNC]}
+  - {id: velocity, title: Rotation speed, icon: motion, status: supported, ref: velocity, docs: api-guide.md,
+     what: "Measures the angular velocity in 14 bits, 24.141 °/s per count, up to 28000 rpm either way",
+     api: [ReadVelocityCounts, ReadVelocityDegPerSec, ReadVelocityRpm], registers: [VEL]}
+  - {id: daec, title: DAEC and adaptive filter, icon: clock, status: supported, ref: daec, docs: configuration.md,
+     what: "Corrects the angle for the measurement delay at speed, and filters transition noise at low speed",
+     api: [ApplyConfig], registers: [SETTINGS2, SETTINGS1, DISABLE]}
+  - {id: zero, title: Zero position and direction, icon: home, status: supported, ref: zero, docs: api-guide.md,
+     what: "Sets which angle reads 0 and which way the count rises, seen from above the chip",
+     api: [SetZeroPosition, SetZeroHere, SetDirection], registers: [ZPOSM, ZPOSL, SETTINGS2]}
+  - {id: abi, title: ABI incremental interface, icon: encoder, status: supported, ref: abi_res, docs: configuration.md,
+     what: "Quadrature A and B with an index pulse, 25 to 4096 pulses per revolution",
+     api: [ApplyConfig, "IncrementalOutput::Abi"], registers: [SETTINGS3, SETTINGS2, DISABLE]}
+  - {id: uvw, title: UVW commutation and PWM, icon: switch, status: supported, ref: uvw, docs: configuration.md,
+     what: "Emulates the Hall switches of a BLDC motor for 1 to 7 pole pairs, or puts the angle out as PWM",
+     api: [ApplyConfig, "IncrementalOutput::Uvw"], registers: [SETTINGS3, SETTINGS2, DISABLE]}
+  - {id: diag, title: Magnet and fault diagnostics, icon: alert, status: supported, ref: errfl,
+     docs: troubleshooting.md,
+     what: "Reports the gain control, the field magnitude and the error flags; each flag becomes a driver error",
+     api: [ReadAgc, ReadMagnitude, ReadDiagnostics, ReadErrorFlags, CheckForReset],
+     registers: [ERRFL, DIA, AGC, MAG]}
+  - {id: spi, title: SPI frames with CRC, icon: bus, status: supported, ref: frame16, docs: hardware.md,
+     what: "16-bit frames for the fastest reads, or 24- and 32-bit frames with a CRC-8 and a daisy-chain pad byte",
+     api: ["FrameFormat::Bits24", ReadRegister, WriteRegister], registers: [NOP, ERRFL]}
+  - {id: otp, title: OTP programming, icon: memory, status: guarded, ref: otp_burn, docs: otp.md,
+     what: "Burns the zero and the settings into the chip once, with the datasheet's step-by-step procedure",
+     api: [ProgramOtp, ReadNonVolatile], registers: [PROG, ECC]}
+
+frames:
+  - id: spi16
+    title: 16-bit SPI frame
+    description: A read without CRC, for the highest rate; the reply to each command arrives in the next frame.
+    bits: 16
+    ref: frame16
+    rows:
+      - label: Command
+        sub: "MOSI, read"
+        fields:
+          - {name: "don't care", bits: 15, tone: slate, short: "x"}
+          - {name: R, bits: 14, tone: amber}
+          - {name: "ADDR[13:0]", bits: [13, 0], tone: blue}
+      - label: Reply
+        sub: MISO, next frame
+        fields:
+          - {name: Warning, bits: 15, tone: amber, short: W}
+          - {name: Error, bits: 14, tone: rose, short: E}
+          - {name: "DATA[13:0]", bits: [13, 0], tone: green}
+    waveform:
+      spi_mode: 1
+      select: CSn
+      clock: CLK
+      lanes:
+        - {name: MOSI, row: Command}
+        - {name: MISO, row: Reply}
+  - id: spi24
+    title: 24-bit SPI frame with CRC
+    description: The driver's default; a CRC-8 over bits 23 to 8 protects both directions, and a write command is
+      followed by a data frame with the new register content.
+    bits: 24
+    ref: frame24
+    rows:
+      - label: Command
+        sub: "MOSI, RW = 1 read, 0 write"
+        fields:
+          - {name: "don't care", bits: 23, tone: slate, short: "x"}
+          - {name: RW, bits: 22, tone: amber}
+          - {name: "ADDR[13:0]", bits: [21, 8], tone: blue}
+          - {name: CRC-8, bits: [7, 0], tone: violet}
+      - label: Reply
+        sub: MISO, next frame
+        fields:
+          - {name: Warning, bits: 23, tone: amber, short: W}
+          - {name: Error, bits: 22, tone: rose, short: E}
+          - {name: "DATA[13:0]", bits: [21, 8], tone: green}
+          - {name: CRC-8, bits: [7, 0], tone: violet}
+    waveform:
+      spi_mode: 1
+      select: CSn
+      clock: CLK
+      lanes:
+        - {name: MOSI, row: Command}
+        - {name: MISO, row: Reply}
 
 hooks:
   - {id: transfer, call: "Transfer()", kind: spi, source: inc/as5047u_spi_interface.hpp, symbol: Transfer}
