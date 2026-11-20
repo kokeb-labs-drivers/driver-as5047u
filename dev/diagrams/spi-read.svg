@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="517" height="412" viewBox="0 0 517 412" role="img" aria-labelledby="spi-read-title spi-read-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="spi-read-title">One read on the SPI bus</title>
+<desc id="spi-read-desc">One AS5047U read on the SPI bus: the driver sends the ANGLECOM read, discards the reply to the previous frame, sends a NOP read to collect the angle with its flags and CRC, and reads ERRFL if an error bit is set.</desc>
+<defs><marker id="spi-read-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7C8798"/></marker></defs>
+<rect x="0.5" y="0.5" width="516" height="411" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="54.8" font-size="26" font-weight="700" fill="#0E1726">One read on the SPI bus</text>
+<rect x="32" y="70.8" width="453" height="1" fill="#E2E7EE"/>
+<path d="M104.9 144.8 L104.9 398.8" fill="none" stroke="#738093" stroke-width="1.2" stroke-dasharray="5 5"/>
+<path d="M412.1 144.8 L412.1 398.8" fill="none" stroke="#738093" stroke-width="1.2" stroke-dasharray="5 5"/>
+<path d="M108.9 180.8 L408.1 180.8" fill="none" stroke="#7C8798" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#spi-read-arrow-rail)"/>
+<path d="M408.1 224.8 L108.9 224.8" fill="none" stroke="#7C8798" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#spi-read-arrow-rail)"/>
+<path d="M108.9 268.8 L408.1 268.8" fill="none" stroke="#7C8798" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#spi-read-arrow-rail)"/>
+<path d="M408.1 312.8 L108.9 312.8" fill="none" stroke="#7C8798" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#spi-read-arrow-rail)"/>
+<rect x="39.9" y="88.8" width="130" height="52" rx="10" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="39.9" y="96.8" width="4" height="36" rx="2" fill="#15803D"/>
+<rect x="347.1" y="88.8" width="130" height="52" rx="10" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="347.1" y="96.8" width="4" height="36" rx="2" fill="#C26A05"/>
+<rect x="34.9" y="340.8" width="447.3" height="41" rx="10" fill="#FFF5E3" stroke="#F1CF93" stroke-width="1"/>
+<text x="107.9" y="119.3" font-size="15" font-weight="700" text-anchor="middle" fill="#14532D">Driver</text>
+<text x="415.1" y="119.3" font-size="15" font-weight="700" text-anchor="middle" fill="#8A3C0B">AS5047U</text>
+<rect x="170.9" y="156.8" width="175.1" height="20" rx="10" fill="#FFFFFF"/>
+<text x="258.5" y="171.1" font-size="12" font-weight="500" text-anchor="middle" fill="#566070">read ANGLECOM (0x3FFF)</text>
+<rect x="133.6" y="200.8" width="249.9" height="20" rx="10" fill="#FFFFFF"/>
+<text x="258.5" y="215.1" font-size="12" font-weight="500" text-anchor="middle" fill="#566070">reply to the previous frame (discarded)</text>
+<rect x="192.8" y="244.8" width="131.4" height="20" rx="10" fill="#FFFFFF"/>
+<text x="258.5" y="259.1" font-size="12" font-weight="500" text-anchor="middle" fill="#566070">read NOP (0x4000)</text>
+<rect x="112.9" y="288.8" width="291.3" height="20" rx="10" fill="#FFFFFF"/>
+<text x="258.5" y="303.1" font-size="12" font-weight="500" text-anchor="middle" fill="#566070">ANGLECOM data, warning and error bits, CRC</text>
+<text x="48.9" y="365.9" font-size="13" fill="#8A3C0B">error bit set? read ERRFL and fail the call</text>
+</svg>
