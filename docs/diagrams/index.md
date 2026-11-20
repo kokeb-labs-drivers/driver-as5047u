@@ -97,6 +97,23 @@ Drawn from:
 - `public calls` in [`inc/as5047u.hpp`](../../inc/as5047u.hpp)
 - `SpiInterface` in [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
 
+## One call through the layers
+
+<!-- figure: one-call-through-the-layers -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="one-call-through-the-layers.dark.svg">
+  <img src="one-call-through-the-layers.svg"
+    alt="One call through the layers: your code calls ReadAngleDegrees(), the core exchanges frames with the
+    chip through your port and returns the result to your code.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/one-call-through-the-layers.seq.yml`](../model/one-call-through-the-layers.seq.yml)
+
+Drawn from:
+
+- [`docs/model/one-call-through-the-layers.seq.yml`](../model/one-call-through-the-layers.seq.yml)
+
 ## ProgramOtp(), step by step
 
 <!-- figure: otp-flow -->
@@ -163,3 +180,21 @@ Drawn from:
 - `detail::FrameBus::Exchange` in [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
 - `Crc8` in [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
 - `writeFormat` in [`inc/as5047u.hpp`](../../inc/as5047u.hpp)
+
+## One read on the SPI bus
+
+<!-- figure: spi-read -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="spi-read.dark.svg">
+  <img src="spi-read.svg"
+    alt="One AS5047U read on the SPI bus: the driver sends the ANGLECOM read, discards the reply to the
+    previous frame, sends a NOP read to collect the angle with its flags and CRC, and reads ERRFL if an
+    error bit is set.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/spi-read.seq.yml`](../model/spi-read.seq.yml)
+
+Drawn from:
+
+- [`docs/model/spi-read.seq.yml`](../model/spi-read.seq.yml)

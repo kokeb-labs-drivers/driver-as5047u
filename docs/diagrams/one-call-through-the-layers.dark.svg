@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="632" height="535" viewBox="0 0 632 535" role="img" aria-labelledby="one-call-through-the-layers-title one-call-through-the-layers-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="one-call-through-the-layers-title">One call through the layers</title>
+<desc id="one-call-through-the-layers-desc">One call through the layers: your code calls ReadAngleDegrees(), the core exchanges frames with the chip through your port and returns the result to your code.</desc>
+<defs><marker id="one-call-through-the-layers-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker></defs>
+<rect x="0.5" y="0.5" width="631" height="534" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="54.8" font-size="26" font-weight="700" fill="#E8EDF3">One call through the layers</text>
+<rect x="32" y="70.8" width="568" height="1" fill="#252F3C"/>
+<path d="M104.7 144.8 L104.7 538.8" fill="none" stroke="#6C7889" stroke-width="1.2" stroke-dasharray="5 5"/>
+<path d="M291 144.8 L291 538.8" fill="none" stroke="#6C7889" stroke-width="1.2" stroke-dasharray="5 5"/>
+<path d="M527.3 144.8 L527.3 538.8" fill="none" stroke="#6C7889" stroke-width="1.2" stroke-dasharray="5 5"/>
+<path d="M108.7 180.8 L287 180.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<path d="M295 224.8 L523.3 224.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<path d="M523.3 268.8 L295 268.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<path d="M295 312.8 L523.3 312.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<path d="M523.3 356.8 L295 356.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<path d="M287 504.8 L108.7 504.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<rect x="39.7" y="88.8" width="130" height="52" rx="10" fill="#2E1533" stroke="#F0ABFC" stroke-width="1.4"/>
+<rect x="39.7" y="96.8" width="4" height="36" rx="2" fill="#F0ABFC"/>
+<rect x="205.8" y="88.8" width="170.5" height="52" rx="10" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="205.8" y="96.8" width="4" height="36" rx="2" fill="#4ADE80"/>
+<rect x="462.3" y="88.8" width="130" height="52" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="462.3" y="96.8" width="4" height="36" rx="2" fill="#2BB3A3"/>
+<rect x="221" y="384.8" width="376.3" height="59.8" rx="10" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<rect x="221" y="436.8" width="376.3" height="41" rx="10" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<text x="107.7" y="119.3" font-size="15" font-weight="700" text-anchor="middle" fill="#F5D0FE">Your code</text>
+<text x="294" y="119.3" font-size="15" font-weight="700" text-anchor="middle" fill="#BBF7D0">AS5047U&lt;Port&gt;</text>
+<text x="530.3" y="119.3" font-size="15" font-weight="700" text-anchor="middle" fill="#A7F3E6">Your port</text>
+<rect x="128.5" y="156.8" width="138.7" height="20" rx="10" fill="#0E131A"/>
+<text x="197.9" y="171.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">ReadAngleDegrees()</text>
+<rect x="299" y="200.8" width="220.3" height="20" rx="10" fill="#0E131A"/>
+<text x="409.1" y="215.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">Transfer(read ANGLECOM + CRC)</text>
+<rect x="305.1" y="244.8" width="208.1" height="20" rx="10" fill="#0E131A"/>
+<text x="409.1" y="259.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">true, reply to the previous frame</text>
+<rect x="322.1" y="288.8" width="174.1" height="20" rx="10" fill="#0E131A"/>
+<text x="409.1" y="303.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">Transfer(read NOP + CRC)</text>
+<rect x="329.4" y="332.8" width="159.5" height="20" rx="10" fill="#0E131A"/>
+<text x="409.1" y="347.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">true, ANGLECOM + CRC</text>
+<text x="235" y="409.9" font-size="13" fill="#FDE68A">CRC check; a flag bit set? read ERRFL (latched):</text>
+<text x="235" y="428.7" font-size="13" fill="#FDE68A">error, or a magnet warning</text>
+<text x="235" y="461.9" font-size="13" fill="#FDE68A">counts x 360 / 16384</text>
+<rect x="112.7" y="480.8" width="170.3" height="20" rx="10" fill="#0E131A"/>
+<text x="197.9" y="495.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">Result&lt;float&gt;{123.45, Ok}</text>
+</svg>

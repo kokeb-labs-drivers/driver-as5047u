@@ -1,0 +1,22 @@
+---
+# Model of the figure 'spi-read'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+kind: seq
+id: spi-read
+title: "One read on the SPI bus"
+alt: >-
+  One AS5047U read on the SPI bus: the driver sends the ANGLECOM read, discards the reply to the previous frame,
+  sends a NOP read to collect the angle with its flags and CRC, and reads ERRFL if an error bit is set.
+reads: >-
+  Participants, left to right: Driver and AS5047U. The steps run from top to bottom. Driver sends read ANGLECOM (0x3FFF) to AS5047U. AS5047U returns reply to the previous frame (discarded) to Driver. Driver sends read NOP (0x4000) to AS5047U. AS5047U returns ANGLECOM data, warning and error bits, CRC to Driver. A note over Driver says: error bit set? read ERRFL and fail the call.
+print: landscape
+sources:
+  - docs/model/spi-read.seq.yml
+participants:
+  - {id: d, label: "Driver", tone: green}
+  - {id: c, label: "AS5047U", tone: amber}
+steps:
+  - {from: d, to: c, label: "read ANGLECOM (0x3FFF)"}
+  - {from: c, to: d, label: "reply to the previous frame (discarded)", return: true}
+  - {from: d, to: c, label: "read NOP (0x4000)"}
+  - {from: c, to: d, label: "ANGLECOM data, warning and error bits, CRC", return: true}
+  - {note: "error bit set? read ERRFL and fail the call", over: [d, c]}

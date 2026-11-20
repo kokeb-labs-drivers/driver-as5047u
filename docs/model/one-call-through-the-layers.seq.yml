@@ -1,0 +1,26 @@
+---
+# Model of the figure 'one-call-through-the-layers'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+kind: seq
+id: one-call-through-the-layers
+title: "One call through the layers"
+alt: >-
+  One call through the layers: your code calls ReadAngleDegrees(), the core exchanges frames with the chip through
+  your port and returns the result to your code.
+reads: >-
+  Participants, left to right: Your code, AS5047U<Port> and Your port. The steps run from top to bottom. Your code sends ReadAngleDegrees() to AS5047U<Port>. AS5047U<Port> sends Transfer(read ANGLECOM + CRC) to Your port. Your port returns true, reply to the previous frame to AS5047U<Port>. AS5047U<Port> sends Transfer(read NOP + CRC) to Your port. Your port returns true, ANGLECOM + CRC to AS5047U<Port>. A note over AS5047U<Port> says: CRC check; a flag bit set? read ERRFL (latched): error, or a magnet warning. A note over AS5047U<Port> says: counts x 360 / 16384. AS5047U<Port> returns Result<float>{123.45, Ok} to Your code.
+print: landscape
+sources:
+  - docs/model/one-call-through-the-layers.seq.yml
+participants:
+  - {id: app, label: "Your code", tone: magenta}
+  - {id: core, label: "AS5047U<Port>", tone: green}
+  - {id: port, label: "Your port", tone: teal}
+steps:
+  - {from: app, to: core, label: "ReadAngleDegrees()"}
+  - {from: core, to: port, label: "Transfer(read ANGLECOM + CRC)"}
+  - {from: port, to: core, label: "true, reply to the previous frame", return: true}
+  - {from: core, to: port, label: "Transfer(read NOP + CRC)"}
+  - {from: port, to: core, label: "true, ANGLECOM + CRC", return: true}
+  - {note: "CRC check; a flag bit set? read ERRFL (latched): error, or a magnet warning", over: [core, port]}
+  - {note: "counts x 360 / 16384", over: [core, port]}
+  - {from: core, to: app, label: "Result<float>{123.45, Ok}", return: true}

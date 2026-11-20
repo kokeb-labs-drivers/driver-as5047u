@@ -35,20 +35,14 @@ How the driver is built: three layers, one of them yours, and what happens in ea
 
 ## One call through the layers
 
-```mermaid
-sequenceDiagram
-    participant App as Your code
-    participant Core as AS5047U<Port>
-    participant Port as Your port
-    App->>Core: ReadAngleDegrees()
-    Core->>Port: Transfer(read ANGLECOM + CRC)
-    Port-->>Core: true, reply to the previous frame
-    Core->>Port: Transfer(read NOP + CRC)
-    Port-->>Core: true, ANGLECOM + CRC
-    Note over Core: CRC check; a flag bit set? read ERRFL (latched): error, or a magnet warning
-    Note over Core: counts x 360 / 16384
-    Core-->>App: Result<float>{123.45, Ok}
-```
+<!-- figure: one-call-through-the-layers -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/one-call-through-the-layers.dark.svg">
+  <img src="diagrams/one-call-through-the-layers.svg"
+    alt="One call through the layers: your code calls ReadAngleDegrees(), the core exchanges frames with the
+    chip through your port and returns the result to your code.">
+</picture>
+<!-- /figure -->
 
 Every access takes at least two frames, because the chip answers a frame during the next one:
 

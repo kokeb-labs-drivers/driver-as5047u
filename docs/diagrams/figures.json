@@ -59,6 +59,23 @@
       "inc/as5047u_spi_interface.hpp:SpiInterface"
     ]
   },
+  "one-call-through-the-layers": {
+    "title": "One call through the layers",
+    "alt": "One call through the layers: your code calls ReadAngleDegrees(), the core exchanges frames with the chip through your port and returns the result to your code.",
+    "description": "Participants, left to right: Your code, AS5047U<Port> and Your port. The steps run from top to bottom. Your code sends ReadAngleDegrees() to AS5047U<Port>. AS5047U<Port> sends Transfer(read ANGLECOM + CRC) to Your port. Your port returns true, reply to the previous frame to AS5047U<Port>. AS5047U<Port> sends Transfer(read NOP + CRC) to Your port. Your port returns true, ANGLECOM + CRC to AS5047U<Port>. A note over AS5047U<Port> says: CRC check; a flag bit set? read ERRFL (latched): error, or a magnet warning. A note over AS5047U<Port> says: counts x 360 / 16384. AS5047U<Port> returns Result<float>{123.45, Ok} to Your code.",
+    "profile": "detail",
+    "width": 632,
+    "source": "docs/model/one-call-through-the-layers.seq.yml",
+    "sources": [
+      "docs/model/one-call-through-the-layers.seq.yml"
+    ],
+    "kind": "seq",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": false,
+    "font": ""
+  },
   "otp-flow": {
     "title": "ProgramOtp(), step by step",
     "alt": "Flowchart of ProgramOtp: prepare (steps 6 to 11), burn (steps 12 to 14, polled with a 100 ms timeout) and guard-band verify (steps 15 to 19); burn_started becomes true at step 13, and each step can stop the call with an error.",
@@ -104,5 +121,22 @@
       "inc/as5047u_spi_interface.hpp:Crc8",
       "inc/as5047u.hpp:writeFormat"
     ]
+  },
+  "spi-read": {
+    "title": "One read on the SPI bus",
+    "alt": "One AS5047U read on the SPI bus: the driver sends the ANGLECOM read, discards the reply to the previous frame, sends a NOP read to collect the angle with its flags and CRC, and reads ERRFL if an error bit is set.",
+    "description": "Participants, left to right: Driver and AS5047U. The steps run from top to bottom. Driver sends read ANGLECOM (0x3FFF) to AS5047U. AS5047U returns reply to the previous frame (discarded) to Driver. Driver sends read NOP (0x4000) to AS5047U. AS5047U returns ANGLECOM data, warning and error bits, CRC to Driver. A note over Driver says: error bit set? read ERRFL and fail the call.",
+    "profile": "detail",
+    "width": 517,
+    "source": "docs/model/spi-read.seq.yml",
+    "sources": [
+      "docs/model/spi-read.seq.yml"
+    ],
+    "kind": "seq",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": false,
+    "font": ""
   }
 }
