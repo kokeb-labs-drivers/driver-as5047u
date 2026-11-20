@@ -166,16 +166,15 @@ A MISO frame with a wrong CRC fails the call with `Error::Crc`.
 A read is two frames: the read command, then a NOP whose reply carries the data. When the reply's error bit is set,
 the driver reads ERRFL (two more frames, and the read clears it on the chip) to find out why.
 
-```mermaid
-sequenceDiagram
-    participant D as Driver
-    participant C as AS5047U
-    D->>C: read ANGLECOM (0x3FFF)
-    C-->>D: reply to the previous frame (discarded)
-    D->>C: read NOP (0x4000)
-    C-->>D: ANGLECOM data, warning and error bits, CRC
-    Note over D: error bit set? read ERRFL and fail the call
-```
+<!-- figure: spi-read -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/spi-read.dark.svg">
+  <img src="diagrams/spi-read.svg"
+    alt="One AS5047U read on the SPI bus: the driver sends the ANGLECOM read, discards the reply to the
+    previous frame, sends a NOP read to collect the angle with its flags and CRC, and reads ERRFL if an
+    error bit is set.">
+</picture>
+<!-- /figure -->
 
 A write is two frames, the command (RW = 0, address) and the data. The reply to the data frame reports on the
 command frame. With `Verify::ReadBack`, and always in `EnsureInitialized()` and `ProgramOtp()`, each write is then

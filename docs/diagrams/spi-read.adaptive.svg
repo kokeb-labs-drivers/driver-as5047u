@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="517" height="412" viewBox="0 0 517 412" role="img" aria-labelledby="spi-read-title spi-read-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" class="fk">
+<title id="spi-read-title">One read on the SPI bus</title>
+<desc id="spi-read-desc">One AS5047U read on the SPI bus: the driver sends the ANGLECOM read, discards the reply to the previous frame, sends a NOP read to collect the angle with its flags and CRC, and reads ERRFL if an error bit is set.</desc>
+<style>
+.fk{--fk-amber-soft:#F1CF93;--fk-amber-strong:#C26A05;--fk-amber-text:#8A3C0B;--fk-amber-tint:#FFF5E3;--fk-canvas:#FFFFFF;--fk-frame:#E2E7EE;--fk-green-strong:#15803D;--fk-green-text:#14532D;--fk-green-tint:#EAF7EF;--fk-hair:#E2E7EE;--fk-ink:#0E1726;--fk-line:#738093;--fk-muted:#566070;--fk-rail:#7C8798;}
+@media (prefers-color-scheme:dark){.fk{--fk-amber-soft:#6A5220;--fk-amber-strong:#FBBF24;--fk-amber-text:#FDE68A;--fk-amber-tint:#2C2310;--fk-canvas:#0E131A;--fk-frame:#283241;--fk-green-strong:#4ADE80;--fk-green-text:#BBF7D0;--fk-green-tint:#11281A;--fk-hair:#252F3C;--fk-ink:#E8EDF3;--fk-line:#6C7889;--fk-muted:#9AA6B5;--fk-rail:#6C7889;}}
+:root[data-theme="dark"] .fk,[data-md-color-scheme="slate"] .fk{--fk-amber-soft:#6A5220;--fk-amber-strong:#FBBF24;--fk-amber-text:#FDE68A;--fk-amber-tint:#2C2310;--fk-canvas:#0E131A;--fk-frame:#283241;--fk-green-strong:#4ADE80;--fk-green-text:#BBF7D0;--fk-green-tint:#11281A;--fk-hair:#252F3C;--fk-ink:#E8EDF3;--fk-line:#6C7889;--fk-muted:#9AA6B5;--fk-rail:#6C7889;}
+:root[data-theme="light"] .fk,[data-md-color-scheme="default"] .fk{--fk-amber-soft:#F1CF93;--fk-amber-strong:#C26A05;--fk-amber-text:#8A3C0B;--fk-amber-tint:#FFF5E3;--fk-canvas:#FFFFFF;--fk-frame:#E2E7EE;--fk-green-strong:#15803D;--fk-green-text:#14532D;--fk-green-tint:#EAF7EF;--fk-hair:#E2E7EE;--fk-ink:#0E1726;--fk-line:#738093;--fk-muted:#566070;--fk-rail:#7C8798;}
+.fk-f-amber-soft{fill:var(--fk-amber-soft)}.fk-s-amber-soft{stroke:var(--fk-amber-soft)}
+.fk-f-amber-strong{fill:var(--fk-amber-strong)}.fk-s-amber-strong{stroke:var(--fk-amber-strong)}
+.fk-f-amber-text{fill:var(--fk-amber-text)}.fk-s-amber-text{stroke:var(--fk-amber-text)}
+.fk-f-amber-tint{fill:var(--fk-amber-tint)}.fk-s-amber-tint{stroke:var(--fk-amber-tint)}
+.fk-f-canvas{fill:var(--fk-canvas)}.fk-s-canvas{stroke:var(--fk-canvas)}
+.fk-f-frame{fill:var(--fk-frame)}.fk-s-frame{stroke:var(--fk-frame)}
+.fk-f-green-strong{fill:var(--fk-green-strong)}.fk-s-green-strong{stroke:var(--fk-green-strong)}
+.fk-f-green-text{fill:var(--fk-green-text)}.fk-s-green-text{stroke:var(--fk-green-text)}
+.fk-f-green-tint{fill:var(--fk-green-tint)}.fk-s-green-tint{stroke:var(--fk-green-tint)}
+.fk-f-hair{fill:var(--fk-hair)}.fk-s-hair{stroke:var(--fk-hair)}
+.fk-f-ink{fill:var(--fk-ink)}.fk-s-ink{stroke:var(--fk-ink)}
+.fk-f-line{fill:var(--fk-line)}.fk-s-line{stroke:var(--fk-line)}
+.fk-f-muted{fill:var(--fk-muted)}.fk-s-muted{stroke:var(--fk-muted)}
+.fk-f-rail{fill:var(--fk-rail)}.fk-s-rail{stroke:var(--fk-rail)}
+@media (forced-colors:active){.fk text{fill:CanvasText}.fk rect,.fk circle{fill:Canvas;stroke:CanvasText}.fk path{stroke:CanvasText}.fk marker path{fill:CanvasText;stroke:none}}
+</style>
+<defs><marker id="spi-read-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="fk-f-rail"/></marker></defs>
+<rect x="0.5" y="0.5" width="516" height="411" rx="16" class="fk-f-canvas fk-s-frame"/>
+<text x="32" y="54.8" font-size="26" font-weight="700" class="fk-f-ink">One read on the SPI bus</text>
+<rect x="32" y="70.8" width="453" height="1" class="fk-f-hair"/>
+<path d="M104.9 144.8 L104.9 398.8" fill="none" stroke-width="1.2" stroke-dasharray="5 5" class="fk-s-line"/>
+<path d="M412.1 144.8 L412.1 398.8" fill="none" stroke-width="1.2" stroke-dasharray="5 5" class="fk-s-line"/>
+<path d="M108.9 180.8 L408.1 180.8" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#spi-read-arrow-rail)" class="fk-s-rail"/>
+<path d="M408.1 224.8 L108.9 224.8" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#spi-read-arrow-rail)" class="fk-s-rail"/>
+<path d="M108.9 268.8 L408.1 268.8" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#spi-read-arrow-rail)" class="fk-s-rail"/>
+<path d="M408.1 312.8 L108.9 312.8" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#spi-read-arrow-rail)" class="fk-s-rail"/>
+<rect x="39.9" y="88.8" width="130" height="52" rx="10" stroke-width="1.4" class="fk-f-green-tint fk-s-green-strong"/>
+<rect x="39.9" y="96.8" width="4" height="36" rx="2" class="fk-f-green-strong"/>
+<rect x="347.1" y="88.8" width="130" height="52" rx="10" stroke-width="1.4" class="fk-f-amber-tint fk-s-amber-strong"/>
+<rect x="347.1" y="96.8" width="4" height="36" rx="2" class="fk-f-amber-strong"/>
+<rect x="34.9" y="340.8" width="447.3" height="41" rx="10" stroke-width="1" class="fk-f-amber-tint fk-s-amber-soft"/>
+<text x="107.9" y="119.3" font-size="15" font-weight="700" text-anchor="middle" class="fk-f-green-text">Driver</text>
+<text x="415.1" y="119.3" font-size="15" font-weight="700" text-anchor="middle" class="fk-f-amber-text">AS5047U</text>
+<rect x="170.9" y="156.8" width="175.1" height="20" rx="10" class="fk-f-canvas"/>
+<text x="258.5" y="171.1" font-size="12" font-weight="500" text-anchor="middle" class="fk-f-muted">read ANGLECOM (0x3FFF)</text>
+<rect x="133.6" y="200.8" width="249.9" height="20" rx="10" class="fk-f-canvas"/>
+<text x="258.5" y="215.1" font-size="12" font-weight="500" text-anchor="middle" class="fk-f-muted">reply to the previous frame (discarded)</text>
+<rect x="192.8" y="244.8" width="131.4" height="20" rx="10" class="fk-f-canvas"/>
+<text x="258.5" y="259.1" font-size="12" font-weight="500" text-anchor="middle" class="fk-f-muted">read NOP (0x4000)</text>
+<rect x="112.9" y="288.8" width="291.3" height="20" rx="10" class="fk-f-canvas"/>
+<text x="258.5" y="303.1" font-size="12" font-weight="500" text-anchor="middle" class="fk-f-muted">ANGLECOM data, warning and error bits, CRC</text>
+<text x="48.9" y="365.9" font-size="13" class="fk-f-amber-text">error bit set? read ERRFL and fail the call</text>
+</svg>
