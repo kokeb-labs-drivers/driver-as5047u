@@ -16,7 +16,7 @@
         <link rel="prev" href="../platforms/">
       
       
-        <link rel="next" href="../architecture/">
+        <link rel="next" href="../bus/">
       
       
         
@@ -102,72 +102,6 @@
   <meta property="og:description" content="C++20 driver for the AS5047U 14-bit magnetic rotary position sensor.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-as5047u/latest/hardware/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -516,6 +450,8 @@
       
         
       
+        
+      
     
     
     
@@ -846,6 +782,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    On the bus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -861,6 +825,8 @@
   
     
     
+      
+        
       
         
       
@@ -1231,7 +1197,8 @@
 <ul>
 <li>Pins and package: Pin Assignment, p. 3</li>
 <li>Supply voltage, 3.3 V and 5 V operation: Electrical Characteristics; Power Management, p. 6</li>
-<li>Power-up time and SPI timing: Timing Characteristics; SPI Timing, p. 9</li>
+<li>Power-up time: Timing Characteristics, p. 9</li>
+<li>SPI timing and the clock limit: SPI Timing, Figures 18 and 19, p. 16</li>
 <li>SPI mode, frames and the read pipeline: SPI Interface (Slave); SPI Transaction, p. 16</li>
 <li>Pad byte of 32-bit frames: PAD Word, p. 22</li>
 <li>CRC-8 of a frame: CRC Checksum, p. 23</li>
@@ -1257,7 +1224,7 @@ tables on this page are drawn from <a href="../hardware.yml"><code>docs/hardware
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The AS5047U seen from the top, in its TSSOP-14 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <!-- generated: chip-pins -->
 <p>TSSOP-14, 14 pins (Pin Assignment, Figures 3 and 4, p. 3).</p>
@@ -1416,7 +1383,7 @@ The ABI, UVW and PWM outputs drive at most 4 mA at 5 V and 2 mA at 3.3 V, into a
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The AS5047U's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <h2 id="circuits">Circuits<a class="headerlink" href="#circuits" title="Permanent link">&para;</a></h2>
 <p>The minimum circuit of Figure 61, with the 5 V supply: the on-chip LDO makes VDD3V3, which needs its own 1 µF and
@@ -1429,7 +1396,7 @@ powers nothing else. The ABI, UVW and PWM outputs are left open, as Figure 4 all
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <p>With a 3.3 V supply, VDD and VDD3V3 are tied together (Figure 11), and the logic levels match a 3.3 V MCU without a
 level shifter.</p>
@@ -1441,7 +1408,7 @@ level shifter.</p>
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <!-- generated: chip-parts -->
 <p><strong>Minimum circuit, 5 V</strong> (figure <code>chip-circuit-typical</code>)</p>
@@ -1585,7 +1552,7 @@ level shifter.</p>
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Each frame is drawn in the order it is clocked, most significant bit first, and the numbers above a row are bit positions in that frame. On MOSI the 16-bit command word holds the R/W bit (1 to read, 0 to write) and a 14-bit address; the data frame of a write has the same layout with R/W at 0 and the 14-bit value in place of the address. On MISO the reply word holds the warning bit, the error bit (a flag is set in ERRFL) and 14 data bits. The 24-bit frame adds the CRC-8 of the word in both directions. The 32-bit frame adds the pad byte: first on MOSI (the driver sends Config::pad_byte), last on MISO (the driver ignores it). The bit positions come from the frame constants in inc/as5047u_registers.hpp and the byte order from detail::FrameBus::Exchange in inc/as5047u_spi_interface.hpp. With 16-bit frames the driver sends writes as 24-bit frames.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>frame bits</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>detail::FrameBus::Exchange</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>Crc8</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>writeFormat</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/docs/diagrams/figures/spi-frames.py"><code>docs/diagrams/figures/spi-frames.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>frame bits</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>detail::FrameBus::Exchange</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>Crc8</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>writeFormat</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/docs/diagrams/figures/spi-frames.py"><code>docs/diagrams/figures/spi-frames.py</code></a>.</p>
 </details>
 <p>The datasheet allows 16-bit frames for reads only, so with <code>Bits16</code> the driver sends every write as a 24-bit
 frame. Writes are always CRC-protected, and <code>ProgramOtp()</code> sends every frame, reads included, as a 24-bit frame
@@ -1895,7 +1862,7 @@ of the driver is in the datasheet: <a href="../datasheet/">Datasheet map</a>.</p
 <td>Choosing K_min and K_max for the velocity filter</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></td>
 <td>The register map as the driver uses it, with datasheet figure numbers</td>
 </tr>
 </tbody>
@@ -1962,13 +1929,13 @@ of the driver is in the datasheet: <a href="../datasheet/">Datasheet map</a>.</p
         
         
           
-          <a href="../architecture/" class="md-footer__link md-footer__link--next" aria-label="Next: Architecture">
+          <a href="../bus/" class="md-footer__link md-footer__link--next" aria-label="Next: On the bus">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Architecture
+                On the bus
               </div>
             </div>
             <div class="md-footer__button md-icon">

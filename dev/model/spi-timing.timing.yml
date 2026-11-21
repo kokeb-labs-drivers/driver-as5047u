@@ -1,0 +1,53 @@
+---
+# Model of the figure 'spi-timing'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+# Every number is a param with the datasheet section and page it comes from (`ref`, a name under refs here or in
+# docs/hardware.yml); a number without one fails the build. Wave characters and keys: docs/figkit.md in ci-tools.
+kind: timing
+id: spi-timing
+title: SPI timing of one 24-bit frame
+kicker: On the bus
+alt: >-
+  SPI timing of the AS5047U in mode 1: CSn low frames a 24-bit frame, the chip changes MISO after each rising CLK
+  edge and reads MOSI on each falling edge, with the select, clock, setup and output times of the datasheet.
+reads: >-
+  The four lanes are CSn, CLK, MOSI and MISO, left to right in time. CSn goes low with CLK low; from the first rising
+  edge the chip drives MISO bit by bit and reads MOSI on each falling edge, bits 23 to 0 most significant first (each
+  slot shows its bit number), with bits 20 to 1 left out. Half a clock after the last falling edge CSn goes high, the
+  chip runs the command and releases MISO, and CSn stays high for at least tCSn. The table gives each interval with
+  its datasheet value.
+bus: spi
+mode: {cpol: 0, cpha: 1}
+refs:
+  timing: {doc: ds, section: "SPI Timing, Figure 19", page: 17}
+signals:
+  - {id: csn, label: CSn, wave: "10.....1..0."}
+  - {id: clk, label: CLK, wave: "0.ppp|p0....", clock: true}
+  - {id: mosi, label: MOSI, wave: "x.===|=x....", data: ["23", "22", "21", "0"]}
+  - {id: miso, label: MISO, wave: "z.===|=z....", data: ["23", "22", "21", "0"], tone: teal}
+groups:
+  - {from: 2, to: 7, label: "24 bits, MSB first", ref: frame24}
+params:
+  - {id: tl, symbol: tL, label: CSn falling edge to the first CLK rising edge, min: 350, unit: ns, ref: timing}
+  - {id: tclk, symbol: tclk, label: CLK period, min: 100, unit: ns, ref: timing}
+  - {id: tclkh, symbol: tclkH, label: CLK high time, min: 50, unit: ns, ref: timing}
+  - {id: tclkl, symbol: tclkL, label: CLK low time, min: 50, unit: ns, ref: timing}
+  - {id: tmosi, symbol: tMOSI, label: MOSI valid before the CLK edge that reads it, min: 20, unit: ns, ref: timing}
+  - {id: tmiso, symbol: tMISO, label: CLK edge to MISO data valid, max: 51, unit: ns, ref: timing}
+  - {id: th, symbol: tH, label: Last CLK falling edge to CSn rising edge, min: tclk/2, unit: ns, ref: timing}
+  - {id: toz, symbol: tOZ, label: CSn rising edge to MISO high impedance, max: 10, unit: ns, ref: timing}
+  - {id: tcsn, symbol: tCSn, label: CSn high time between two frames, min: 350, unit: ns, ref: timing}
+  - {id: fclk, symbol: fCLK, label: CLK frequency, max: 10, unit: MHz, ref: spi}
+marks:
+  - {param: tl, signal: csn, from: 1, to: 2}
+  - {param: th, signal: csn, from: 6.5, to: 7}
+  - {param: tcsn, signal: csn, from: 7, to: 10}
+  - {param: tclk, signal: clk, from: 2, to: 3}
+  - {param: tclkh, signal: clk, from: 3, to: 3.5}
+  - {param: tclkl, signal: clk, from: 3.5, to: 4}
+  - {param: tmosi, signal: mosi, from: 2, to: 2.5}
+  - {param: tmiso, signal: miso, from: 2, to: 2.5}
+  - {param: toz, signal: miso, from: 7, to: 7.5}
+notes:
+  - {text: "tL and tCSn come from synchronization with the internal clock: 2 × tCLK_SYS + 10 ns, the system clock
+      being 9 MHz typical.", ref: timing}
+  - {text: "The chip runs a command at the end of the frame, on the rising edge of CSn.", ref: spi}

@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1034" viewBox="0 0 1200 1034" role="img" aria-labelledby="chip-capabilities-title chip-capabilities-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-capabilities-title">What the AS5047U does</title>
+<desc id="chip-capabilities-desc">Capability map of the AS5047U: Absolute angle (supported): Measures the magnet's angle over a full turn in 14 bits, with or without the dynamic compensation; Rotation speed (supported): Measures the angular velocity in 14 bits, 24.141 °/s per count, up to 28000 rpm either way; DAEC and adaptive filter (supported): Corrects the angle for the measurement delay at speed, and filters transition noise at low speed; Zero position and direction (supported): Sets which angle reads 0 and which way the count rises, seen from above the chip; ABI incremental interface (supported): Quadrature A and B with an index pulse, 25 to 4096 pulses per revolution; UVW commutation and PWM (supported): Emulates the Hall switches of a BLDC motor for 1 to 7 pole pairs, or puts the angle out as PWM; Magnet and fault diagnostics (supported): Reports the gain control, the field magnitude and the error flags; each flag becomes a driver error; SPI frames with CRC (supported): 16-bit frames for the fastest reads, or 24- and 32-bit frames with a CRC-8 and a daisy-chain pad byte; OTP programming (guarded): Burns the zero and the settings into the chip once, with the datasheet's step-by-step procedure.</desc>
+<rect x="0.5" y="0.5" width="1199" height="1033" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#F8D27A">CAPABILITIES</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#E8EDF3">What the AS5047U does</text>
+<text x="32" y="115.4" font-size="18" fill="#9AA6B5">One card per function of the chip, with how this driver covers it and the registers behind it.</text>
+<rect x="32" y="131.4" width="1136" height="1" fill="#252F3C"/>
+<rect x="32" y="149.4" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="417.3" y="149.4" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="802.7" y="149.4" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="32" y="419.3" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="417.3" y="419.3" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="802.7" y="419.3" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="32" y="689.3" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="417.3" y="689.3" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="802.7" y="689.3" width="365.3" height="249.9" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<circle cx="78" cy="195.4" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M66.4 201.2 A11.6 11.6 0 0 1 89.6 201.2" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M78 201.2 L84.5 192.5" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="78" cy="201.2" r="2.6" fill="#F4B942"/>
+<path d="M65 206.2 L91 206.2" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="201.4" font-size="20" font-weight="700" fill="#E8EDF3">Absolute angle</text>
+<text x="50" y="249.8" font-size="17" fill="#D2DAE4">Measures the magnet's angle over a</text>
+<text x="50" y="274.5" font-size="17" fill="#D2DAE4">full turn in 14 bits, with or without the</text>
+<text x="50" y="299.1" font-size="17" fill="#D2DAE4">dynamic compensation</text>
+<rect x="50" y="317.7" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="58" y="335.8" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<rect x="161.4" y="317.7" width="115.6" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="169.4" y="335.8" font-size="16" font-weight="700" fill="#E2E8F0">ANGLECOM</text>
+<rect x="50" y="351.7" width="112.1" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="58" y="369.8" font-size="16" font-weight="700" fill="#E2E8F0">ANGLEUNC</text>
+<circle cx="463.3" cy="195.4" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M463.3 185.3 A10.1 10.1 0 0 1 473.5 195.4" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M473.5 195.4 A10.1 10.1 0 0 1 463.3 205.5" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M463.3 205.5 A10.1 10.1 0 0 1 453.2 195.4" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M449.6 191.8 L453.2 196.1 L457.3 192.2" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="201.4" font-size="20" font-weight="700" fill="#E8EDF3">Rotation speed</text>
+<text x="435.3" y="249.8" font-size="17" fill="#D2DAE4">Measures the angular velocity in 14</text>
+<text x="435.3" y="274.5" font-size="17" fill="#D2DAE4">bits, 24.141 °/s per count, up to 28000</text>
+<text x="435.3" y="299.1" font-size="17" fill="#D2DAE4">rpm either way</text>
+<rect x="435.3" y="317.7" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="443.3" y="335.8" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<rect x="546.7" y="317.7" width="48.6" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="554.7" y="335.8" font-size="16" font-weight="700" fill="#E2E8F0">VEL</text>
+<circle cx="848.7" cy="195.4" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<circle cx="848.7" cy="195.4" r="13" fill="none" stroke="#F4B942" stroke-width="2.5"/>
+<path d="M848.7 188.2 L848.7 195.4 L853.7 198.3" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="890.7" y="201.4" font-size="20" font-weight="700" fill="#E8EDF3">DAEC and adaptive filter</text>
+<text x="820.7" y="249.8" font-size="17" fill="#D2DAE4">Corrects the angle for the</text>
+<text x="820.7" y="274.5" font-size="17" fill="#D2DAE4">measurement delay at speed, and</text>
+<text x="820.7" y="299.1" font-size="17" fill="#D2DAE4">filters transition noise at low speed</text>
+<rect x="820.7" y="317.7" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="828.7" y="335.8" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<rect x="932" y="317.7" width="112.3" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="940" y="335.8" font-size="16" font-weight="700" fill="#E2E8F0">SETTINGS2</text>
+<rect x="820.7" y="351.7" width="108.9" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="828.7" y="369.8" font-size="16" font-weight="700" fill="#E2E8F0">SETTINGS1</text>
+<rect x="937.6" y="351.7" width="87.9" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="945.6" y="369.8" font-size="16" font-weight="700" fill="#E2E8F0">DISABLE</text>
+<circle cx="78" cy="465.3" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M65 463.9 L78 453.8 L91 463.9" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M69.3 461 L69.3 476.9 L86.7 476.9 L86.7 461" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M75.1 476.9 L75.1 468.2 L80.9 468.2 L80.9 476.9" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="458.3" font-size="20" font-weight="700" fill="#E8EDF3">Zero position and</text>
+<text x="120" y="484.3" font-size="20" font-weight="700" fill="#E8EDF3">direction</text>
+<text x="50" y="519.8" font-size="17" fill="#D2DAE4">Sets which angle reads 0 and which</text>
+<text x="50" y="544.4" font-size="17" fill="#D2DAE4">way the count rises, seen from above</text>
+<text x="50" y="569.1" font-size="17" fill="#D2DAE4">the chip</text>
+<rect x="50" y="587.6" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="58" y="605.8" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<rect x="161.4" y="587.6" width="78.2" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="169.4" y="605.8" font-size="16" font-weight="700" fill="#E2E8F0">ZPOSM</text>
+<rect x="247.6" y="587.6" width="72" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="255.6" y="605.8" font-size="16" font-weight="700" fill="#E2E8F0">ZPOSL</text>
+<rect x="50" y="621.6" width="112.3" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="58" y="639.8" font-size="16" font-weight="700" fill="#E2E8F0">SETTINGS2</text>
+<circle cx="463.3" cy="465.3" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<circle cx="463.3" cy="465.3" r="12.3" fill="none" stroke="#F4B942" stroke-width="2.5"/>
+<circle cx="463.3" cy="465.3" r="2.9" fill="#F4B942"/>
+<path d="M471.3 465.3 L475.6 465.3" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M469 471 L472 474" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M463.3 473.3 L463.3 477.6" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M457.7 471 L454.6 474" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M455.4 465.3 L451 465.3" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M457.7 459.7 L454.6 456.7" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M463.3 457.4 L463.3 453.1" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M469 459.7 L472 456.7" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="458.3" font-size="20" font-weight="700" fill="#E8EDF3">ABI incremental</text>
+<text x="505.3" y="484.3" font-size="20" font-weight="700" fill="#E8EDF3">interface</text>
+<text x="435.3" y="519.8" font-size="17" fill="#D2DAE4">Quadrature A and B with an index</text>
+<text x="435.3" y="544.4" font-size="17" fill="#D2DAE4">pulse, 25 to 4096 pulses per</text>
+<text x="435.3" y="569.1" font-size="17" fill="#D2DAE4">revolution</text>
+<rect x="435.3" y="587.6" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="443.3" y="605.8" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<rect x="546.7" y="587.6" width="112.5" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="554.7" y="605.8" font-size="16" font-weight="700" fill="#E2E8F0">SETTINGS3</text>
+<rect x="435.3" y="621.6" width="112.3" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="443.3" y="639.8" font-size="16" font-weight="700" fill="#E2E8F0">SETTINGS2</text>
+<rect x="555.6" y="621.6" width="87.9" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="563.6" y="639.8" font-size="16" font-weight="700" fill="#E2E8F0">DISABLE</text>
+<circle cx="848.7" cy="465.3" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M834.2 469.7 L841.4 469.7" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="841.4" cy="469.7" r="2.3" fill="#F4B942"/>
+<path d="M841.4 469.7 L854.5 459.6" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="855.9" cy="469.7" r="2.3" fill="#F4B942"/>
+<path d="M855.9 469.7 L863.1 469.7" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="890.7" y="458.3" font-size="20" font-weight="700" fill="#E8EDF3">UVW commutation and</text>
+<text x="890.7" y="484.3" font-size="20" font-weight="700" fill="#E8EDF3">PWM</text>
+<text x="820.7" y="519.8" font-size="17" fill="#D2DAE4">Emulates the Hall switches of a BLDC</text>
+<text x="820.7" y="544.4" font-size="17" fill="#D2DAE4">motor for 1 to 7 pole pairs, or puts the</text>
+<text x="820.7" y="569.1" font-size="17" fill="#D2DAE4">angle out as PWM</text>
+<rect x="820.7" y="587.6" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="828.7" y="605.8" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<rect x="932" y="587.6" width="112.5" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="940" y="605.8" font-size="16" font-weight="700" fill="#E2E8F0">SETTINGS3</text>
+<rect x="820.7" y="621.6" width="112.3" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="828.7" y="639.8" font-size="16" font-weight="700" fill="#E2E8F0">SETTINGS2</text>
+<rect x="940.9" y="621.6" width="87.9" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="948.9" y="639.8" font-size="16" font-weight="700" fill="#E2E8F0">DISABLE</text>
+<circle cx="78" cy="735.3" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M78 723 L91.7 746.9 L64.3 746.9 Z" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M78 731.7 L78 738.2" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="78" cy="742.5" r="2" fill="#F4B942"/>
+<text x="120" y="728.3" font-size="20" font-weight="700" fill="#E8EDF3">Magnet and fault</text>
+<text x="120" y="754.3" font-size="20" font-weight="700" fill="#E8EDF3">diagnostics</text>
+<text x="50" y="789.8" font-size="17" fill="#D2DAE4">Reports the gain control, the field</text>
+<text x="50" y="814.4" font-size="17" fill="#D2DAE4">magnitude and the error flags; each</text>
+<text x="50" y="839" font-size="17" fill="#D2DAE4">flag becomes a driver error</text>
+<rect x="50" y="857.6" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="58" y="875.7" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<rect x="161.4" y="857.6" width="68.1" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="169.4" y="875.7" font-size="16" font-weight="700" fill="#E2E8F0">ERRFL</text>
+<rect x="237.5" y="857.6" width="45.7" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="245.5" y="875.7" font-size="16" font-weight="700" fill="#E2E8F0">DIA</text>
+<rect x="291.2" y="857.6" width="53.9" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="299.2" y="875.7" font-size="16" font-weight="700" fill="#E2E8F0">AGC</text>
+<rect x="50" y="891.6" width="57.2" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="58" y="909.7" font-size="16" font-weight="700" fill="#E2E8F0">MAG</text>
+<circle cx="463.3" cy="735.3" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M450.3 731 L457.5 731 L457.5 739.6 L450.3 739.6 Z" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M469.1 731 L476.4 731 L476.4 739.6 L469.1 739.6 Z" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M457.5 733.9 L469.1 733.9" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M457.5 736.7 L469.1 736.7" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="741.3" font-size="20" font-weight="700" fill="#E8EDF3">SPI frames with CRC</text>
+<text x="435.3" y="789.8" font-size="17" fill="#D2DAE4">16-bit frames for the fastest reads, or</text>
+<text x="435.3" y="814.4" font-size="17" fill="#D2DAE4">24- and 32-bit frames with a CRC-8</text>
+<text x="435.3" y="839" font-size="17" fill="#D2DAE4">and a daisy-chain pad byte</text>
+<rect x="435.3" y="857.6" width="103.4" height="26" rx="13" fill="#BBF7D0"/>
+<text x="443.3" y="875.7" font-size="16" font-weight="700" fill="#0E131A">Supported</text>
+<rect x="546.7" y="857.6" width="53" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="554.7" y="875.7" font-size="16" font-weight="700" fill="#E2E8F0">NOP</text>
+<rect x="607.7" y="857.6" width="68.1" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="615.7" y="875.7" font-size="16" font-weight="700" fill="#E2E8F0">ERRFL</text>
+<circle cx="848.7" cy="735.3" r="28" fill="#2A2113" stroke="#6B5424" stroke-width="1.2"/>
+<path d="M841.4 726.6 L855.9 726.6 L855.9 744 L841.4 744 Z" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M837.1 731 L841.4 731" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M837.1 735.3 L841.4 735.3" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M837.1 739.6 L841.4 739.6" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M855.9 731 L860.2 731" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M855.9 735.3 L860.2 735.3" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M855.9 739.6 L860.2 739.6" fill="none" stroke="#F4B942" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="890.7" y="741.3" font-size="20" font-weight="700" fill="#E8EDF3">OTP programming</text>
+<text x="820.7" y="789.8" font-size="17" fill="#D2DAE4">Burns the zero and the settings into</text>
+<text x="820.7" y="814.4" font-size="17" fill="#D2DAE4">the chip once, with the datasheet's</text>
+<text x="820.7" y="839" font-size="17" fill="#D2DAE4">step-by-step procedure</text>
+<rect x="820.7" y="857.6" width="87.5" height="26" rx="13" fill="#FDE68A"/>
+<text x="828.7" y="875.7" font-size="16" font-weight="700" fill="#0E131A">Guarded</text>
+<rect x="916.2" y="857.6" width="63.9" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="924.2" y="875.7" font-size="16" font-weight="700" fill="#E2E8F0">PROG</text>
+<rect x="988.1" y="857.6" width="51.4" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="996.1" y="875.7" font-size="16" font-weight="700" fill="#E2E8F0">ECC</text>
+<rect x="32" y="951.6" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="54" y="966.2" font-size="16" fill="#9AA6B5">Supported: the driver covers it and a host test checks it</text>
+<rect x="32" y="983.6" width="14" height="14" rx="4" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<text x="54" y="998.2" font-size="16" fill="#9AA6B5">Guarded: covered, behind an explicit acknowledgement because a wrong value can do harm</text>
+</svg>

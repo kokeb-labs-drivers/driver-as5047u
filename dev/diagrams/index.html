@@ -102,72 +102,6 @@
   <meta property="og:description" content="C++20 driver for the AS5047U 14-bit magnetic rotary position sensor.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-as5047u/latest/diagrams/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -514,6 +448,8 @@
       
         
       
+        
+      
     
     
     
@@ -568,6 +504,8 @@
   
     
     
+      
+        
       
         
       
@@ -957,6 +895,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-the-as5047u-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the AS5047U does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#as5047u-33-v-operation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -979,10 +928,76 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#as5047u-16-bit-spi-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AS5047U: 16-bit SPI frame
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as5047u-24-bit-spi-frame-with-crc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AS5047U: 24-bit SPI frame with CRC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as5047u" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AS5047U
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as5047u-package-tssop-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AS5047U package, TSSOP-14
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#as5047u-pinout-tssop-14" class="md-nav__link">
     <span class="md-ellipsis">
       
         AS5047U pinout, TSSOP-14
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-33-v-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring: 3.3 V operation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-minimum-circuit-5-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring: Minimum circuit, 5 V
       
     </span>
   </a>
@@ -1055,6 +1070,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#spi-timing-of-one-24-bit-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPI timing of one 24-bit frame
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1095,13 +1121,30 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The AS5047U's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+</ul>
+<h2 id="what-the-as5047u-does">What the AS5047U does<a class="headerlink" href="#what-the-as5047u-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-capabilities.svg#only-light" alt="Capability map of the AS5047U: Absolute angle (supported): Measures the magnet&#x27;s angle over a full turn in 14 bits, with or without the dynamic compensation; Rotation speed (supported): Measures the angular velocity in 14 bits, 24.141 °/s per count, up to 28000 rpm either way; DAEC and adaptive filter (supported): Corrects the angle for the measurement delay at speed, and filters transition noise at low speed; Zero position and direction (supported): Sets which angle reads 0 and which way the count rises, seen from above the chip; ABI incremental interface (supported): Quadrature A and B with an index pulse, 25 to 4096 pulses per revolution; UVW commutation and PWM (supported): Emulates the Hall switches of a BLDC motor for 1 to 7 pole pairs, or puts the angle out as PWM; Magnet and fault diagnostics (supported): Reports the gain control, the field magnitude and the error flags; each flag becomes a driver error; SPI frames with CRC (supported): 16-bit frames for the fastest reads, or 24- and 32-bit frames with a CRC-8 and a daisy-chain pad byte; OTP programming (guarded): Burns the zero and the settings into the chip once, with the datasheet&#x27;s step-by-step procedure." width="1200" height="1034" loading="lazy"><img src="chip-capabilities.dark.svg#only-dark" alt="Capability map of the AS5047U: Absolute angle (supported): Measures the magnet&#x27;s angle over a full turn in 14 bits, with or without the dynamic compensation; Rotation speed (supported): Measures the angular velocity in 14 bits, 24.141 °/s per count, up to 28000 rpm either way; DAEC and adaptive filter (supported): Corrects the angle for the measurement delay at speed, and filters transition noise at low speed; Zero position and direction (supported): Sets which angle reads 0 and which way the count rises, seen from above the chip; ABI incremental interface (supported): Quadrature A and B with an index pulse, 25 to 4096 pulses per revolution; UVW commutation and PWM (supported): Emulates the Hall switches of a BLDC motor for 1 to 7 pole pairs, or puts the angle out as PWM; Magnet and fault diagnostics (supported): Reports the gain control, the field magnitude and the error flags; each flag becomes a driver error; SPI frames with CRC (supported): 16-bit frames for the fastest reads, or 24- and 32-bit frames with a CRC-8 and a daisy-chain pad byte; OTP programming (guarded): Burns the zero and the settings into the chip once, with the datasheet&#x27;s step-by-step procedure." width="1200" height="1034" loading="lazy">
+<figcaption>What the AS5047U does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the AS5047U: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
 </ul>
 <h2 id="as5047u-33-v-operation">AS5047U: 3.3 V operation<a class="headerlink" href="#as5047u-33-v-operation" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1112,13 +1155,13 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
 </ul>
 <h2 id="as5047u-minimum-circuit-5-v">AS5047U: Minimum circuit, 5 V<a class="headerlink" href="#as5047u-minimum-circuit-5-v" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1129,13 +1172,81 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+</ul>
+<h2 id="as5047u-16-bit-spi-frame">AS5047U: 16-bit SPI frame<a class="headerlink" href="#as5047u-16-bit-spi-frame" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-frame-spi16.svg#only-light" alt="16-bit SPI frame of the AS5047U, 16 bits, most significant bit first. Command: don&#x27;t care (bit 15), R (bit 14), ADDR[13:0] (bits 13 to 0); Reply: Warning (bit 15), Error (bit 14), DATA[13:0] (bits 13 to 0). Below, the SPI mode 1 waveform of one transfer in the same bit grid." width="1200" height="664" loading="lazy"><img src="chip-frame-spi16.dark.svg#only-dark" alt="16-bit SPI frame of the AS5047U, 16 bits, most significant bit first. Command: don&#x27;t care (bit 15), R (bit 14), ADDR[13:0] (bits 13 to 0); Reply: Warning (bit 15), Error (bit 14), DATA[13:0] (bits 13 to 0). Below, the SPI mode 1 waveform of one transfer in the same bit grid." width="1200" height="664" loading="lazy">
+<figcaption>AS5047U: 16-bit SPI frame</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>One 16-bit SPI frame of the AS5047U, 16 bits in a row from the most significant (left, sent first) to the least significant (right). Each row is one kind of frame; each coloured box a field, with its first and last bit number under it. The waveform below draws the select, the clock and the data lines over the same bits.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+</ul>
+<h2 id="as5047u-24-bit-spi-frame-with-crc">AS5047U: 24-bit SPI frame with CRC<a class="headerlink" href="#as5047u-24-bit-spi-frame-with-crc" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-frame-spi24.svg#only-light" alt="24-bit SPI frame with CRC of the AS5047U, 24 bits, most significant bit first. Command: don&#x27;t care (bit 23), RW (bit 22), ADDR[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0); Reply: Warning (bit 23), Error (bit 22), DATA[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0). Below, the SPI mode 1 waveform of one transfer in the same bit grid." width="1200" height="664" loading="lazy"><img src="chip-frame-spi24.dark.svg#only-dark" alt="24-bit SPI frame with CRC of the AS5047U, 24 bits, most significant bit first. Command: don&#x27;t care (bit 23), RW (bit 22), ADDR[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0); Reply: Warning (bit 23), Error (bit 22), DATA[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0). Below, the SPI mode 1 waveform of one transfer in the same bit grid." width="1200" height="664" loading="lazy">
+<figcaption>AS5047U: 24-bit SPI frame with CRC</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>One 24-bit SPI frame with CRC of the AS5047U, 24 bits in a row from the most significant (left, sent first) to the least significant (right). Each row is one kind of frame; each coloured box a field, with its first and last bit number under it. The waveform below draws the select, the clock and the data lines over the same bits.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+</ul>
+<h2 id="as5047u">AS5047U<a class="headerlink" href="#as5047u" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-hero.svg#only-light" alt="Overview of the AS5047U, a magnetic rotary position sensor: it measures the absolute angle of a rotating magnet over a full 360 degrees in 14 bits and gives it over SPI with a CRC, and as incremental ABI, UVW commutation or PWM signals. A MCU talks to it over SPI with CRC-8; it drives Motor controller; it reads back Magnet on the shaft. Headline figures: 14 bits angle resolution, 16384 counts per turn; 28000 rpm maximum speed; 10 MHz SPI clock, mode 1; 4096 ppr ABI pulses per revolution, at most; 3.3 or 5 V supply; 5 V through the on-chip LDO; 5 x 4.4 mm TSSOP-14 body." width="1200" height="814" loading="lazy"><img src="chip-hero.dark.svg#only-dark" alt="Overview of the AS5047U, a magnetic rotary position sensor: it measures the absolute angle of a rotating magnet over a full 360 degrees in 14 bits and gives it over SPI with a CRC, and as incremental ABI, UVW commutation or PWM signals. A MCU talks to it over SPI with CRC-8; it drives Motor controller; it reads back Magnet on the shaft. Headline figures: 14 bits angle resolution, 16384 counts per turn; 28000 rpm maximum speed; 10 MHz SPI clock, mode 1; 4096 ppr ABI pulses per revolution, at most; 3.3 or 5 V supply; 5 V through the on-chip LDO; 5 x 4.4 mm TSSOP-14 body." width="1200" height="814" loading="lazy">
+<figcaption>AS5047U</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The AS5047U in the middle, drawn as its TSSOP-14 package. On the left the MCU that runs the driver, joined to it by SPI with CRC-8. To the right, what the chip drives, in the order the power flows. Below it, what the chip reads back. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+</ul>
+<h2 id="as5047u-package-tssop-14">AS5047U package, TSSOP-14<a class="headerlink" href="#as5047u-package-tssop-14" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-outline.svg#only-light" alt="Outline of the AS5047U in TSSOP-14 drawn to scale from above: body 5.0 x 4.4 x 1.2 mm, pitch 0.65 mm, 14 pins." width="890" height="737" loading="lazy"><img src="chip-outline.dark.svg#only-dark" alt="Outline of the AS5047U in TSSOP-14 drawn to scale from above: body 5.0 x 4.4 x 1.2 mm, pitch 0.65 mm, 14 pins." width="890" height="737" loading="lazy">
+<figcaption>AS5047U package, TSSOP-14</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The AS5047U package seen from the top and, when the height is known, from the side, drawn to scale: 5.0 x 4.4 x 1.2 mm. The arrows carry the datasheet's dimensions, the dot marks pin 1 and the pads are numbered counter-clockwise from it, coloured by the pin's electrical type (legend below). Pads sit centred on each side at the stated pitch; the datasheet's land pattern is the reference for a board.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
 </ul>
 <h2 id="as5047u-pinout-tssop-14">AS5047U pinout, TSSOP-14<a class="headerlink" href="#as5047u-pinout-tssop-14" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1146,13 +1257,47 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The AS5047U seen from the top, in its TSSOP-14 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+</ul>
+<h2 id="wiring-33-v-operation">Wiring: 3.3 V operation<a class="headerlink" href="#wiring-33-v-operation" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-wiring-supply-3v3.svg#only-light" alt="Wiring of the AS5047U for the 3.3 V operation: MCU SPI SCK to CLK (Transfer()); MCU SPI MOSI to MOSI (Transfer()); MCU SPI MISO to MISO (Transfer()); MCU GPIO / CS to CSn (Transfer()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="798" loading="lazy"><img src="chip-wiring-supply-3v3.dark.svg#only-dark" alt="Wiring of the AS5047U for the 3.3 V operation: MCU SPI SCK to CLK (Transfer()); MCU SPI MOSI to MOSI (Transfer()); MCU SPI MISO to MISO (Transfer()); MCU GPIO / CS to CSn (Transfer()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="798" loading="lazy">
+<figcaption>Wiring: 3.3 V operation</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the AS5047U in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+</ul>
+<h2 id="wiring-minimum-circuit-5-v">Wiring: Minimum circuit, 5 V<a class="headerlink" href="#wiring-minimum-circuit-5-v" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-wiring-typical.svg#only-light" alt="Wiring of the AS5047U for the Minimum circuit, 5 V: MCU SPI SCK to CLK (Transfer()); MCU SPI MOSI to MOSI (Transfer()); MCU SPI MISO to MISO (Transfer()); MCU GPIO / CS to CSn (Transfer()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="798" loading="lazy"><img src="chip-wiring-typical.dark.svg#only-dark" alt="Wiring of the AS5047U for the Minimum circuit, 5 V: MCU SPI SCK to CLK (Transfer()); MCU SPI MOSI to MOSI (Transfer()); MCU SPI MISO to MISO (Transfer()); MCU GPIO / CS to CSn (Transfer()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="798" loading="lazy">
+<figcaption>Wiring: Minimum circuit, 5 V</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the AS5047U in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
 </ul>
 <h2 id="the-layers-one-of-them-yours">The layers, one of them yours<a class="headerlink" href="#the-layers-one-of-them-yours" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1163,13 +1308,13 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>SpiInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>SpiInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a></li>
-<li><code>SpiInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a></li>
+<li><code>SpiInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
 </ul>
 <h2 id="one-call-through-the-layers">One call through the layers<a class="headerlink" href="#one-call-through-the-layers" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1196,17 +1341,17 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The call first refuses to run when the driver is not initialised or the confirm value is wrong, and sends nothing then. It switches every frame to a CRC-protected format and runs three phases, top to bottom and left to right: prepare (steps 6 to 11: read the settings, compute and write the ECC key, read everything back and compare), burn (steps 12 to 14: enable programming, start the burn, poll PROG every millisecond until the burn is done or the timeout passes) and verify (steps 15 to 19: clear the volatile copy, reload it from the OTP at the guard-band level and compare it with what was burned). A pill on a step names the error that step adds; any step also fails on a transfer or reply error. The call stops at the first failure and OtpReport::failed_step names the step. OtpReport::burn_started becomes true just before the step 13 frame is sent, so from there on the fuses may be blown even if the call fails. The steps, registers, timeout and errors are read from otpPrepare(), otpBurn() and otpVerify() in src/as5047u.ipp.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>ProgramOtp</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>otpPrepare</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>otpBurn</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>otpVerify</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_types.hpp"><code>inc/as5047u_types.hpp</code></a> <code>kOtpBurnTimeoutMs</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>PROG and ECC</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/docs/diagrams/figures/otp-flow.py"><code>docs/diagrams/figures/otp-flow.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>ProgramOtp</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>otpPrepare</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>otpBurn</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>otpVerify</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_types.hpp"><code>inc/as5047u_types.hpp</code></a> <code>kOtpBurnTimeoutMs</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>PROG and ECC</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/docs/diagrams/figures/otp-flow.py"><code>docs/diagrams/figures/otp-flow.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/docs/diagrams/figures/otp-flow.py"><code>docs/diagrams/figures/otp-flow.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/docs/diagrams/figures/otp-flow.py"><code>docs/diagrams/figures/otp-flow.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>ProgramOtp</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
-<li><code>otpPrepare</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
-<li><code>otpBurn</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
-<li><code>otpVerify</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
-<li><code>kOtpBurnTimeoutMs</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_types.hpp"><code>inc/as5047u_types.hpp</code></a></li>
-<li><code>PROG and ECC</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></li>
+<li><code>ProgramOtp</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
+<li><code>otpPrepare</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
+<li><code>otpBurn</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
+<li><code>otpVerify</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
+<li><code>kOtpBurnTimeoutMs</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_types.hpp"><code>inc/as5047u_types.hpp</code></a></li>
+<li><code>PROG and ECC</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></li>
 </ul>
 <h2 id="every-access-is-two-frames">Every access is two frames<a class="headerlink" href="#every-access-is-two-frames" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1217,17 +1362,17 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Time runs left to right, one column per SPI frame; the top row is what the driver sends on MOSI and the bottom row what the chip returns on MISO in the same frame. The chip answers a frame during the next one (dashed arrows), so a read sends the read command and then a NOP read, whose reply carries the register. The reply in the first frame belongs to the frame before it, so the driver fails the call there only when the transfer itself fails. When the reply that answers the call has its error bit set, the driver reads ERRFL (two more frames, dashed) to find out why and fails the call. A write sends the command frame (R/W at 0, the address) and the data frame, always with a CRC; the reply in the data frame reports on the command frame. The read-back after it (two more frames, dashed) is chosen per call with Verify::ReadBack; EnsureInitialized() and ProgramOtp() always read back. The frame words come from readRaw(), writeRaw() and resolveFlags() in src/as5047u.ipp. A note at the bottom gives the rule of FrameBus::Exchange(): after a failed transfer the next frame is a NOP read, so a lost data frame cannot turn the next command into data.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>readRaw</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>writeRaw</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>resolveFlags</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>detail::ClassifyErrorFlags</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>frame bits</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>FrameBus::Exchange</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/docs/diagrams/figures/read-pipeline.py"><code>docs/diagrams/figures/read-pipeline.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>readRaw</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>writeRaw</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a> <code>resolveFlags</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>detail::ClassifyErrorFlags</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>frame bits</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>FrameBus::Exchange</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/docs/diagrams/figures/read-pipeline.py"><code>docs/diagrams/figures/read-pipeline.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/docs/diagrams/figures/read-pipeline.py"><code>docs/diagrams/figures/read-pipeline.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/docs/diagrams/figures/read-pipeline.py"><code>docs/diagrams/figures/read-pipeline.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>readRaw</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
-<li><code>writeRaw</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
-<li><code>resolveFlags</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
-<li><code>detail::ClassifyErrorFlags</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a></li>
-<li><code>frame bits</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></li>
-<li><code>FrameBus::Exchange</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+<li><code>readRaw</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
+<li><code>writeRaw</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
+<li><code>resolveFlags</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/src/as5047u.ipp"><code>src/as5047u.ipp</code></a></li>
+<li><code>detail::ClassifyErrorFlags</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a></li>
+<li><code>frame bits</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></li>
+<li><code>FrameBus::Exchange</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
 </ul>
 <h2 id="spi-frames-bit-by-bit">SPI frames, bit by bit<a class="headerlink" href="#spi-frames-bit-by-bit" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1238,15 +1383,15 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Each frame is drawn in the order it is clocked, most significant bit first, and the numbers above a row are bit positions in that frame. On MOSI the 16-bit command word holds the R/W bit (1 to read, 0 to write) and a 14-bit address; the data frame of a write has the same layout with R/W at 0 and the 14-bit value in place of the address. On MISO the reply word holds the warning bit, the error bit (a flag is set in ERRFL) and 14 data bits. The 24-bit frame adds the CRC-8 of the word in both directions. The 32-bit frame adds the pad byte: first on MOSI (the driver sends Config::pad_byte), last on MISO (the driver ignores it). The bit positions come from the frame constants in inc/as5047u_registers.hpp and the byte order from detail::FrameBus::Exchange in inc/as5047u_spi_interface.hpp. With 16-bit frames the driver sends writes as 24-bit frames.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>frame bits</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>detail::FrameBus::Exchange</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>Crc8</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>writeFormat</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/docs/diagrams/figures/spi-frames.py"><code>docs/diagrams/figures/spi-frames.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a> <code>frame bits</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>detail::FrameBus::Exchange</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a> <code>Crc8</code>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a> <code>writeFormat</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/docs/diagrams/figures/spi-frames.py"><code>docs/diagrams/figures/spi-frames.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/docs/diagrams/figures/spi-frames.py"><code>docs/diagrams/figures/spi-frames.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/docs/diagrams/figures/spi-frames.py"><code>docs/diagrams/figures/spi-frames.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>frame bits</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></li>
-<li><code>detail::FrameBus::Exchange</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
-<li><code>Crc8</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
-<li><code>writeFormat</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/5cf29be73010fe219be3caaeab51d1d576e2473a/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a></li>
+<li><code>frame bits</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_registers.hpp"><code>inc/as5047u_registers.hpp</code></a></li>
+<li><code>detail::FrameBus::Exchange</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+<li><code>Crc8</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a></li>
+<li><code>writeFormat</code> in <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u.hpp"><code>inc/as5047u.hpp</code></a></li>
 </ul>
 <h2 id="one-read-on-the-spi-bus">One read on the SPI bus<a class="headerlink" href="#one-read-on-the-spi-bus" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1263,6 +1408,22 @@ committed figure no longer matches the code. Each figure below lists the files i
 <p>Drawn from:</p>
 <ul>
 <li><a href="../model/spi-read.seq.yml"><code>docs/model/spi-read.seq.yml</code></a></li>
+</ul>
+<h2 id="spi-timing-of-one-24-bit-frame">SPI timing of one 24-bit frame<a class="headerlink" href="#spi-timing-of-one-24-bit-frame" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="spi-timing.svg#only-light" alt="SPI timing of the AS5047U in mode 1: CSn low frames a 24-bit frame, the chip changes MISO after each rising CLK edge and reads MOSI on each falling edge, with the select, clock, setup and output times of the datasheet." width="640" height="1514" loading="lazy"><img src="spi-timing.dark.svg#only-dark" alt="SPI timing of the AS5047U in mode 1: CSn low frames a 24-bit frame, the chip changes MISO after each rising CLK edge and reads MOSI on each falling edge, with the select, clock, setup and output times of the datasheet." width="640" height="1514" loading="lazy">
+<figcaption>SPI timing of one 24-bit frame</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The four lanes are CSn, CLK, MOSI and MISO, left to right in time. CSn goes low with CLK low; from the first rising edge the chip drives MISO bit by bit and reads MOSI on each falling edge, bits 23 to 0 most significant first (each slot shows its bit number), with bits 20 to 1 left out. Half a clock after the last falling edge CSn goes high, the chip runs the command and releases MISO, and CSn stays high for at least tCSn. The table gives each interval with its datasheet value.</p>
+<p>Drawn from: <a href="../model/spi-timing.timing.yml"><code>docs/model/spi-timing.timing.yml</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../model/spi-timing.timing.yml"><code>docs/model/spi-timing.timing.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../model/spi-timing.timing.yml"><code>docs/model/spi-timing.timing.yml</code></a></li>
 </ul>
 
 

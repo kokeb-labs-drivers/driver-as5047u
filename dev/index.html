@@ -100,72 +100,6 @@
   <meta property="og:description" content="C++20 driver for the AS5047U 14-bit magnetic rotary position sensor.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-as5047u/latest/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -537,10 +471,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#what-it-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
       
     </span>
   </a>
@@ -585,6 +574,8 @@
   
     
     
+      
+        
       
         
       
@@ -648,6 +639,8 @@
   
     
     
+      
+        
       
         
       
@@ -866,10 +859,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#what-it-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
       
     </span>
   </a>
@@ -926,7 +974,7 @@
 
 
 <div class="kb-hero">
-<p><span class="kb-kicker">Driver</span></p>
+<p><span class="kb-kicker">Magnetic rotary position sensor</span></p>
 <h1 id="as5047u-driver">AS5047U Driver<a class="headerlink" href="#as5047u-driver" title="Permanent link">&para;</a></h1>
 <p>A C++20 driver for the AS5047U 14-bit magnetic rotary position sensor. It reads the angle and the velocity
 over CRC-protected SPI frames, resolves the chip's error flags, sets the zero and the outputs, and burns the OTP,
@@ -935,34 +983,205 @@ on any MCU.</p>
 <a class="md-button" href="api-guide/">API guide</a>
 <a class="md-button" href="https://github.com/kokeb-labs-drivers/driver-as5047u">Source on GitHub</a></p>
 </div>
+<!-- generated: chip-summary -->
+<p>The <strong>AS5047U</strong> is a magnetic rotary position sensor: it measures the absolute angle of a rotating magnet over a full
+360 degrees in 14 bits and gives it over SPI with a CRC, and as incremental ABI, UVW commutation or PWM signals (General
+Description, p. 1).</p>
+<!-- /generated -->
+
+<figure class="kb-figure">
+<img src="diagrams/chip-hero.svg#only-light" alt="Overview of the AS5047U, a magnetic rotary position sensor: it measures the absolute angle of a rotating magnet over a full 360 degrees in 14 bits and gives it over SPI with a CRC, and as incremental ABI, UVW commutation or PWM signals. A MCU talks to it over SPI with CRC-8; it drives Motor controller; it reads back Magnet on the shaft. Headline figures: 14 bits angle resolution, 16384 counts per turn; 28000 rpm maximum speed; 10 MHz SPI clock, mode 1; 4096 ppr ABI pulses per revolution, at most; 3.3 or 5 V supply; 5 V through the on-chip LDO; 5 x 4.4 mm TSSOP-14 body." width="1200" height="814"><img src="diagrams/chip-hero.dark.svg#only-dark" alt="Overview of the AS5047U, a magnetic rotary position sensor: it measures the absolute angle of a rotating magnet over a full 360 degrees in 14 bits and gives it over SPI with a CRC, and as incremental ABI, UVW commutation or PWM signals. A MCU talks to it over SPI with CRC-8; it drives Motor controller; it reads back Magnet on the shaft. Headline figures: 14 bits angle resolution, 16384 counts per turn; 28000 rpm maximum speed; 10 MHz SPI clock, mode 1; 4096 ppr ABI pulses per revolution, at most; 3.3 or 5 V supply; 5 V through the on-chip LDO; 5 x 4.4 mm TSSOP-14 body." width="1200" height="814">
+<figcaption>AS5047U</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The AS5047U in the middle, drawn as its TSSOP-14 package. On the left the MCU that runs the driver, joined to it by SPI with CRC-8. To the right, what the chip drives, in the order the power flows. Below it, what the chip reads back. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-capabilities.svg#only-light" alt="Capability map of the AS5047U: Absolute angle (supported): Measures the magnet&#x27;s angle over a full turn in 14 bits, with or without the dynamic compensation; Rotation speed (supported): Measures the angular velocity in 14 bits, 24.141 °/s per count, up to 28000 rpm either way; DAEC and adaptive filter (supported): Corrects the angle for the measurement delay at speed, and filters transition noise at low speed; Zero position and direction (supported): Sets which angle reads 0 and which way the count rises, seen from above the chip; ABI incremental interface (supported): Quadrature A and B with an index pulse, 25 to 4096 pulses per revolution; UVW commutation and PWM (supported): Emulates the Hall switches of a BLDC motor for 1 to 7 pole pairs, or puts the angle out as PWM; Magnet and fault diagnostics (supported): Reports the gain control, the field magnitude and the error flags; each flag becomes a driver error; SPI frames with CRC (supported): 16-bit frames for the fastest reads, or 24- and 32-bit frames with a CRC-8 and a daisy-chain pad byte; OTP programming (guarded): Burns the zero and the settings into the chip once, with the datasheet&#x27;s step-by-step procedure." width="1200" height="1034" loading="lazy"><img src="diagrams/chip-capabilities.dark.svg#only-dark" alt="Capability map of the AS5047U: Absolute angle (supported): Measures the magnet&#x27;s angle over a full turn in 14 bits, with or without the dynamic compensation; Rotation speed (supported): Measures the angular velocity in 14 bits, 24.141 °/s per count, up to 28000 rpm either way; DAEC and adaptive filter (supported): Corrects the angle for the measurement delay at speed, and filters transition noise at low speed; Zero position and direction (supported): Sets which angle reads 0 and which way the count rises, seen from above the chip; ABI incremental interface (supported): Quadrature A and B with an index pulse, 25 to 4096 pulses per revolution; UVW commutation and PWM (supported): Emulates the Hall switches of a BLDC motor for 1 to 7 pole pairs, or puts the angle out as PWM; Magnet and fault diagnostics (supported): Reports the gain control, the field magnitude and the error flags; each flag becomes a driver error; SPI frames with CRC (supported): 16-bit frames for the fastest reads, or 24- and 32-bit frames with a CRC-8 and a daisy-chain pad byte; OTP programming (guarded): Burns the zero and the settings into the chip once, with the datasheet&#x27;s step-by-step procedure." width="1200" height="1034" loading="lazy">
+<figcaption>What the AS5047U does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the AS5047U: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<h2 id="where-it-is-used">Where it is used<a class="headerlink" href="#where-it-is-used" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-uses -->
+<ul>
+<li>Factory automation</li>
+<li>Building automation</li>
+<li>Robotics</li>
+<li>Permanent magnet synchronous motors (PMSM)</li>
+<li>Closed-loop stepper motors</li>
+<li>Optical encoder replacement</li>
+</ul>
+<p>Uses named by the datasheet (Applications, p. 2).</p>
+<!-- /generated -->
+
+<h2 id="inside-the-chip">Inside the chip<a class="headerlink" href="#inside-the-chip" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-blocks.svg#only-light" alt="Block diagram of the AS5047U: its function blocks, how they connect and which package pins reach each block." width="1200" height="831" loading="lazy"><img src="diagrams/chip-blocks.dark.svg#only-dark" alt="Block diagram of the AS5047U: its function blocks, how they connect and which package pins reach each block." width="1200" height="831" loading="lazy">
+<figcaption>Inside the AS5047U</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The AS5047U's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<h2 id="pins-and-wiring">Pins and wiring<a class="headerlink" href="#pins-and-wiring" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-pinout.svg#only-light" alt="Pinout of the AS5047U in TSSOP-14, top view: 14 pins, each with its name, its electrical type as a colour and the driver hook that uses it." width="776" height="549" loading="lazy"><img src="diagrams/chip-pinout.dark.svg#only-dark" alt="Pinout of the AS5047U in TSSOP-14, top view: 14 pins, each with its name, its electrical type as a colour and the driver hook that uses it." width="776" height="549" loading="lazy">
+<figcaption>AS5047U pinout, TSSOP-14</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The AS5047U seen from the top, in its TSSOP-14 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<figure class="kb-figure">
+<img src="diagrams/chip-wiring-supply-3v3.svg#only-light" alt="Wiring of the AS5047U for the 3.3 V operation: MCU SPI SCK to CLK (Transfer()); MCU SPI MOSI to MOSI (Transfer()); MCU SPI MISO to MISO (Transfer()); MCU GPIO / CS to CSn (Transfer()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="798" loading="lazy"><img src="diagrams/chip-wiring-supply-3v3.dark.svg#only-dark" alt="Wiring of the AS5047U for the 3.3 V operation: MCU SPI SCK to CLK (Transfer()); MCU SPI MOSI to MOSI (Transfer()); MCU SPI MISO to MISO (Transfer()); MCU GPIO / CS to CSn (Transfer()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="798" loading="lazy">
+<figcaption>Wiring: 3.3 V operation</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the AS5047U in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<figure class="kb-figure">
+<img src="diagrams/chip-frame-spi24.svg#only-light" alt="24-bit SPI frame with CRC of the AS5047U, 24 bits, most significant bit first. Command: don&#x27;t care (bit 23), RW (bit 22), ADDR[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0); Reply: Warning (bit 23), Error (bit 22), DATA[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0). Below, the SPI mode 1 waveform of one transfer in the same bit grid." width="1200" height="664" loading="lazy"><img src="diagrams/chip-frame-spi24.dark.svg#only-dark" alt="24-bit SPI frame with CRC of the AS5047U, 24 bits, most significant bit first. Command: don&#x27;t care (bit 23), RW (bit 22), ADDR[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0); Reply: Warning (bit 23), Error (bit 22), DATA[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0). Below, the SPI mode 1 waveform of one transfer in the same bit grid." width="1200" height="664" loading="lazy">
+<figcaption>AS5047U: 24-bit SPI frame with CRC</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>One 24-bit SPI frame with CRC of the AS5047U, 24 bits in a row from the most significant (left, sent first) to the least significant (right). Each row is one kind of frame; each coloured box a field, with its first and last bit number under it. The waveform below draws the select, the clock and the data lines over the same bits.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-as5047u/blob/1aaaf5bfd7e2dd047bbb3004dd74f2ce79a4a877/inc/as5047u_spi_interface.hpp"><code>inc/as5047u_spi_interface.hpp</code></a>.</p>
+</details>
+<p>Every pin, 5 V operation, the 16- and 32-bit frames, the timing and the magnet: <a href="hardware/">Hardware</a>.</p>
+<h2 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p>Wire the chip as above, write the port (<a href="porting/">Porting</a>), then read the angle:</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"as5047u.hpp"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">read_shaft_angle</span><span class="p">(</span><span class="n">MyPort</span><span class="o">&amp;</span><span class="w"> </span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">&amp;</span><span class="w"> </span><span class="n">degrees</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="n">as5047u</span><span class="o">::</span><span class="n">AS5047U</span><span class="o">&lt;</span><span class="n">MyPort</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sensor</span><span class="p">(</span><span class="n">port</span><span class="p">);</span><span class="w"> </span><span class="c1">// no I/O yet</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">EnsureInitialized</span><span class="p">();</span><span class="w"> </span><span class="o">!</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 1. bus up, wait for ready, Config{} written</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">);</span><span class="w">            </span><span class="c1">//    Bus or NoDevice: check wiring, SPI mode 1</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">ReadAngleDegrees</span><span class="p">();</span><span class="w"> </span><span class="c1">// 2. compensated angle, CRC-checked frame</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">error</span><span class="p">);</span><span class="w"> </span><span class="c1">//    MagnetWarning: magnet missing; DeviceFault: chip</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="n">degrees</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// 3. [0, 360), 14-bit resolution (0.022 degrees)</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The steps explained: <a href="quickstart/">Quickstart</a>.</p>
+<h2 id="driver-coverage">Driver coverage<a class="headerlink" href="#driver-coverage" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-coverage -->
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>What the chip does</th>
+<th>Driver API</th>
+<th>Registers</th>
+<th>Status</th>
+<th>Datasheet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="api-guide/">Absolute angle</a></td>
+<td>Measures the magnet's angle over a full turn in 14 bits, with or without the dynamic compensation</td>
+<td><code>ReadAngleCounts</code>, <code>ReadAngleDegrees</code>, <code>ReadAngleRadians</code>, <code>ReadUncompensatedAngleCounts</code></td>
+<td><code>ANGLECOM</code>, <code>ANGLEUNC</code></td>
+<td>Supported</td>
+<td>System Specifications, Figure 8, p. 7</td>
+</tr>
+<tr>
+<td><a href="api-guide/">Rotation speed</a></td>
+<td>Measures the angular velocity in 14 bits, 24.141 °/s per count, up to 28000 rpm either way</td>
+<td><code>ReadVelocityCounts</code>, <code>ReadVelocityDegPerSec</code>, <code>ReadVelocityRpm</code></td>
+<td><code>VEL</code></td>
+<td>Supported</td>
+<td>Rotation Speed Measurement, Figure 16, p. 15</td>
+</tr>
+<tr>
+<td><a href="configuration/">DAEC and adaptive filter</a></td>
+<td>Corrects the angle for the measurement delay at speed, and filters transition noise at low speed</td>
+<td><code>ApplyConfig</code></td>
+<td><code>SETTINGS2</code>, <code>SETTINGS1</code>, <code>DISABLE</code></td>
+<td>Supported</td>
+<td>Dynamic Angle Error Compensation; Adaptive Filter System, p. 12</td>
+</tr>
+<tr>
+<td><a href="api-guide/">Zero position and direction</a></td>
+<td>Sets which angle reads 0 and which way the count rises, seen from above the chip</td>
+<td><code>SetZeroPosition</code>, <code>SetZeroHere</code>, <code>SetDirection</code></td>
+<td><code>ZPOSM</code>, <code>ZPOSL</code>, <code>SETTINGS2</code></td>
+<td>Supported</td>
+<td>Non-Volatile Registers (OTP), Figures 43 to 45, p. 28</td>
+</tr>
+<tr>
+<td><a href="configuration/">ABI incremental interface</a></td>
+<td>Quadrature A and B with an index pulse, 25 to 4096 pulses per revolution</td>
+<td><code>ApplyConfig</code>, <code>IncrementalOutput::Abi</code></td>
+<td><code>SETTINGS3</code>, <code>SETTINGS2</code>, <code>DISABLE</code></td>
+<td>Supported</td>
+<td>ABI Settings, Figure 51, p. 32</td>
+</tr>
+<tr>
+<td><a href="configuration/">UVW commutation and PWM</a></td>
+<td>Emulates the Hall switches of a BLDC motor for 1 to 7 pole pairs, or puts the angle out as PWM</td>
+<td><code>ApplyConfig</code>, <code>IncrementalOutput::Uvw</code></td>
+<td><code>SETTINGS3</code>, <code>SETTINGS2</code>, <code>DISABLE</code></td>
+<td>Supported</td>
+<td>UVW Commutation Interface, p. 33</td>
+</tr>
+<tr>
+<td><a href="troubleshooting/">Magnet and fault diagnostics</a></td>
+<td>Reports the gain control, the field magnitude and the error flags; each flag becomes a driver error</td>
+<td><code>ReadAgc</code>, <code>ReadMagnitude</code>, <code>ReadDiagnostics</code>, <code>ReadErrorFlags</code>, <code>CheckForReset</code></td>
+<td><code>ERRFL</code>, <code>DIA</code>, <code>AGC</code>, <code>MAG</code></td>
+<td>Supported</td>
+<td>Volatile Registers, Figure 33, p. 24</td>
+</tr>
+<tr>
+<td><a href="hardware/">SPI frames with CRC</a></td>
+<td>16-bit frames for the fastest reads, or 24- and 32-bit frames with a CRC-8 and a daisy-chain pad byte</td>
+<td><code>FrameFormat::Bits24</code>, <code>ReadRegister</code>, <code>WriteRegister</code></td>
+<td><code>NOP</code>, <code>ERRFL</code></td>
+<td>Supported</td>
+<td>SPI Transaction, Figures 20 to 22, p. 18</td>
+</tr>
+<tr>
+<td><a href="otp/">OTP programming</a></td>
+<td>Burns the zero and the settings into the chip once, with the datasheet's step-by-step procedure</td>
+<td><code>ProgramOtp</code>, <code>ReadNonVolatile</code></td>
+<td><code>PROG</code>, <code>ECC</code></td>
+<td>Guarded</td>
+<td>Burn and Verification of the OTP Memory, p. 39</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Supported</strong>: the driver covers it and a host test checks it; <strong>Guarded</strong>: covered, behind an explicit acknowledgement
+because a wrong value can do harm.</p>
+<p>From <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <code>kokeb-docs hardware --check</code> confirms that every API name is in
+<code>inc/as5047u.hpp</code>, <code>inc/as5047u_types.hpp</code> and every register in <code>inc/as5047u_registers.hpp</code>.</p>
+<!-- /generated -->
+
 <p>The driver has no platform code. You give it a small class that brings the bus up and moves bytes; it does the
 rest: the start-up wait for the chip's ready indication, the frame format and CRC, ERRFL handling and its latch,
 unit conversion and the OTP procedure.</p>
-<div class="kb-chip">
-<div class="kb-chip__head">
-<span class="kb-chip__kicker">Magnetic rotary position sensor</span>
-<span class="kb-chip__name">AS5047U</span>
-<span class="kb-chip__vendor">ams OSRAM</span>
-</div>
-<dl>
-<dt>Function</dt>
-<dd>Absolute angle over 360°, 14 bits (16384 counts, 0.022° per count); velocity at 24.141 °/s per count; up to
-28000 rpm</dd>
-<dt>Interface</dt>
-<dd>SPI mode 1, up to 10 MHz; 16-bit frames, or 24- and 32-bit frames with CRC-8</dd>
-<dt>Compensation</dt>
-<dd>Dynamic angle error compensation (DAEC) and an adaptive velocity filter</dd>
-<dt>Integrity</dt>
-<dd>CRC-8 on frames; ERRFL error and warning flags; AGC and DIA for the magnet and the internal loops</dd>
-<dt>Outputs</dt>
-<dd>ABI quadrature (up to 4096 pulses per revolution), UVW commutation (1 to 7 pole pairs) and PWM</dd>
-<dt>Non-volatile memory</dt>
-<dd>One-time-programmable zero position and settings</dd>
-<dt>Supply</dt>
-<dd>3.0 V to 3.6 V, or 4.5 V to 5.5 V through the on-chip LDO</dd>
-</dl>
-</div>
-<h2 id="what-you-get">What you get<a class="headerlink" href="#what-you-get" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>One object per chip.</strong> <code>AS5047U&lt;YourPort&gt;</code> takes a reference to your port and does no I/O until
   <code>EnsureInitialized()</code>. See <a href="api-guide/">API guide</a>.</li>
