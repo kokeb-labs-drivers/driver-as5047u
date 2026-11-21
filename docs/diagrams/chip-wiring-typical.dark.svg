@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="798" viewBox="0 0 1200 798" role="img" aria-labelledby="chip-wiring-typical-title chip-wiring-typical-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-wiring-typical-title">Wiring: Minimum circuit, 5 V</title>
+<desc id="chip-wiring-typical-desc">Wiring of the AS5047U for the Minimum circuit, 5 V: MCU SPI SCK to CLK (Transfer()); MCU SPI MOSI to MOSI (Transfer()); MCU SPI MISO to MISO (Transfer()); MCU GPIO / CS to CSn (Transfer()). Supplies, grounds and the support parts are listed under the drawing.</desc>
+<rect x="0.5" y="0.5" width="1199" height="797" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#F8D27A">PINS AND WIRING</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#E8EDF3">Wiring: Minimum circuit, 5 V</text>
+<text x="32" y="115.4" font-size="18" fill="#9AA6B5">What you connect by hand, with the driver hook on each MCU wire. The full schematic, with every part and value, is on the</text>
+<text x="32" y="141.5" font-size="18" fill="#9AA6B5">Hardware page. Datasheet: Circuit Diagram, Figure 61, p. 44.</text>
+<rect x="32" y="157.5" width="1136" height="1" fill="#252F3C"/>
+<path d="M509.1 269.5 L636.9 269.5" fill="none" stroke="#60A5FA" stroke-width="2.2"/>
+<path d="M509.1 333.5 L636.9 333.5" fill="none" stroke="#60A5FA" stroke-width="2.2"/>
+<path d="M509.1 397.5 L636.9 397.5" fill="none" stroke="#60A5FA" stroke-width="2.2"/>
+<path d="M509.1 461.5 L636.9 461.5" fill="none" stroke="#60A5FA" stroke-width="2.2"/>
+<rect x="650.9" y="175.5" width="240" height="336" rx="10" fill="#18202B" stroke="#D2DAE4" stroke-width="2.2"/>
+<rect x="309.1" y="175.5" width="200" height="336" rx="12" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="539.5" width="1136" height="79" rx="12" fill="#321820" stroke="#6E3141" stroke-width="1"/>
+<rect x="32" y="632.5" width="1136" height="103.6" rx="12" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="770.9" y="210.5" font-size="20" font-weight="700" text-anchor="middle" fill="#E8EDF3">AS5047U</text>
+<text x="770.9" y="232.9" font-size="16" text-anchor="middle" fill="#9AA6B5">U1</text>
+<text x="327.1" y="210.5" font-size="20" font-weight="700" fill="#BFDBFE">MCU</text>
+<text x="327.1" y="232.9" font-size="16" fill="#BFDBFE">U2</text>
+<text x="491.1" y="275.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#BFDBFE">SPI SCK</text>
+<text x="672.9" y="275.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">CLK</text>
+<rect x="636.9" y="263.5" width="14" height="12" rx="2" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="573" y="259.5" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">CLK  pin 2</text>
+<text x="573" y="292.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">Transfer()</text>
+<text x="491.1" y="339.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#BFDBFE">SPI MOSI</text>
+<text x="672.9" y="339.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">MOSI</text>
+<rect x="636.9" y="327.5" width="14" height="12" rx="2" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="573" y="323.5" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">MOSI  pin 4</text>
+<text x="573" y="356.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">Transfer()</text>
+<text x="491.1" y="403.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#BFDBFE">SPI MISO</text>
+<text x="672.9" y="403.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">MISO</text>
+<rect x="636.9" y="391.5" width="14" height="12" rx="2" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="573" y="387.5" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">MISO  pin 3</text>
+<text x="573" y="420.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">Transfer()</text>
+<text x="491.1" y="467.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#BFDBFE">GPIO / CS</text>
+<text x="672.9" y="467.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">CSn</text>
+<rect x="636.9" y="455.5" width="14" height="12" rx="2" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="573" y="451.5" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">CSn  pin 1</text>
+<text x="573" y="484.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">Transfer()</text>
+<text x="50" y="574.5" font-size="20" font-weight="700" fill="#FECDD3">Supplies and ground</text>
+<text x="50" y="598" font-size="17" fill="#FECDD3">+5V: VDD; also U2.VDD · VDD3V3: VDD3V3 · GND: GND, TEST; also U2.GND</text>
+<text x="50" y="667.5" font-size="20" font-weight="700" fill="#E2E8F0">Also on the board</text>
+<text x="50" y="691" font-size="17" fill="#E2E8F0">Support parts: 2 capacitors around the supplies (values in the full schematic). Not wired in this circuit (6): A, B, U, V, I/PWM,</text>
+<text x="50" y="715.6" font-size="17" fill="#E2E8F0">W/PWM.</text>
+<rect x="32" y="748.5" width="14" height="14" rx="4" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="54" y="763.1" font-size="16" fill="#9AA6B5">bus</text>
+</svg>

@@ -7,7 +7,8 @@ Run the driver on a new MCU by writing one class: the port.
 
     From ams OSRAM DS000637 v1-01:
 
-    - Power-up time and SPI timing: Timing Characteristics; SPI Timing, p. 9
+    - Power-up time: Timing Characteristics, p. 9
+    - SPI timing and the clock limit: SPI Timing, Figures 18 and 19, p. 16
     - SPI mode, frames and the read pipeline: SPI Interface (Slave); SPI Transaction, p. 16
 
     All of them, with the driver API for each: [Datasheet map](datasheet.md).

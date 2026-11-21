@@ -24,6 +24,34 @@ Drawn from:
 - [`docs/hardware.yml`](../hardware.yml)
 - [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
 
+## What the AS5047U does
+
+<!-- figure: chip-capabilities -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-capabilities.dark.svg">
+  <img src="chip-capabilities.svg"
+    alt="Capability map of the AS5047U: Absolute angle (supported): Measures the magnet's angle over a full
+    turn in 14 bits, with or without the dynamic compensation; Rotation speed (supported): Measures the
+    angular velocity in 14 bits, 24.141 °/s per count, up to 28000 rpm either way; DAEC and adaptive
+    filter (supported): Corrects the angle for the measurement delay at speed, and filters transition
+    noise at low speed; Zero position and direction (supported): Sets which angle reads 0 and which way
+    the count rises, seen from above the chip; ABI incremental interface (supported): Quadrature A and B
+    with an index pulse, 25 to 4096 pulses per revolution; UVW commutation and PWM (supported): Emulates
+    the Hall switches of a BLDC motor for 1 to 7 pole pairs, or puts the angle out as PWM; Magnet and
+    fault diagnostics (supported): Reports the gain control, the field magnitude and the error flags;
+    each flag becomes a driver error; SPI frames with CRC (supported): 16-bit frames for the fastest
+    reads, or 24- and 32-bit frames with a CRC-8 and a daisy-chain pad byte; OTP programming (guarded):
+    Burns the zero and the settings into the chip once, with the datasheet's step-by-step procedure.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
+
 ## AS5047U: 3.3 V operation
 
 <!-- figure: chip-circuit-supply-3v3 -->
@@ -60,6 +88,85 @@ Drawn from:
 - [`docs/hardware.yml`](../hardware.yml)
 - [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
 
+## AS5047U: 16-bit SPI frame
+
+<!-- figure: chip-frame-spi16 -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-frame-spi16.dark.svg">
+  <img src="chip-frame-spi16.svg"
+    alt="16-bit SPI frame of the AS5047U, 16 bits, most significant bit first. Command: don't care (bit 15),
+    R (bit 14), ADDR[13:0] (bits 13 to 0); Reply: Warning (bit 15), Error (bit 14), DATA[13:0] (bits 13
+    to 0). Below, the SPI mode 1 waveform of one transfer in the same bit grid.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
+
+## AS5047U: 24-bit SPI frame with CRC
+
+<!-- figure: chip-frame-spi24 -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-frame-spi24.dark.svg">
+  <img src="chip-frame-spi24.svg"
+    alt="24-bit SPI frame with CRC of the AS5047U, 24 bits, most significant bit first. Command: don't care
+    (bit 23), RW (bit 22), ADDR[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0); Reply: Warning (bit 23),
+    Error (bit 22), DATA[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0). Below, the SPI mode 1 waveform of
+    one transfer in the same bit grid.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
+
+## AS5047U
+
+<!-- figure: chip-hero -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-hero.dark.svg">
+  <img src="chip-hero.svg"
+    alt="Overview of the AS5047U, a magnetic rotary position sensor: it measures the absolute angle of a
+    rotating magnet over a full 360 degrees in 14 bits and gives it over SPI with a CRC, and as
+    incremental ABI, UVW commutation or PWM signals. A MCU talks to it over SPI with CRC-8; it drives
+    Motor controller; it reads back Magnet on the shaft. Headline figures: 14 bits angle resolution,
+    16384 counts per turn; 28000 rpm maximum speed; 10 MHz SPI clock, mode 1; 4096 ppr ABI pulses per
+    revolution, at most; 3.3 or 5 V supply; 5 V through the on-chip LDO; 5 x 4.4 mm TSSOP-14 body.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
+
+## AS5047U package, TSSOP-14
+
+<!-- figure: chip-outline -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-outline.dark.svg">
+  <img src="chip-outline.svg"
+    alt="Outline of the AS5047U in TSSOP-14 drawn to scale from above: body 5.0 x 4.4 x 1.2 mm, pitch 0.65
+    mm, 14 pins.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
+
 ## AS5047U pinout, TSSOP-14
 
 <!-- figure: chip-pinout -->
@@ -68,6 +175,44 @@ Drawn from:
   <img src="chip-pinout.svg"
     alt="Pinout of the AS5047U in TSSOP-14, top view: 14 pins, each with its name, its electrical type as a
     colour and the driver hook that uses it.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
+
+## Wiring: 3.3 V operation
+
+<!-- figure: chip-wiring-supply-3v3 -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-wiring-supply-3v3.dark.svg">
+  <img src="chip-wiring-supply-3v3.svg"
+    alt="Wiring of the AS5047U for the 3.3 V operation: MCU SPI SCK to CLK (Transfer()); MCU SPI MOSI to MOSI
+    (Transfer()); MCU SPI MISO to MISO (Transfer()); MCU GPIO / CS to CSn (Transfer()). Supplies,
+    grounds and the support parts are listed under the drawing.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/as5047u_spi_interface.hpp`](../../inc/as5047u_spi_interface.hpp)
+
+## Wiring: Minimum circuit, 5 V
+
+<!-- figure: chip-wiring-typical -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-wiring-typical.dark.svg">
+  <img src="chip-wiring-typical.svg"
+    alt="Wiring of the AS5047U for the Minimum circuit, 5 V: MCU SPI SCK to CLK (Transfer()); MCU SPI MOSI to
+    MOSI (Transfer()); MCU SPI MISO to MISO (Transfer()); MCU GPIO / CS to CSn (Transfer()). Supplies,
+    grounds and the support parts are listed under the drawing.">
 </picture>
 <!-- /figure -->
 
@@ -198,3 +343,21 @@ Hardware description: [`docs/model/spi-read.seq.yml`](../model/spi-read.seq.yml)
 Drawn from:
 
 - [`docs/model/spi-read.seq.yml`](../model/spi-read.seq.yml)
+
+## SPI timing of one 24-bit frame
+
+<!-- figure: spi-timing -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="spi-timing.dark.svg">
+  <img src="spi-timing.svg"
+    alt="SPI timing of the AS5047U in mode 1: CSn low frames a 24-bit frame, the chip changes MISO after each
+    rising CLK edge and reads MOSI on each falling edge, with the select, clock, setup and output times
+    of the datasheet.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/spi-timing.timing.yml`](../model/spi-timing.timing.yml)
+
+Drawn from:
+
+- [`docs/model/spi-timing.timing.yml`](../model/spi-timing.timing.yml)

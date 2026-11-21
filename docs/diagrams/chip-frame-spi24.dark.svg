@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="664" viewBox="0 0 1200 664" role="img" aria-labelledby="chip-frame-spi24-title chip-frame-spi24-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-frame-spi24-title">AS5047U: 24-bit SPI frame with CRC</title>
+<desc id="chip-frame-spi24-desc">24-bit SPI frame with CRC of the AS5047U, 24 bits, most significant bit first. Command: don't care (bit 23), RW (bit 22), ADDR[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0); Reply: Warning (bit 23), Error (bit 22), DATA[13:0] (bits 21 to 8), CRC-8 (bits 7 to 0). Below, the SPI mode 1 waveform of one transfer in the same bit grid.</desc>
+<rect x="0.5" y="0.5" width="1199" height="663" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#F8D27A">ON THE BUS</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#E8EDF3">AS5047U: 24-bit SPI frame with CRC</text>
+<text x="32" y="115.4" font-size="18" fill="#9AA6B5">The driver's default; a CRC-8 over bits 23 to 8 protects both directions, and a write command is followed by a data frame</text>
+<text x="32" y="141.5" font-size="18" fill="#9AA6B5">with the new register content. 24 bits, sent most significant bit first. Datasheet: SPI Transaction, Figures 23 to 25, p. 19.</text>
+<rect x="32" y="157.5" width="1136" height="1" fill="#252F3C"/>
+<path d="M271 397.5 L279 397.5 L279 419.5 L1160 419.5 L1160 397.5 L1168 397.5" fill="none" stroke="#D2DAE4" stroke-width="2"/>
+<path d="M271 465.5 L299 465.5 L299 465.5 L299 443.5 L316.5 443.5 L316.5 465.5 L334 465.5 L334 443.5 L351.6 443.5 L351.6 465.5 L369.1 465.5 L369.1 443.5 L386.6 443.5 L386.6 465.5 L404.1 465.5 L404.1 443.5 L421.6 443.5 L421.6 465.5 L439.2 465.5 L439.2 443.5 L456.7 443.5 L456.7 465.5 L474.2 465.5 L474.2 443.5 L491.7 443.5 L491.7 465.5 L509.2 465.5 L509.2 443.5 L526.8 443.5 L526.8 465.5 L544.3 465.5 L544.3 443.5 L561.8 443.5 L561.8 465.5 L579.3 465.5 L579.3 443.5 L596.9 443.5 L596.9 465.5 L614.4 465.5 L614.4 443.5 L631.9 443.5 L631.9 465.5 L649.4 465.5 L649.4 443.5 L666.9 443.5 L666.9 465.5 L684.5 465.5 L684.5 443.5 L702 443.5 L702 465.5 L719.5 465.5 L719.5 443.5 L737 443.5 L737 465.5 L754.5 465.5 L754.5 443.5 L772.1 443.5 L772.1 465.5 L789.6 465.5 L789.6 443.5 L807.1 443.5 L807.1 465.5 L824.6 465.5 L824.6 443.5 L842.1 443.5 L842.1 465.5 L859.7 465.5 L859.7 443.5 L877.2 443.5 L877.2 465.5 L894.7 465.5 L894.7 443.5 L912.2 443.5 L912.2 465.5 L929.8 465.5 L929.8 443.5 L947.3 443.5 L947.3 465.5 L964.8 465.5 L964.8 443.5 L982.3 443.5 L982.3 465.5 L999.8 465.5 L999.8 443.5 L1017.4 443.5 L1017.4 465.5 L1034.9 465.5 L1034.9 443.5 L1052.4 443.5 L1052.4 465.5 L1069.9 465.5 L1069.9 443.5 L1087.4 443.5 L1087.4 465.5 L1105 465.5 L1105 443.5 L1122.5 443.5 L1122.5 465.5 L1168 465.5" fill="none" stroke="#60A5FA" stroke-width="2"/>
+<path d="M271 500.5 L299 500.5" fill="none" stroke="#6C7889" stroke-width="1.6"/>
+<path d="M1140 500.5 L1168 500.5" fill="none" stroke="#6C7889" stroke-width="1.6"/>
+<path d="M271 546.5 L299 546.5" fill="none" stroke="#6C7889" stroke-width="1.6"/>
+<path d="M1140 546.5 L1168 546.5" fill="none" stroke="#6C7889" stroke-width="1.6"/>
+<rect x="299" y="209.5" width="35" height="46" rx="6" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="334" y="209.5" width="35" height="46" rx="6" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="369.1" y="209.5" width="490.6" height="46" rx="6" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="859.7" y="209.5" width="280.3" height="46" rx="6" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<rect x="299" y="297.5" width="35" height="46" rx="6" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="334" y="297.5" width="35" height="46" rx="6" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="369.1" y="297.5" width="490.6" height="46" rx="6" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="859.7" y="297.5" width="280.3" height="46" rx="6" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<path d="M299 500.5 L304 488.5 L329 488.5 L334 500.5 L329 512.5 L304 512.5 Z" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M334 500.5 L339 488.5 L364.1 488.5 L369.1 500.5 L364.1 512.5 L339 512.5 Z" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M369.1 500.5 L374.1 488.5 L854.7 488.5 L859.7 500.5 L854.7 512.5 L374.1 512.5 Z" fill="#13233A" stroke="#60A5FA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M859.7 500.5 L864.7 488.5 L1135 488.5 L1140 500.5 L1135 512.5 L864.7 512.5 Z" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M299 546.5 L304 534.5 L329 534.5 L334 546.5 L329 558.5 L304 558.5 Z" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M334 546.5 L339 534.5 L364.1 534.5 L369.1 546.5 L364.1 558.5 L339 558.5 Z" fill="#321820" stroke="#FB7185" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M369.1 546.5 L374.1 534.5 L854.7 534.5 L859.7 546.5 L854.7 558.5 L374.1 558.5 Z" fill="#11281A" stroke="#4ADE80" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M859.7 546.5 L864.7 534.5 L1135 534.5 L1140 546.5 L1135 558.5 L864.7 558.5 Z" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="299" y="191.5" font-size="16" fill="#9AA6B5">MSB, sent first</text>
+<text x="1140" y="191.5" font-size="16" text-anchor="end" fill="#9AA6B5">LSB, sent last</text>
+<text x="32" y="230.5" font-size="20" font-weight="700" fill="#E8EDF3">Command</text>
+<text x="32" y="250.5" font-size="16" fill="#9AA6B5">MOSI, RW = 1 read, 0 write</text>
+<text x="316.5" y="238.6" font-size="17" font-weight="600" text-anchor="middle" fill="#E2E8F0">x</text>
+<text x="316.5" y="275.5" font-size="16" text-anchor="middle" fill="#9AA6B5">23</text>
+<text x="351.6" y="238.6" font-size="17" font-weight="600" text-anchor="middle" fill="#FDE68A">RW</text>
+<text x="351.6" y="275.5" font-size="16" text-anchor="middle" fill="#9AA6B5">22</text>
+<text x="614.4" y="238.6" font-size="17" font-weight="600" text-anchor="middle" fill="#BFDBFE">ADDR[13:0]</text>
+<text x="371.1" y="275.5" font-size="16" fill="#9AA6B5">21</text>
+<text x="857.7" y="275.5" font-size="16" text-anchor="end" fill="#9AA6B5">8</text>
+<text x="999.8" y="238.6" font-size="17" font-weight="600" text-anchor="middle" fill="#DDD6FE">CRC-8</text>
+<text x="861.7" y="275.5" font-size="16" fill="#9AA6B5">7</text>
+<text x="1138" y="275.5" font-size="16" text-anchor="end" fill="#9AA6B5">0</text>
+<text x="32" y="318.5" font-size="20" font-weight="700" fill="#E8EDF3">Reply</text>
+<text x="32" y="338.5" font-size="16" fill="#9AA6B5">MISO, next frame</text>
+<text x="316.5" y="326.6" font-size="17" font-weight="600" text-anchor="middle" fill="#FDE68A">W</text>
+<text x="316.5" y="363.5" font-size="16" text-anchor="middle" fill="#9AA6B5">23</text>
+<text x="351.6" y="326.6" font-size="17" font-weight="600" text-anchor="middle" fill="#FECDD3">E</text>
+<text x="351.6" y="363.5" font-size="16" text-anchor="middle" fill="#9AA6B5">22</text>
+<text x="614.4" y="326.6" font-size="17" font-weight="600" text-anchor="middle" fill="#BBF7D0">DATA[13:0]</text>
+<text x="371.1" y="363.5" font-size="16" fill="#9AA6B5">21</text>
+<text x="857.7" y="363.5" font-size="16" text-anchor="end" fill="#9AA6B5">8</text>
+<text x="999.8" y="326.6" font-size="17" font-weight="600" text-anchor="middle" fill="#DDD6FE">CRC-8</text>
+<text x="861.7" y="363.5" font-size="16" fill="#9AA6B5">7</text>
+<text x="1138" y="363.5" font-size="16" text-anchor="end" fill="#9AA6B5">0</text>
+<text x="32" y="414.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">CSn</text>
+<text x="32" y="460.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">CLK</text>
+<text x="32" y="506.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">MOSI</text>
+<text x="316.5" y="506.3" font-size="16" font-weight="600" text-anchor="middle" fill="#E2E8F0">x</text>
+<text x="614.4" y="506.3" font-size="16" font-weight="600" text-anchor="middle" fill="#BFDBFE">ADDR[13:0]</text>
+<text x="999.8" y="506.3" font-size="16" font-weight="600" text-anchor="middle" fill="#DDD6FE">CRC-8</text>
+<text x="32" y="552.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">MISO</text>
+<text x="316.5" y="552.3" font-size="16" font-weight="600" text-anchor="middle" fill="#FDE68A">W</text>
+<text x="351.6" y="552.3" font-size="16" font-weight="600" text-anchor="middle" fill="#FECDD3">E</text>
+<text x="614.4" y="552.3" font-size="16" font-weight="600" text-anchor="middle" fill="#BBF7D0">DATA[13:0]</text>
+<text x="999.8" y="552.3" font-size="16" font-weight="600" text-anchor="middle" fill="#DDD6FE">CRC-8</text>
+<text x="32" y="594.3" font-size="16" fill="#9AA6B5">SPI mode 1: CLK idles low; the chip samples its input on the falling edge and changes its output after the rising edge. CSn stays low for the</text>
+<text x="32" y="617.5" font-size="16" fill="#9AA6B5">whole frame.</text>
+</svg>

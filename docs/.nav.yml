@@ -7,10 +7,12 @@ nav:
       - Installation: installation.md
       - Platforms: platforms.md
       - Hardware: hardware.md
+      - On the bus: bus.md
   - Concepts:
       - Architecture: architecture.md
       - Contract: contract.md
       - Status and limitations: limitations.md
+      - Ambiguities: ambiguities.md
   - Guides:
       - API guide: api-guide.md
       - Configuration: configuration.md

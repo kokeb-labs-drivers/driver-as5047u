@@ -8,7 +8,7 @@ hardware** with this driver yet.
 
     From ams OSRAM DS000637 v1-01:
 
-    - Power-up time and SPI timing: Timing Characteristics; SPI Timing, p. 9
+    - Power-up time: Timing Characteristics, p. 9
     - CRC-8 of a frame: CRC Checksum, p. 23
     - Angle, velocity, AGC, magnitude, ERRFL and DIA registers: Volatile Registers, p. 24
     - AGC and the magnet's field strength: Automatic Gain Control (AGC) and CORDIC Magnitude, p. 37
