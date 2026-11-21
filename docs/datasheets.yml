@@ -34,24 +34,30 @@ topics:
     page: 6
     driver: "`Config::high_temperature_noise`"
     docs: [hardware]
-  - topic: Power-up time and SPI timing
+  - topic: Power-up time
     doc: ds
-    section: Timing Characteristics; SPI Timing
+    section: Timing Characteristics
     page: 9
     driver: "-"
     docs: [hardware, porting, troubleshooting]
+  - topic: SPI timing and the clock limit
+    doc: ds
+    section: SPI Timing, Figures 18 and 19
+    page: 16
+    driver: "`kMaxClockHz`, `kMinCsHighNs`, `kCsSetupNs`, `kCsHoldNs`"
+    docs: [porting, hardware, bus]
   - topic: SPI mode, frames and the read pipeline
     doc: ds
     section: SPI Interface (Slave); SPI Transaction
     page: 16
     driver: "`FrameFormat`, `SpiInterface`, every read and write"
-    docs: [hardware, porting, architecture]
+    docs: [hardware, porting, architecture, bus]
   - topic: Pad byte of 32-bit frames
     doc: ds
     section: PAD Word
     page: 22
     driver: "`Config::pad_byte`"
-    docs: [hardware]
+    docs: [hardware, bus]
   - topic: CRC-8 of a frame
     doc: ds
     section: CRC Checksum

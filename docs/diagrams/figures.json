@@ -222,5 +222,22 @@
     "adaptive": true,
     "twin": false,
     "font": ""
+  },
+  "spi-timing": {
+    "title": "SPI timing of one 24-bit frame",
+    "alt": "SPI timing of the AS5047U in mode 1: CSn low frames a 24-bit frame, the chip changes MISO after each rising CLK edge and reads MOSI on each falling edge, with the select, clock, setup and output times of the datasheet.",
+    "description": "The four lanes are CSn, CLK, MOSI and MISO, left to right in time. CSn goes low with CLK low; from the first rising edge the chip drives MISO bit by bit and reads MOSI on each falling edge, bits 23 to 0 most significant first (each slot shows its bit number), with bits 20 to 1 left out. Half a clock after the last falling edge CSn goes high, the chip runs the command and releases MISO, and CSn stays high for at least tCSn. The table gives each interval with its datasheet value.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/spi-timing.timing.yml",
+    "sources": [
+      "docs/model/spi-timing.timing.yml"
+    ],
+    "kind": "timing",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": true,
+    "font": ""
   }
 }

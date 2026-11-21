@@ -343,3 +343,21 @@ Hardware description: [`docs/model/spi-read.seq.yml`](../model/spi-read.seq.yml)
 Drawn from:
 
 - [`docs/model/spi-read.seq.yml`](../model/spi-read.seq.yml)
+
+## SPI timing of one 24-bit frame
+
+<!-- figure: spi-timing -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="spi-timing.dark.svg">
+  <img src="spi-timing.svg"
+    alt="SPI timing of the AS5047U in mode 1: CSn low frames a 24-bit frame, the chip changes MISO after each
+    rising CLK edge and reads MOSI on each falling edge, with the select, clock, setup and output times
+    of the datasheet.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/spi-timing.timing.yml`](../model/spi-timing.timing.yml)
+
+Drawn from:
+
+- [`docs/model/spi-timing.timing.yml`](../model/spi-timing.timing.yml)

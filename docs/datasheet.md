@@ -14,11 +14,12 @@ are the datasheet's own (the printed page numbers).
 | --- | --- | --- | --- | --- |
 | Pins and package | Pin Assignment | p. 3 | - | [Hardware](hardware.md), [Quickstart](quickstart.md) |
 | Supply voltage, 3.3 V and 5 V operation | Electrical Characteristics; Power Management | p. 6 | `Config::high_temperature_noise` | [Hardware](hardware.md) |
-| Power-up time and SPI timing | Timing Characteristics; SPI Timing | p. 9 | - | [Hardware](hardware.md), [Porting](porting.md), [Troubleshooting](troubleshooting.md) |
+| Power-up time | Timing Characteristics | p. 9 | - | [Hardware](hardware.md), [Porting](porting.md), [Troubleshooting](troubleshooting.md) |
 | Dynamic angle error compensation (DAEC) | Dynamic Angle Error Compensation | p. 12 | `Config::dynamic_compensation`, `ReadUncompensatedAngleCounts()` | [Configuration](configuration.md) |
 | Adaptive velocity filter | Adaptive Filter System; Rotation Speed Measurement | p. 12 | `Config::adaptive_filter`, `filter_k_min_code`, `filter_k_max_code`, `ReadVelocityDegPerSec()` | [Configuration](configuration.md), [API guide](api-guide.md) |
-| SPI mode, frames and the read pipeline | SPI Interface (Slave); SPI Transaction | p. 16 | `FrameFormat`, `SpiInterface`, every read and write | [Hardware](hardware.md), [Porting](porting.md), [Architecture](architecture.md) |
-| Pad byte of 32-bit frames | PAD Word | p. 22 | `Config::pad_byte` | [Hardware](hardware.md) |
+| SPI timing and the clock limit | SPI Timing, Figures 18 and 19 | p. 16 | `kMaxClockHz`, `kMinCsHighNs`, `kCsSetupNs`, `kCsHoldNs` | [Porting](porting.md), [Hardware](hardware.md), [On the bus](bus.md) |
+| SPI mode, frames and the read pipeline | SPI Interface (Slave); SPI Transaction | p. 16 | `FrameFormat`, `SpiInterface`, every read and write | [Hardware](hardware.md), [Porting](porting.md), [Architecture](architecture.md), [On the bus](bus.md) |
+| Pad byte of 32-bit frames | PAD Word | p. 22 | `Config::pad_byte` | [Hardware](hardware.md), [On the bus](bus.md) |
 | CRC-8 of a frame | CRC Checksum | p. 23 | `Crc8()`, `Error::Crc` | [Hardware](hardware.md), [Troubleshooting](troubleshooting.md) |
 | Angle, velocity, AGC, magnitude, ERRFL and DIA registers | Volatile Registers | p. 24 | `ReadAngleCounts()`, `ReadVelocityCounts()`, `ReadAgc()`, `ReadMagnitude()`, `ReadErrorFlags()`, `ReadDiagnostics()`, `ErrorFlags::flags_lost` | [API guide](api-guide.md), [Troubleshooting](troubleshooting.md) |
 | Settings, zero position and direction registers | Non-Volatile Registers (OTP) | p. 27 | `Config`, `ApplyConfig()`, `SetZeroPosition()`, `SetDirection()`, `CheckForReset()`, `Error::DeviceReset` | [Configuration](configuration.md), [API guide](api-guide.md), [Status and limitations](limitations.md) |

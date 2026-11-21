@@ -9,7 +9,8 @@ The AS5047U's pins, bus settings, frames, timing, power and magnet, as the drive
 
     - Pins and package: Pin Assignment, p. 3
     - Supply voltage, 3.3 V and 5 V operation: Electrical Characteristics; Power Management, p. 6
-    - Power-up time and SPI timing: Timing Characteristics; SPI Timing, p. 9
+    - Power-up time: Timing Characteristics, p. 9
+    - SPI timing and the clock limit: SPI Timing, Figures 18 and 19, p. 16
     - SPI mode, frames and the read pipeline: SPI Interface (Slave); SPI Transaction, p. 16
     - Pad byte of 32-bit frames: PAD Word, p. 22
     - CRC-8 of a frame: CRC Checksum, p. 23
